@@ -11,14 +11,6 @@ public class EnemyDamage : MonoBehaviour
     {
         if (Time.time < lastAttackTime + attackCooldown)
             return;
-
-        PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
-
-        if (playerHealth != null)
-        {
-            playerHealth.TakeDamage(damage);
-            lastAttackTime = Time.time;
-        }
     }
 
 }

@@ -192,4 +192,29 @@ public class Inventory : MonoBehaviour
 
         return hotbarSlots[index];
     }
+    public bool ConsumeItem(Item item, int amount)
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (slot.myItem == null) continue;
+            if (slot.myItem.myItem != item) continue;
+
+            int remove = Mathf.Min(amount, slot.myItem.count);
+            slot.myItem.count -= remove;
+            slot.myItem.UpdateCountText();
+
+            amount -= remove;
+
+            if (slot.myItem.count <= 0)
+            {
+                Destroy(slot.myItem.gameObject);
+                slot.ClearSlot();
+            }
+
+            if (amount <= 0)
+                return true;
+        }
+
+        return false;
+    }
 }

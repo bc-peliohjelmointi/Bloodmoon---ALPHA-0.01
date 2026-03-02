@@ -13,3 +13,8 @@ using UnityEngine;
         Tree,
         Stone
     }
+    public enum WeaponType
+    {
+        None,
+        Bow
+    }

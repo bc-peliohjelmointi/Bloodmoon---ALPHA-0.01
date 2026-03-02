@@ -4749,7 +4749,7 @@ Transform:
   m_GameObject: {fileID: 4949611517809293583}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.105, y: 0.658, z: 1.113}
+  m_LocalPosition: {x: 0.105, y: -2.32, z: 1.113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7454,17 +7454,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8767435390818594262}
-  - component: {fileID: 1656619941772786532}
-  - component: {fileID: 5550024304034885976}
-  - component: {fileID: 9020907180391439696}
-  - component: {fileID: 5136509572970690558}
-  - component: {fileID: 8835470954618691099}
   - component: {fileID: 6823099314252293773}
   - component: {fileID: 6520720173781089413}
   - component: {fileID: 3515512440468336436}
   - component: {fileID: 7007956906748583636}
   - component: {fileID: 699439869759412828}
   - component: {fileID: 8470177942619154592}
+  - component: {fileID: 310157435590329273}
   m_Layer: 3
   m_Name: Character
   m_TagString: Player
@@ -7491,71 +7487,6 @@ Transform:
   - {fileID: 2092002509971644123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1656619941772786532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7734980911737004477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebadf476a1d1cb248aca8ee55a54224b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Crouching
---- !u!114 &5550024304034885976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7734980911737004477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c8d5efbf29ed242a14f1d70199d432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Jumping
-  isOnGround: 0
---- !u!114 &9020907180391439696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7734980911737004477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66c1ba74fba467841887653e08de56a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovementManager
-  moveSpeed: 2
-  speedMultiplier: 2.5
-  sensitivity: 200
-  jumpPower: 5
---- !u!114 &5136509572970690558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7734980911737004477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742679123ee7c5342ae0e98768062de5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Running
---- !u!114 &8835470954618691099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7734980911737004477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a5534f7bb939de4daeb6ed8e21a0f62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Walking
 --- !u!114 &6823099314252293773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7626,7 +7557,7 @@ Animator:
   m_GameObject: {fileID: 7734980911737004477}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 858e522b7713a57439359d2b4fa6ef67, type: 3}
-  m_Controller: {fileID: 9100000, guid: ebcffcc9012e80b4fba70b2f47ed7593, type: 2}
+  m_Controller: {fileID: 9100000, guid: 856f6e8917ace7c44a082b1a9808ad7f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7670,6 +7601,38 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 375
+--- !u!114 &310157435590329273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734980911737004477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f9c4fd0ba27f846a903a5f99a98c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  health: 50
+  maxHealth: 50
+  moveSpeed: 2
+  runMultiplier: 2.5
+  crouchMultiplier: 0.5
+  jumpPower: 5
+  groundTags:
+  - Ground
+  - Floor
+  walkBool: IsWalking
+  runBool: IsRunning
+  groundedBool: IsGrounded
+  jumpTrigger: IsJumping
+  healthBar: {fileID: 0}
+  foodBar: {fileID: 0}
+  waterBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  food: 100
+  water: 100
+  stamina: 100
 --- !u!1 &7758331651814905684
 GameObject:
   m_ObjectHideFlags: 0

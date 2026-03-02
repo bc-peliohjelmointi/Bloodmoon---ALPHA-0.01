@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96c4c3991dc781408f0a2571af4b610, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  ingredients:
+  - item: {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 61cb9a6c901577940af3a1797bd3571d, type: 2}
+    amount: 1
+  result: {fileID: 11400000, guid: d17391163030f884f815c800ec2b28b6, type: 2}
+  resultAmount: 1
