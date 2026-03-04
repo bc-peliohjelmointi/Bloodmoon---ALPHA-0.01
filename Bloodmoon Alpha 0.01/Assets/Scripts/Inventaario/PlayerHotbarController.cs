@@ -16,6 +16,7 @@ public class PlayerHotbarController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
     }
 
     private void Update()
