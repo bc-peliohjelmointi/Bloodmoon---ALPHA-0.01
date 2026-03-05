@@ -135,13 +135,13 @@ public class Inventory : MonoBehaviour
         Item _item = item ?? PickRandomItem();
 
         // Merge stackable items if possible
-        if (_item.itemTag == SlotTag.Stackable)
+        if (_item.IsStackableItem())
         {
             foreach (InventorySlot slot in inventorySlots)
             {
                 if (slot.myItem != null && slot.myItem.myItem == _item)
                 {
-                    int maxStack = 64;
+                    int maxStack = _item.GetMaxStackSize();
                     int spaceLeft = maxStack - slot.myItem.count;
 
                     if (spaceLeft > 0)
@@ -216,5 +216,22 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool ConsumeFromSlot(InventorySlot slot, int amount = 1)
+    {
+        if (slot == null || slot.myItem == null || amount <= 0)
+            return false;
+
+        slot.myItem.count -= amount;
+        slot.myItem.UpdateCountText();
+
+        if (slot.myItem.count <= 0)
+        {
+            Destroy(slot.myItem.gameObject);
+            slot.ClearSlot();
+        }
+
+        return true;
     }
 }

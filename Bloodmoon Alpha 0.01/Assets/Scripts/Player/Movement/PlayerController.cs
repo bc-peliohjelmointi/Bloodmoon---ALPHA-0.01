@@ -239,6 +239,18 @@ public class PlayerController : IDamageable
             TakeDamage(amount);
     }
 
+    public void RestoreFood(int amount)
+    {
+        if (amount <= 0) return;
+        food = Mathf.Clamp(food + amount, 0, 100);
+    }
+
+    public void RestoreWater(int amount)
+    {
+        if (amount <= 0) return;
+        water = Mathf.Clamp(water + amount, 0, 100);
+    }
+
     private IEnumerator waterNFoodConsume()
     {
         while (true)

@@ -33,7 +33,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         if (itemIcon != null && myItem != null)
             itemIcon.sprite = myItem.sprite;
 
-        if (myItem.itemTag == SlotTag.Stackable)
+        if (myItem.IsStackableItem())
         {
             count = 1;
             UpdateCountText();
@@ -47,7 +47,8 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     public void AddStack(int amount)
     {
-        count += amount;
+        int maxStack = myItem != null ? myItem.GetMaxStackSize() : int.MaxValue;
+        count = Mathf.Clamp(count + amount, 0, maxStack);
         UpdateCountText();
     }
 
@@ -71,7 +72,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     private void TrySplitStack()
     {
-        if (myItem.itemTag != SlotTag.Stackable) return;
+        if (!myItem.IsStackableItem()) return;
         if (count <= 1) return;
 
         int half = Mathf.CeilToInt(count / 2f);
