@@ -26,11 +26,11 @@ public class PlayerInteraction : MonoBehaviour
 
         if (equipped == null)
         {
-            Debug.Log("No equipped item");
+            //Debug.Log("No equipped item");
             return;
         }
 
-        Debug.Log("Equipped tool: " + equipped.toolType);
+        //Debug.Log("Equipped tool: " + equipped.toolType);
 
         Ray ray = new Ray(
             Camera.main.transform.position,
@@ -45,16 +45,16 @@ public class PlayerInteraction : MonoBehaviour
 
             if (breakable == null)
             {
-                Debug.Log("Hit non-breakable");
-                Debug.Log(hit.transform.name);
+                //Debug.Log("Hit non-breakable");
+                //Debug.Log(hit.transform.name);
                 return;
             }
 
-            Debug.Log("Hit breakable: " + breakable.breakType);
+            //Debug.Log("Hit breakable: " + breakable.breakType);
 
             if (!CanBreak(equipped.toolType, breakable.breakType))
             {
-                Debug.Log("Wrong tool for this target");
+                //Debug.Log("Wrong tool for this target");
                 return;
             }
 

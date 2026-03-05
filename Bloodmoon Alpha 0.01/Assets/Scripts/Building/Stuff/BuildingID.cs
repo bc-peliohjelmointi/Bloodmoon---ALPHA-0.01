@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BuildingID : MonoBehaviour
+public class BuildingID : IDamageable
 {
     public int BuildingListID;
     public bool IsOnGround = false;
