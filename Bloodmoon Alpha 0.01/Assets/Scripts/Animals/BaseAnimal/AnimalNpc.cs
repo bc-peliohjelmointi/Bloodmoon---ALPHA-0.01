@@ -128,8 +128,7 @@ public class AnimalNpc : IDamageable
 
     protected override void Die()
     {
-        agent.isStopped = true;
-        agent.ResetPath();
+        agent.enabled = false;
 
 
         animator.SetBool("Alive", false);
@@ -145,5 +144,10 @@ public class AnimalNpc : IDamageable
     {
         vfx.Play();
         Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax + 0.5f);
+    }
+
+    public bool Alive()
+    {
+        return isAlive;
     }
 }
