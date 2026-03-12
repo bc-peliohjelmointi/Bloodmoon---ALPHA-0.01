@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 1742661640865771270, guid: d53806ed91a9a764bba036fb7cdb1e71, type: 3}
   - {fileID: 4348215961839368542, guid: 6735f57f1a8afbf418f3e3ae45065157, type: 3}
   - {fileID: 7602303825485279183, guid: 650705e0db38b1b448863588d6996cb6, type: 3}
+  - {fileID: 4603741429500536484, guid: 4dc611e074ce249469a715e208e7b2c7, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 439

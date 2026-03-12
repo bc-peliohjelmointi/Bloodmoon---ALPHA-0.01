@@ -53,8 +53,12 @@ public class Builder : MonoBehaviour
                 Ghoust = Instantiate(buildings[build]);
                 Ghoust.GetComponentInChildren<Renderer>().material = valid;
                 Ghoust.layer = LayerMask.NameToLayer("Ghoust");
-                Ghoust.GetComponent<MeshCollider>().enabled = false;
-                Ghoust.AddComponent<BoxCollider>().size /= 1.1f;
+                if (Ghoust.GetComponent<MeshCollider>() != null) {
+                    Ghoust.GetComponent<MeshCollider>().enabled = false;
+                }
+                if (Ghoust.GetComponent<BoxCollider>() != null) {
+                    Ghoust.AddComponent<BoxCollider>().size /= 1.1f;
+                }
                 Ghoust.AddComponent<Validation>();
                 Ghoust.AddComponent<Rigidbody>();
                 Destroy(Ghoust.GetComponent<BuildingID>());

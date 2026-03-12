@@ -2442,14 +2442,6 @@ PrefabInstance:
       propertyPath: update
       value: 
       objectReference: {fileID: 4000234978455482939}
-    - target: {fileID: 9055824944912316176, guid: e25d04caf2fe5994d98d2fde08b9cfda, type: 3}
-      propertyPath: buildings.Array.size
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 9055824944912316176, guid: e25d04caf2fe5994d98d2fde08b9cfda, type: 3}
-      propertyPath: 'buildings.Array.data[18]'
-      value: 
-      objectReference: {fileID: 4603741429500536484, guid: 4dc611e074ce249469a715e208e7b2c7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2523,10 +2515,6 @@ PrefabInstance:
     - target: {fileID: 4603741429500536484, guid: 4dc611e074ce249469a715e208e7b2c7, type: 3}
       propertyPath: m_Name
       value: Turret
-      objectReference: {fileID: 0}
-    - target: {fileID: 4603741429500536484, guid: 4dc611e074ce249469a715e208e7b2c7, type: 3}
-      propertyPath: m_TagString
-      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 7219563784855368900, guid: 4dc611e074ce249469a715e208e7b2c7, type: 3}
       propertyPath: m_LocalPosition.x
