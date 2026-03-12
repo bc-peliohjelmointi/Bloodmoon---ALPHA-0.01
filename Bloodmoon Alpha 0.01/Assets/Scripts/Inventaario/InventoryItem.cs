@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -33,7 +33,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         if (itemIcon != null && myItem != null)
             itemIcon.sprite = myItem.sprite;
 
-        if (myItem.itemTag == SlotTag.Stackable)
+        if (myItem.IsStackableItem())
         {
             count = 1;
             UpdateCountText();
@@ -47,7 +47,8 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     public void AddStack(int amount)
     {
-        count += amount;
+        int maxStack = myItem != null ? myItem.GetMaxStackSize() : int.MaxValue;
+        count = Mathf.Clamp(count + amount, 0, maxStack);
         UpdateCountText();
     }
 
@@ -61,13 +62,6 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // If we are carrying something and clicked another item → try merge
-            if (Inventory.carriedItem != null && Inventory.carriedItem != this)
-            {
-                TryMergeWith(Inventory.carriedItem);
-                return;
-            }
-
             Inventory.Singleton.SetCarriedItem(this);
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
@@ -78,7 +72,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     private void TrySplitStack()
     {
-        if (myItem.itemTag != SlotTag.Stackable) return;
+        if (!myItem.IsStackableItem()) return;
         if (count <= 1) return;
 
         int half = Mathf.CeilToInt(count / 2f);
@@ -106,29 +100,6 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         {
             activeSlot.SetItem(this);
             // activeSlot will now reference this item, no problem
-        }
-    }
-    private void TryMergeWith(InventoryItem other)
-    {
-        if (myItem.itemTag != SlotTag.Stackable) return;
-        if (other.myItem != myItem) return;
-
-        int maxStack = 100;
-        int spaceLeft = maxStack - count;
-
-        if (spaceLeft <= 0) return;
-
-        int amountToMove = Mathf.Min(spaceLeft, other.count);
-
-        AddStack(amountToMove);
-
-        other.count -= amountToMove;
-        other.UpdateCountText();
-
-        if (other.count <= 0)
-        {
-            Destroy(other.gameObject);
-            Inventory.carriedItem = null;
         }
     }
 }

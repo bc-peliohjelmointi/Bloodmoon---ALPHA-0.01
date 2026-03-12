@@ -6,12 +6,6 @@ public class IDamageable : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] protected float health = 50f;
     [SerializeField] protected float maxHealth = 50f;
-
-    [Header("Effects")]
-    [SerializeField] protected ParticleSystem Blood;
-
-    public static Action OnPlayerDeath;
-
     protected virtual void DealDamage(float dmg, GameObject target)
     {
         if (target.TryGetComponent(out IDamageable damageable))
@@ -24,8 +18,6 @@ public class IDamageable : MonoBehaviour
     protected virtual void TakeDamage(float dmg)
     {
         health = Mathf.Clamp(health - dmg, 0f, maxHealth);
-
-        Instantiate(Blood, transform.position, Quaternion.identity);
 
         Debug.Log($"{gameObject.name} took {dmg} damage. Remaining health: {health}/{maxHealth}");
 

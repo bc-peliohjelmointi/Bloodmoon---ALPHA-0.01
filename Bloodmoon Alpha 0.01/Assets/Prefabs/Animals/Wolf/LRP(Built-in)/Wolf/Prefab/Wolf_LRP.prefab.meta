@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: ffd772cf428b2a143842e6c195ba9a67
+guid: 3e82f3d8ae06f98498e073919a0bddf3
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 311465
+  packageName: Realistic Furry Wolf
+  packageVersion: 1.0
+  assetPath: Assets/Wolf/LRP(Built-in)/Wolf/Prefab/Wolf_LRP.prefab
+  uploadId: 733725

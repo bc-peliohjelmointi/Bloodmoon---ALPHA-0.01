@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5942985104350092117}
   - component: {fileID: -2765229316346880962}
   - component: {fileID: -4507649844633931650}
-  - component: {fileID: 5468065442775997340}
   m_Layer: 8
   m_Name: Window
   m_TagString: Wall
@@ -150,22 +149,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingID
   BuildingListID: 0
   IsOnGround: 0
-  Mask:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!208 &5468065442775997340
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079360047053020274}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.020000001, y: 0.020000001, z: 0.001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
