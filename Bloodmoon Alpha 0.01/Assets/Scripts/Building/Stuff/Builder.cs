@@ -398,11 +398,11 @@ public class Builder : MonoBehaviour
         bool valid_bool = val.valid;
         if (valid_bool)
         {
-            val.transform.GetComponent<Renderer>().material = valid;
+            val.transform.GetComponentsInChildren<Renderer>()[0].material = valid;
         }
         else
         {
-            val.transform.GetComponent<Renderer>().material = invalid;
+            val.transform.GetComponentsInChildren<Renderer>()[0].material = invalid;
         }
         return valid_bool;
     }

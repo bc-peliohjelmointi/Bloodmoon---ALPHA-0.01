@@ -304,7 +304,7 @@ public class Wolf : AnimalNpc
 
         animator.SetBool("alert", playAlertAnimation);
         animator.SetBool("Attack", isAttackAnimating);
-        animator.SetBool("Idlling", idle);
+        animator.SetBool("Idling", idle);
     }
 
     private bool IsPlayingAlertAnimation()

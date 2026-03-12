@@ -55,7 +55,7 @@ public class PlayerController : IDamageable
 
         if (animator != null)
         {
-            animator.SetBool(groundedBool, true);
+            //animator.SetBool(groundedBool, true);
             animator.SetBool(walkBool, false);
             animator.SetBool(runBool, false);
         }
@@ -187,7 +187,7 @@ public class PlayerController : IDamageable
 
         if (animator != null)
         {
-            animator.SetBool(groundedBool, false);
+            //animator.SetBool(groundedBool, false);
             animator.SetTrigger(jumpTrigger);
             animator.SetBool(runBool, false);
         }

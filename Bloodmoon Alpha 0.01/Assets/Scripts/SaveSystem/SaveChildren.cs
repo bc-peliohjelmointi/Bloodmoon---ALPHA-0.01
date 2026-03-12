@@ -15,7 +15,7 @@ public class SaveChildren : MonoBehaviour
             SaveSystem.Save();
             loaded = true;
         }
-        if (Input.GetKeyDown(KeyCode.R) && !loaded)
+        if (Input.GetKeyDown(KeyCode.P) && !loaded)
         {
             SaveSystem.Load();
             loaded = true;
