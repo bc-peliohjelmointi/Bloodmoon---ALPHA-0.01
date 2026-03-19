@@ -62,6 +62,10 @@ public class Builder : MonoBehaviour
                 Ghoust.AddComponent<Validation>();
                 Ghoust.AddComponent<Rigidbody>();
                 Destroy(Ghoust.GetComponent<BuildingID>());
+                if (Ghoust.GetComponent<TurretAI>() != null)
+                {
+                    Ghoust.GetComponent<TurretAI>().enabled = false;
+                }
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
