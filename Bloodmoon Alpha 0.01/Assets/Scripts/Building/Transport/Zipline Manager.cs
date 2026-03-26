@@ -25,7 +25,7 @@ public class ZiplineManager : MonoBehaviour
 
     private Vector3 uplift = new Vector3(0,1.25f,0);
 
-    List<zipline> ziplines = new List<zipline>();
+    public List<zipline> ziplines = new List<zipline>();
     public class zipline
     {
         public GameObject line;
@@ -142,9 +142,11 @@ public class ZiplineManager : MonoBehaviour
         return work;
     }
 
-    private void CreateZipLine(GameObject Post1, GameObject Post2)
+    public void CreateZipLine(GameObject Post1, GameObject Post2)
     {
         var Line = new GameObject();
+
+        Line.name = "(Zip)line";
 
         Line.layer = LayerMask.NameToLayer("Zipline");
 

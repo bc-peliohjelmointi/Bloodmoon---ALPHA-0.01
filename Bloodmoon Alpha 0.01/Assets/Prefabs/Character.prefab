@@ -3090,7 +3090,6 @@ GameObject:
   - component: {fileID: 5176657220029620785}
   - component: {fileID: 3849628764966805994}
   - component: {fileID: 5918837716866239956}
-  - component: {fileID: 2036884479738913399}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3233,18 +3232,6 @@ MonoBehaviour:
   mouseSensitivity: 100
   offset: {x: 0, y: 0.27, z: 0.18}
   followSmoothSpeed: 500
---- !u!114 &2036884479738913399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790152702846897968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c677027687f1ed4bbd9253d4171a3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Looking
 --- !u!1 &2800040482931429851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,8 +7573,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHotbarController
   inventory: {fileID: 0}
+  playerController: {fileID: 0}
   handSocket: {fileID: 2092002509971644123}
   selectedIndex: 0
+  useConsumableKey: 101
 --- !u!114 &5971315204750330465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7631,6 +7620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   health: 50
   maxHealth: 50
+  CanTakeKnockback: 0
   Blood: {fileID: 3802586455251347144, guid: c68e5687c76bddf4eb0a8f46c143704e, type: 3}
   moveSpeed: 2
   runMultiplier: 2.5
@@ -7650,7 +7640,10 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   foodBar: {fileID: 0}
   waterBar: {fileID: 0}
-  isOnGround: 0
+  staminaBar: {fileID: 0}
+  food: 100
+  water: 100
+  stamina: 100
 --- !u!136 &2978612782746022298
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7681,11 +7674,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7734980911737004477}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5803e78f67d70a42a7fb4ba743b578b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  chunkSize: 250
+  radius: 2
+  minX: 1
+  maxX: 16
+  minZ: 1
+  maxZ: 20
+  cameraBackOffset: 400
+  unloadDotThreshold: -0.6
 --- !u!1 &7758331651814905684
 GameObject:
   m_ObjectHideFlags: 0
