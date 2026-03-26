@@ -30,6 +30,13 @@ public class ArrowProjectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Destroy enemy if hit
+        if (collision.gameObject.CompareTag("Enemy") ||
+            collision.gameObject.layer == LayerMask.NameToLayer("Entitys"))
+        {
+            Destroy(collision.transform.root.gameObject);
+        }
+
         Destroy(gameObject);
     }
 }

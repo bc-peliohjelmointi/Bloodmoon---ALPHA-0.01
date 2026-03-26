@@ -17,5 +17,6 @@ using UnityEngine;
     {
         None,
         Bow,
-        Melee
+        Melee,
+        Gun
     }
