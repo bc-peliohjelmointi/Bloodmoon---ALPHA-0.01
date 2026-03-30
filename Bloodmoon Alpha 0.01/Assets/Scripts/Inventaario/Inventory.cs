@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] Button giveItemBtn;
 
 
-    private void Awake()
+    private void Awake() //Tapahtuu kun alku
     {
         Singleton = this;
         giveItemBtn.onClick.AddListener(() => SpawnInventoryItem());
