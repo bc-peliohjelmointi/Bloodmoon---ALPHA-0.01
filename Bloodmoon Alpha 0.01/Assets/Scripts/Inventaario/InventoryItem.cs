@@ -78,7 +78,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
 
     private void TrySplitStack()
     {
-        if (myItem.itemTag != SlotTag.Stackable) return;
+        if (!myItem.IsStackableItem()) return;
         if (count <= 1) return;
 
         int half = Mathf.CeilToInt(count / 2f);
@@ -110,7 +110,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     }
     private void TryMergeWith(InventoryItem other) //merge
     {
-        if (myItem.itemTag != SlotTag.Stackable) return;
+        if (!myItem.IsStackableItem()) return;
         if (other.myItem != myItem) return;
 
         int maxStack = 100;
