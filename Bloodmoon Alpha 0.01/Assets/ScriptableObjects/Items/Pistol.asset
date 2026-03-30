@@ -19,5 +19,5 @@ MonoBehaviour:
   equipmentPrefab: {fileID: 819536883251324760, guid: b96193f459af553409b20093177a5226, type: 3}
   toolType: 0
   weaponType: 3
-  ammoType: {fileID: 0}
+  ammoType: {fileID: 11400000, guid: b9806ebcc4ae21e4ebd2deb7f2355665, type: 2}
   projectilePrefab: {fileID: 0}

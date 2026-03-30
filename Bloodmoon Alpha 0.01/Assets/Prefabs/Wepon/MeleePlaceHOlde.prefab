@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   range: 1.5
-  attackCooldown: 0.5
+  attackCooldown: 1.5
   attackPoint: {fileID: 2249110932273884833}
   hitMask:
     serializedVersion: 2

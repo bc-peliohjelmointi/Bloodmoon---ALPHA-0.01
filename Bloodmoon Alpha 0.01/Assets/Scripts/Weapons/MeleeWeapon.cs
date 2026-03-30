@@ -51,11 +51,10 @@ public class MeleeWeapon : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
-            if (hit.CompareTag("Enemy") || hit.gameObject.layer == LayerMask.NameToLayer("Entitys"))
+            if (hit.CompareTag("Enemy") ||
+                hit.gameObject.layer == LayerMask.NameToLayer("Entitys"))
             {
-                GameObject root = hit.transform.root.gameObject;
-
-                Destroy(root);
+                Destroy(hit.transform.root.gameObject);
             }
         }
     }
@@ -64,7 +63,6 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (isSwinging)
         {
-            // Tilt forward
             Quaternion targetRotation =
                 originalRotation * Quaternion.Euler(-tiltAngle, 0f, 0f);
 
@@ -74,7 +72,6 @@ public class MeleeWeapon : MonoBehaviour
                 Time.deltaTime * swingSpeed
             );
 
-            // If close enough to tilt, start returning
             if (Quaternion.Angle(transform.localRotation, targetRotation) < 1f)
             {
                 isSwinging = false;
@@ -82,7 +79,6 @@ public class MeleeWeapon : MonoBehaviour
         }
         else
         {
-            // Return to normal
             transform.localRotation = Quaternion.Slerp(
                 transform.localRotation,
                 originalRotation,
