@@ -35,9 +35,16 @@ public class Builder : MonoBehaviour
 
     public LocalNavUpdate update;
 
+    PauseMenu pause;
+
+    private void Start()
+    {
+        pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) // Togle building mode
+        if (Input.GetKeyDown(KeyCode.B) && !pause.isPaused) // Togle building mode
         {
             building = !building;
         }

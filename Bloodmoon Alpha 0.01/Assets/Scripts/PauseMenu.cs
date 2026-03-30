@@ -4,12 +4,16 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuCanvas;
+    InventoryToggle inventoryToggle;
+    Builder builder;
     public string mainMenuSceneName = "MainMenu";
 
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     void Start()
     {
+        builder = GameObject.Find("Builder").GetComponent<Builder>();
+        inventoryToggle = GameObject.Find("InventoryManager").GetComponent<InventoryToggle>();
         pauseMenuCanvas.SetActive(false);
     }
 
@@ -26,6 +30,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        builder.building = false;
+        inventoryToggle.CloseInventory();
         pauseMenuCanvas.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
