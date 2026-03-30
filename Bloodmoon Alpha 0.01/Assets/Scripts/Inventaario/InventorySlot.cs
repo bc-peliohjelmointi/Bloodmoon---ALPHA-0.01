@@ -39,7 +39,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
         if (itemInSlot.myItem.itemTag == SlotTag.Stackable &&
             item.myItem.itemTag == SlotTag.Stackable &&
-            itemInSlot.myItem == item.myItem)
+            itemInSlot.myItem == item.myItem) // stack
         {
             int maxStack = 100; 
             int spaceLeft = maxStack - itemInSlot.count;
