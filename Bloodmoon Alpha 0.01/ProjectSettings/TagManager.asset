@@ -15,6 +15,7 @@ TagManager:
   - StairsLoop
   - Hotbar
   - PreBuild
+  - Decoration
   layers:
   - Default
   - TransparentFX

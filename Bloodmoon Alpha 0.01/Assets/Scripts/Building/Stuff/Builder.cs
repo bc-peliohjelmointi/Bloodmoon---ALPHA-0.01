@@ -439,11 +439,19 @@ public class Builder : MonoBehaviour
         bool valid_bool = val.valid;
         if (valid_bool)
         {
-            val.transform.GetComponentsInChildren<Renderer>()[0].material = valid;
+            Renderer[] ren = Ghoust.transform.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in ren)
+            {
+                r.material = valid;
+            }
         }
         else
         {
-            val.transform.GetComponentsInChildren<Renderer>()[0].material = invalid;
+            Renderer[] ren = Ghoust.transform.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in ren)
+            {
+                r.material = invalid;
+            }
         }
         return valid_bool;
     }
