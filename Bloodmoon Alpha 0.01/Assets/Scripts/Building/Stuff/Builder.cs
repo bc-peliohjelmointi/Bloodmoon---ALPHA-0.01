@@ -56,12 +56,16 @@ public class Builder : MonoBehaviour
                 if (Ghoust.GetComponent<MeshCollider>() != null) {
                     Ghoust.GetComponent<MeshCollider>().enabled = false;
                 }
-                if (Ghoust.GetComponent<BoxCollider>() != null) {
+                if (Ghoust.GetComponent<BoxCollider>() == null) {
                     Ghoust.AddComponent<BoxCollider>().size /= 1.1f;
                 }
                 Ghoust.AddComponent<Validation>();
-                Ghoust.AddComponent<Rigidbody>();
+                Ghoust.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 Destroy(Ghoust.GetComponent<BuildingID>());
+                if (Ghoust.GetComponent<TurretAI>() != null)
+                {
+                    Ghoust.GetComponent<TurretAI>().enabled = false;
+                }
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -71,7 +75,6 @@ public class Builder : MonoBehaviour
                     rotat = 0;
                 }
             }
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 50);
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 50f, mask, QueryTriggerInteraction.Ignore)) // Katso minne pelaaja katsoo ja tallenna raycast hitinfo
             {
                 Snap(hit);
@@ -107,223 +110,166 @@ public class Builder : MonoBehaviour
     /// <param name="hit"></param>
     public void Snap(RaycastHit hit) // Ota ray niin tiet‰‰ mit‰ katsoo
     {
-        if (hit.transform.tag == "Floor") // Jos katsot lattiaa, yhdisty siihen.
+        switch (hit.transform.tag)
         {
-            Vector3 dir = hit.transform.position - hit.point;
-            dir.y = 0;
-            Vector3 uplift = new Vector3();
-            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z)) // Katso mihin suuntaan yhdistyt, x vai z
-            {
-                dir.z = 0;
-                if (dir.x < 0) // Katso kumpi reuna, positiivinen vai negatiivinen
+            case "Floor":
+                Vector3 dir = hit.transform.position - hit.point;
+                dir.y = 0;
+                Vector3 uplift = new Vector3();
+                if (Ghoust.tag == "PreBuild")
                 {
-                    dir.x = 4 * Ghoust.transform.localScale.x / 100;
-                }
-                else
-                {
-                    dir.x = -4 * Ghoust.transform.localScale.x / 100;
-                }
-            }
-            else
-            {
-                dir.x = 0;
-                if (dir.z < 0) // Katso kumpi reuna, positiivinen vai negatiivinen
-                {
-                    dir.z = 4 * Ghoust.transform.localScale.x / 100;
-                }
-                else
-                {
-                    dir.z = -4 * Ghoust.transform.localScale.x / 100;
-                }
-            }
-            if (Ghoust.tag == "Wall") // mik‰li yrit‰t laittaa sein‰‰, s‰‰d‰ siainti t‰ydellist‰ sn‰ppi‰ varten ja k‰‰nn‰ oikeaan suuntaan
-            { 
-                dir.z /= 2;
-                dir.x /= 2;
-                uplift.y = 2 * Ghoust.transform.localScale.x / 100;
-                Ghoust.transform.position = hit.transform.position + dir + uplift;
-                Vector3 target = hit.transform.position;
-                target.y += 2 * Ghoust.transform.localScale.x / 100;
-                Ghoust.transform.LookAt(target);
-            }
-            else if (Ghoust.tag == "Stairs" || Ghoust.tag == "StairsRight" || Ghoust.tag == "StairsLeft" || Ghoust.tag == "StairsLoop") 
-            {
-                Ghoust.transform.rotation = new Quaternion();
-                uplift.y = 2 * Ghoust.transform.localScale.x / 100;
-                Ghoust.transform.position = hit.transform.position + uplift;
-            }
-            else // Jos et ole luomassa mit‰‰n edellisist‰, k‰yt‰ default
-            {
-                Ghoust.transform.rotation = hit.transform.rotation;
-                Ghoust.transform.position = hit.transform.position + dir;
-            }
-        }
-        else if (hit.transform.tag == "Wall") // jos katsoo sein‰‰ snap sein‰‰n
-        {
-            Vector3 dir = hit.transform.position - hit.point;
-            Ghoust.transform.position = hit.transform.position + dir;
-            if (Ghoust.tag == "Floor") // jos olet valinnut lattian, rajaa snap suunnat
-            {
-                if (dir.y > 0)
-                {
-                    dir = new Vector3();
-                    dir.y = -2 * Ghoust.transform.localScale.x / 100;
-                    dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
-                }
-                else
-                {
-                    dir = new Vector3();
-                    dir.y = 2 * Ghoust.transform.localScale.x / 100;
-                    dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
-                }
-                Ghoust.transform.position = hit.transform.position + dir;
-            }
-            else if(Ghoust.tag == "Stairs" || Ghoust.tag == "StairsRight" || Ghoust.tag == "StairsLeft" || Ghoust.tag == "StairsLoop")
-            {
-                dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
-            }
-            else
-            {
-                if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z)) // valitse suunta mihin snap tapahtuu
-                {
-                    if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+                    Renderer renderer2 = Ghoust.GetComponentInChildren<Renderer>();
+                    if (renderer2 == null)
                     {
-                        if (dir.x > 0)
+                        Ghoust.transform.rotation = new Quaternion();
+                        Ghoust.transform.position = hit.point;
+                    }
+                    Bounds bounds2 = renderer2.bounds;
+                    float bottomOffset2 = bounds2.min.y - Ghoust.transform.position.y;
+                    Vector3 position2 = hit.transform.position;
+                    position2.y -= bottomOffset2;
+                    Ghoust.transform.position = position2;
+                    Ghoust.transform.rotation = new Quaternion();
+                }
+                else
+                {
+                    if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z)) // Katso mihin suuntaan yhdistyt, x vai z
+                    {
+                        dir.z = 0;
+                        if (dir.x < 0) // Katso kumpi reuna, positiivinen vai negatiivinen
                         {
-                            dir = new Vector3();
-                            dir.x = -4 * Ghoust.transform.localScale.x / 100;
-                        }
-                        else
-                        {
-                            dir = new Vector3();
                             dir.x = 4 * Ghoust.transform.localScale.x / 100;
                         }
+                        else
+                        {
+                            dir.x = -4 * Ghoust.transform.localScale.x / 100;
+                        }
                     }
                     else
                     {
-                        if (dir.y > 0)
+                        dir.x = 0;
+                        if (dir.z < 0) // Katso kumpi reuna, positiivinen vai negatiivinen
                         {
-                            dir = new Vector3();
-                            dir.y = -4 * Ghoust.transform.localScale.x / 100;
-                        }
-                        else
-                        {
-                            dir = new Vector3();
-                            dir.y = 4 * Ghoust.transform.localScale.x / 100;
-                        }
-                    }
-                }
-                else
-                {
-                    if (Mathf.Abs(dir.y) < Mathf.Abs(dir.z))
-                    {
-                        if (dir.z > 0)
-                        {
-                            dir = new Vector3();
-                            dir.z = -4 * Ghoust.transform.localScale.x / 100;
-                        }
-                        else
-                        {
-                            dir = new Vector3();
                             dir.z = 4 * Ghoust.transform.localScale.x / 100;
                         }
+                        else
+                        {
+                            dir.z = -4 * Ghoust.transform.localScale.x / 100;
+                        }
+                    }
+                    if (Ghoust.tag == "Wall") // mik‰li yrit‰t laittaa sein‰‰, s‰‰d‰ siainti t‰ydellist‰ sn‰ppi‰ varten ja k‰‰nn‰ oikeaan suuntaan
+                    {
+                        dir.z /= 2;
+                        dir.x /= 2;
+                        uplift.y = 2 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.position = hit.transform.position + dir + uplift;
+                        Vector3 target = hit.transform.position;
+                        target.y += 2 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.LookAt(target);
+                    }
+                    else if (Ghoust.tag == "Stairs" || Ghoust.tag == "StairsRight" || Ghoust.tag == "StairsLeft" || Ghoust.tag == "StairsLoop")
+                    {
+                        Ghoust.transform.rotation = new Quaternion();
+                        uplift.y = 2 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.position = hit.transform.position + uplift;
+                    }
+                    else // Jos et ole luomassa mit‰‰n edellisist‰, k‰yt‰ default
+                    {
+                        Ghoust.transform.rotation = hit.transform.rotation;
+                        Ghoust.transform.position = hit.transform.position + dir;
+                    }
+                }
+                break;
+            case "Wall":
+                dir = hit.transform.position - hit.point;
+                Ghoust.transform.position = hit.transform.position + dir;
+                if (Ghoust.tag == "Floor") // jos olet valinnut lattian, rajaa snap suunnat
+                {
+                    if (dir.y > 0)
+                    {
+                        dir = new Vector3();
+                        dir.y = -2 * Ghoust.transform.localScale.x / 100;
+                        dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
                     }
                     else
                     {
-                        if (dir.y > 0)
+                        dir = new Vector3();
+                        dir.y = 2 * Ghoust.transform.localScale.x / 100;
+                        dir += hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                    }
+                    Ghoust.transform.position = hit.transform.position + dir;
+                }
+                else if (Ghoust.tag == "Stairs" || Ghoust.tag == "StairsRight" || Ghoust.tag == "StairsLeft" || Ghoust.tag == "StairsLoop")
+                {
+                    dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                }
+                else
+                {
+                    if (Mathf.Abs(dir.x) > Mathf.Abs(dir.z)) // valitse suunta mihin snap tapahtuu
+                    {
+                        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
                         {
-                            dir = new Vector3();
-                            dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                            if (dir.x > 0)
+                            {
+                                dir = new Vector3();
+                                dir.x = -4 * Ghoust.transform.localScale.x / 100;
+                            }
+                            else
+                            {
+                                dir = new Vector3();
+                                dir.x = 4 * Ghoust.transform.localScale.x / 100;
+                            }
                         }
                         else
                         {
-                            dir = new Vector3();
-                            dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                            if (dir.y > 0)
+                            {
+                                dir = new Vector3();
+                                dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                            }
+                            else
+                            {
+                                dir = new Vector3();
+                                dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Mathf.Abs(dir.y) < Mathf.Abs(dir.z))
+                        {
+                            if (dir.z > 0)
+                            {
+                                dir = new Vector3();
+                                dir.z = -4 * Ghoust.transform.localScale.x / 100;
+                            }
+                            else
+                            {
+                                dir = new Vector3();
+                                dir.z = 4 * Ghoust.transform.localScale.x / 100;
+                            }
+                        }
+                        else
+                        {
+                            if (dir.y > 0)
+                            {
+                                dir = new Vector3();
+                                dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                            }
+                            else
+                            {
+                                dir = new Vector3();
+                                dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                            }
                         }
                     }
                 }
-            }
-            Ghoust.transform.rotation = hit.transform.rotation;
-            Ghoust.transform.position = hit.transform.position + dir;
-        }
-        else if (hit.transform.tag == "Stairs" || hit.transform.tag == "StairsRight" || hit.transform.tag == "StairsLeft" || hit.transform.tag == "StairsLoop")
-        {
-            Vector3 dir = hit.transform.position - hit.point;
-            if (Ghoust.tag == "Floor")
-            {
-                if (dir.y < 0)
-                {
-                    switch (hit.transform.tag)
-                    {
-                        case "StairsLeft":
-                            dir = -hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            Ghoust.transform.Rotate(0, 90, 0);
-                            break;
-                        case "StairsLoop":
-                            dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            break;
-                        case "StairsRight":
-                            dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            Ghoust.transform.Rotate(0, 90, 0);
-                            break;
-                        default:
-                            dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            break;
-                    }
-                    dir.y = 2 * Ghoust.transform.localScale.x / 100;
-                    Ghoust.transform.position = hit.transform.position + dir;
-                }
-                else
-                {
-                    dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
-                    dir.y = 2 * Ghoust.transform.localScale.x / 100;
-                    Ghoust.transform.position = hit.transform.position - dir;
-                    Ghoust.transform.rotation = hit.transform.rotation;
-                }
-            }
-            else if (Ghoust.tag == "Wall")
-            {
-                if (dir.y < 0)
-                {
-                    switch (hit.transform.tag)
-                    {
-                        case "StairsLeft":
-                            dir = -hit.transform.right * 2 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            Ghoust.transform.Rotate(0, 90, 0);
-                            break;
-                        case "StairsLoop":
-                            dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            break;
-                        case "StairsRight":
-                            dir = hit.transform.right * 2 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            Ghoust.transform.Rotate(0, 90, 0);
-                            break;
-                        default:
-                            dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
-                            Ghoust.transform.rotation = hit.transform.rotation;
-                            break;
-                    }
-                    dir.y = 4 * Ghoust.transform.localScale.x / 100;
-                    Ghoust.transform.position = hit.transform.position + dir;
-                }
-                else
-                {
-                    dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
-                    dir.y = 4 * Ghoust.transform.localScale.x / 100;
-                    Ghoust.transform.position = hit.transform.position - dir;
-                    Ghoust.transform.rotation = hit.transform.rotation;
-                }
-            }
-            else
-            {
-                if (Mathf.Abs(dir.y) > 0.5f || Ghoust.tag != "Stairs")
+                Ghoust.transform.rotation = hit.transform.rotation;
+                Ghoust.transform.position = hit.transform.position + dir;
+                break;
+            case "Stairs": case "StairsRight": case "StairsLeft": case "StairsLoop":
+                dir = hit.transform.position - hit.point;
+                if (Ghoust.tag == "Floor")
                 {
                     if (dir.y < 0)
                     {
@@ -332,12 +278,11 @@ public class Builder : MonoBehaviour
                             case "StairsLeft":
                                 dir = -hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
                                 Ghoust.transform.rotation = hit.transform.rotation;
-                                Ghoust.transform.Rotate(0, -90, 0);
+                                Ghoust.transform.Rotate(0, 90, 0);
                                 break;
                             case "StairsLoop":
                                 dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
                                 Ghoust.transform.rotation = hit.transform.rotation;
-                                Ghoust.transform.Rotate(0, 180, 0);
                                 break;
                             case "StairsRight":
                                 dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
@@ -349,50 +294,135 @@ public class Builder : MonoBehaviour
                                 Ghoust.transform.rotation = hit.transform.rotation;
                                 break;
                         }
+                        dir.y = 2 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.position = hit.transform.position + dir;
+                    }
+                    else
+                    {
+                        dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                        dir.y = 2 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.position = hit.transform.position - dir;
+                        Ghoust.transform.rotation = hit.transform.rotation;
+                    }
+                }
+                else if (Ghoust.tag == "Wall")
+                {
+                    if (dir.y < 0)
+                    {
+                        switch (hit.transform.tag)
+                        {
+                            case "StairsLeft":
+                                dir = -hit.transform.right * 2 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                Ghoust.transform.Rotate(0, 90, 0);
+                                break;
+                            case "StairsLoop":
+                                dir = -hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                break;
+                            case "StairsRight":
+                                dir = hit.transform.right * 2 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                Ghoust.transform.Rotate(0, 90, 0);
+                                break;
+                            default:
+                                dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                                Ghoust.transform.rotation = hit.transform.rotation;
+                                break;
+                        }
                         dir.y = 4 * Ghoust.transform.localScale.x / 100;
                         Ghoust.transform.position = hit.transform.position + dir;
                     }
                     else
                     {
-                        dir = hit.transform.forward * -4 * Ghoust.transform.localScale.x / 100;
-                        dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                        dir = hit.transform.forward * 2 * Ghoust.transform.localScale.x / 100;
+                        dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                        Ghoust.transform.position = hit.transform.position - dir;
                         Ghoust.transform.rotation = hit.transform.rotation;
-                        Ghoust.transform.position = hit.transform.position + dir;
                     }
                 }
                 else
                 {
-                    if (Mathf.Abs(hit.transform.right.x) > Mathf.Abs(hit.transform.right.z)) // valitse suunta mihin snap tapahtuu
+                    if (Mathf.Abs(dir.y) > 0.5f || Ghoust.tag != "Stairs")
                     {
-                        if (dir.x > 0)
+                        if (dir.y < 0)
                         {
-                            dir = new Vector3(4 * Ghoust.transform.localScale.x / 100, 0, 0);
+                            switch (hit.transform.tag)
+                            {
+                                case "StairsLeft":
+                                    dir = -hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                                    Ghoust.transform.rotation = hit.transform.rotation;
+                                    Ghoust.transform.Rotate(0, -90, 0);
+                                    break;
+                                case "StairsLoop":
+                                    dir = -hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                                    Ghoust.transform.rotation = hit.transform.rotation;
+                                    Ghoust.transform.Rotate(0, 180, 0);
+                                    break;
+                                case "StairsRight":
+                                    dir = hit.transform.right * 4 * Ghoust.transform.localScale.x / 100;
+                                    Ghoust.transform.rotation = hit.transform.rotation;
+                                    Ghoust.transform.Rotate(0, 90, 0);
+                                    break;
+                                default:
+                                    dir = hit.transform.forward * 4 * Ghoust.transform.localScale.x / 100;
+                                    Ghoust.transform.rotation = hit.transform.rotation;
+                                    break;
+                            }
+                            dir.y = 4 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.position = hit.transform.position + dir;
                         }
                         else
                         {
-                            dir = new Vector3(-4 * Ghoust.transform.localScale.x / 100, 0, 0);
+                            dir = hit.transform.forward * -4 * Ghoust.transform.localScale.x / 100;
+                            dir.y = -4 * Ghoust.transform.localScale.x / 100;
+                            Ghoust.transform.rotation = hit.transform.rotation;
+                            Ghoust.transform.position = hit.transform.position + dir;
                         }
                     }
                     else
                     {
-                        if (dir.z > 0)
+                        if (Mathf.Abs(hit.transform.right.x) > Mathf.Abs(hit.transform.right.z)) // valitse suunta mihin snap tapahtuu
                         {
-                            dir = new Vector3(0, 0, 4 * Ghoust.transform.localScale.x / 100);
+                            if (dir.x > 0)
+                            {
+                                dir = new Vector3(4 * Ghoust.transform.localScale.x / 100, 0, 0);
+                            }
+                            else
+                            {
+                                dir = new Vector3(-4 * Ghoust.transform.localScale.x / 100, 0, 0);
+                            }
                         }
                         else
                         {
-                            dir = new Vector3(0, 0, -4 * Ghoust.transform.localScale.x / 100);
+                            if (dir.z > 0)
+                            {
+                                dir = new Vector3(0, 0, 4 * Ghoust.transform.localScale.x / 100);
+                            }
+                            else
+                            {
+                                dir = new Vector3(0, 0, -4 * Ghoust.transform.localScale.x / 100);
+                            }
                         }
+                        Ghoust.transform.rotation = hit.transform.rotation;
+                        Ghoust.transform.position = hit.transform.position - dir;
                     }
-                    Ghoust.transform.rotation = hit.transform.rotation;
-                    Ghoust.transform.position = hit.transform.position - dir;
                 }
-            }
-        }
-        else // mik‰li et osu mihink‰‰n mihin snap toimii, laita mihin ray osoittaa
-        {
-            Ghoust.transform.rotation = new Quaternion();
-            Ghoust.transform.position = hit.point;
+                break;
+            default:
+                Renderer renderer = Ghoust.GetComponentInChildren<Renderer>();
+                if (renderer == null)
+                {
+                    Ghoust.transform.rotation = new Quaternion();
+                    Ghoust.transform.position = hit.point;
+                }
+                Bounds bounds = renderer.bounds;
+                float bottomOffset = bounds.min.y - Ghoust.transform.position.y;
+                Vector3 position = hit.point;
+                position.y -= bottomOffset;
+                Ghoust.transform.position = position;
+                Ghoust.transform.rotation = new Quaternion();
+                break;
         }
     }
 

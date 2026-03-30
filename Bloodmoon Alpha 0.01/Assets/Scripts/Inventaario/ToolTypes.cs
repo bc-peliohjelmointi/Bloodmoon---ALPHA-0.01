@@ -16,5 +16,7 @@ using UnityEngine;
     public enum WeaponType
     {
         None,
-        Bow
+        Bow,
+        Melee,
+        Gun
     }

@@ -68,11 +68,56 @@ public class SaveChildren : MonoBehaviour
         }
         builder.GetComponent<Builder>().update.NavUpdate();
     }
+
+    public void SaveLines(ref LineSaveData data)
+    {
+        Debug.Log("Start Line Save");
+        data.post1Locations = new List<Vector3>();
+        data.post2Locations = new List<Vector3>();
+        ZiplineManager LineManager = transform.GetComponent<ZiplineManager>();
+        if (LineManager != null)
+        {
+            foreach (ZiplineManager.zipline line in LineManager.ziplines)
+            {
+                data.post1Locations.Add(line.post1.transform.position);
+                data.post2Locations.Add(line.post2.transform.position);
+                Debug.Log(line.post1.transform.position);
+                Debug.Log(line.post2.transform.position);
+                Debug.Log("Line Saved");
+            }
+        }
+        else
+        {
+            Debug.LogError("LineManagerNotFound");
+        }
+    }
+
+    public void LoadLines(LineSaveData data)
+    {
+        ZiplineManager LineManager = transform.GetComponent<ZiplineManager>();
+        for (int i = 0; i < data.post1Locations.Count; i++)
+        {
+            Collider[] colliders1 = Physics.OverlapSphere(data.post1Locations[i], 1f);
+            Collider[] colliders2 = Physics.OverlapSphere(data.post2Locations[i], 1f);
+            if (colliders1.Length > 0 && colliders2.Length > 0)
+            {
+                LineManager.CreateZipLine(colliders1[0].gameObject, colliders2[0].gameObject);
+            }
+        }
+    }
 }
+
 [System.Serializable]
 public struct ChildSaveData
 {
     public List<Vector3> locations;
     public List<Quaternion> rotations;
     public List<string> names;
+}
+
+[System.Serializable]
+public struct LineSaveData
+{
+    public List<Vector3> post1Locations;
+    public List<Vector3> post2Locations;
 }

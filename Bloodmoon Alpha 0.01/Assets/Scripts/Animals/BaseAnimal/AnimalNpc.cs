@@ -49,7 +49,7 @@ public class AnimalNpc : IDamageable
         inDetectionRange = InRange();
         UpdateBaseAnimator();
 
-        if (Keyboard.current.tKey.wasPressedThisFrame) TakeDamage(10);
+        if (Keyboard.current.tKey.wasPressedThisFrame) TakeDamage(10,new Vector3());
 
         if (health <= 0f && isAlive)
         {
@@ -102,7 +102,7 @@ public class AnimalNpc : IDamageable
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             if (debug) Debug.Log($"{gameObject.name} attacks the player!");
-            DealDamage(damage, player);
+            DealDamage(damage, player, transform.forward / 10);
         }
     }
 

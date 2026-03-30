@@ -15,6 +15,7 @@ public class SaveSystem
     {
         public PlayerData playerData;
         public ChildSaveData childSaveData;
+        public LineSaveData lineSaveData;
         public InventoryData inventoryData;
     }
 
@@ -37,6 +38,7 @@ public class SaveSystem
         GameObject.Find("Builder").GetComponent<SaveChildren>().Save(ref saveData.childSaveData);
         GameObject.Find("Character").GetComponent<SaveMeeee>().Save(ref saveData.playerData);
         GameObject.Find("Inventory").GetComponent<SaveMyStuff>().Save(ref saveData.inventoryData);
+        GameObject.Find("Builder").GetComponent<SaveChildren>().SaveLines(ref saveData.lineSaveData);
     }
 
     public static void Load()
@@ -53,5 +55,6 @@ public class SaveSystem
         GameObject.Find("Builder").GetComponent<SaveChildren>().Load(saveData.childSaveData);
         GameObject.Find("Character").GetComponent<SaveMeeee>().Load(saveData.playerData);
         GameObject.Find("Inventory").GetComponent<SaveMyStuff>().Load(saveData.inventoryData);
+        GameObject.Find("Builder").GetComponent<SaveChildren>().LoadLines(saveData.lineSaveData);
     }
 }

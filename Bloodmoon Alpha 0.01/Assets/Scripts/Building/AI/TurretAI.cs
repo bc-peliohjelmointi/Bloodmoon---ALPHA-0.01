@@ -29,7 +29,10 @@ public class TurretAI : IDamageable
         {
             if (PointAtTarget())
             {
-                Shoot();
+                if (CanC())
+                {
+                    Shoot();
+                }
             }
         }
     }
@@ -152,21 +155,45 @@ public class TurretAI : IDamageable
         return false;
     }
 
+    private bool CanC()
+    {
+        if (Head != null)
+        {
+            if (!Physics.Linecast(Head.position, target.transform.position))
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (!Physics.Linecast(transform.position, target.transform.position))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     void Shoot()
     {
+        Vector3 KnockBack = transform.forward;
+        if (Head != null)
+        {
+            KnockBack = Head.transform.forward;
+        }
         if (LastShotTime + (1 / ShotPerSec) < Time.time)
         {
             if (1 / ShotPerSec < Time.deltaTime)
             {
                 for (int i = 0; (1 / ShotPerSec) / Time.deltaTime > i; i++)
                 {
-                    DealDamage(ShotDamage, target);
+                    DealDamage(ShotDamage, target, KnockBack);
                 }
                 LastShotTime = Time.time;
             }
             else
             {
-                DealDamage(ShotDamage, target);
+                DealDamage(ShotDamage, target, KnockBack);
                 LastShotTime = Time.time;
             }
         }

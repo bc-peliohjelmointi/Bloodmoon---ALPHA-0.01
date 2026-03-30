@@ -32,6 +32,7 @@ public class TerrainScenesCreatorWindow : EditorWindow
     private bool addDirectionalLight = true;
     private bool addCamera = false;
     private bool markTerrainsAutoConnect = false;
+    private string terrainTag = "Untagged";
 
     // Naming & folders
     private string terrainDataFolder = "Assets/TerrainData";
@@ -70,6 +71,7 @@ public class TerrainScenesCreatorWindow : EditorWindow
         EditorGUILayout.LabelField("Options", EditorStyles.boldLabel);
         addTerrainCollider = EditorGUILayout.Toggle("Add TerrainCollider", addTerrainCollider);
         markTerrainsAutoConnect = EditorGUILayout.Toggle("Terrain.allowAutoConnect", markTerrainsAutoConnect);
+        terrainTag = EditorGUILayout.TagField("Terrain Tag", terrainTag);
         addDirectionalLight = EditorGUILayout.Toggle("Add Directional Light", addDirectionalLight);
         addCamera = EditorGUILayout.Toggle("Add Camera", addCamera);
         promptToSaveOpenScenes = EditorGUILayout.Toggle("Prompt to save current scenes", promptToSaveOpenScenes);
@@ -169,6 +171,7 @@ public class TerrainScenesCreatorWindow : EditorWindow
                 // Create terrain GameObject
                 var terrainGO = Terrain.CreateTerrainGameObject(td);
                 terrainGO.name = terrainName;
+                terrainGO.tag = terrainTag;
 
                 // IMPORTANT: place this terrain into the correct world grid position
                 terrainGO.transform.position = tileOrigin;

@@ -198,7 +198,7 @@ public class Wolf : AnimalNpc
         if (startedAttackThisFrame)
         {
             if (debug) Debug.Log($"{gameObject.name} attacks the player!");
-            DealDamage(damage, player);
+            DealDamage(damage, player, transform.forward / 10);
         }
     }
 
