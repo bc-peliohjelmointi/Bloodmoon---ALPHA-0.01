@@ -513,5 +513,9 @@ public class Builder : MonoBehaviour
         {
             Ghoust.transform.Rotate(0, 0, rotat);
         }
+        else if (rotat != 0 && hit.transform.tag == "Ground")
+        {
+            Ghoust.transform.Rotate(0, rotat, 0);
+        }
     }
 }
