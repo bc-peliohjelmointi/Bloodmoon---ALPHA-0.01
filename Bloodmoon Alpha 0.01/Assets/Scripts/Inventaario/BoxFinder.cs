@@ -1,11 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BoxFinder : MonoBehaviour
 {
     public GameObject MainInventory;
+    public GameObject Storage;
     PauseMenu Pausemenu;
-
+    
     private void Start()
     {
         Pausemenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
@@ -21,6 +23,27 @@ public class BoxFinder : MonoBehaviour
                 {
                     GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().OpenInventory();
                     GameObject.Find("CraftingMenu").SetActive(false);
+                    Storage.SetActive(true);
+                    foreach (Transform child in Storage.transform)
+                    {
+                        string num = "";
+                        foreach (char c in child.name)
+                        {
+                            if (char.IsDigit(c))
+                            {
+                                num += c;
+                            }
+                        }
+                        int number = Convert.ToInt32(num);
+                        if (number <= hit.transform.GetComponent<Storage>().capasity)
+                        {
+                            child.gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            child.gameObject.SetActive(false);
+                        }
+                    }
                     if (hit.transform.GetComponent<BoxOpener>() != null)
                     {
                         hit.transform.GetComponent<BoxOpener>().StartLoop();

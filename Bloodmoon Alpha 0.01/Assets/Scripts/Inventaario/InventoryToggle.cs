@@ -65,6 +65,10 @@ public class InventoryToggle : MonoBehaviour
         {
             if (!child.CompareTag(excludeTag))
                 child.gameObject.SetActive(active);
+            if (child.name == "Storage")
+            {
+                child.gameObject.SetActive(false);
+            }
         }
     }
 }
