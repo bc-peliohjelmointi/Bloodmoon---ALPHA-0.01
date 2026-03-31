@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    private string scenesellected;
-    private TMP_InputField input;
+    public string scenesellected;
 
     public void StartGame()
     {
@@ -28,15 +27,6 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void changeScene()
-    {
-        if (input == null)
-        {
-            input = GetComponentInChildren<TMP_InputField>();
-        }
-        scenesellected = input.text;
     }
 
     public void Exit()
