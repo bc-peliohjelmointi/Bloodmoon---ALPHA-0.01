@@ -67,7 +67,7 @@ public class Wolf : AnimalNpc
 
             yield return new WaitUntil(() =>
                 canSeePlayer || inDetectionRange || IsPackAlerted() ||
-                (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance));
+                (agent.isOnNavMesh && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance));
 
             if (canSeePlayer || inDetectionRange || IsPackAlerted())
             {

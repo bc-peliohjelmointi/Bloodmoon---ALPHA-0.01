@@ -60,7 +60,7 @@ public class AnimalNpc : IDamageable
 
     public void Roam()
     {
-        if (!isAlive) return;
+        if (!isAlive || agent == null || !agent.isOnNavMesh) return;
         agent.SetDestination(RandomNavMeshPoint(transform.position, roamingRange));
     }
 
