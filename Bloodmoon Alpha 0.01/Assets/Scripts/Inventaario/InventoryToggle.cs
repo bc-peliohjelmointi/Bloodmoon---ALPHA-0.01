@@ -58,7 +58,7 @@ public class InventoryToggle : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void SetInventoryActive(bool active)
+    public void SetInventoryActive(bool active)
     {
         // Toggle all children except those with the excludeTag
         foreach (Transform child in inventoryUI.transform)
