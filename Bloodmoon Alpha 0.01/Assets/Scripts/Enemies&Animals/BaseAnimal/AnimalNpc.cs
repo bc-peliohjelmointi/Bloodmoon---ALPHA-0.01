@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class AnimalNpc : IDamageable
@@ -20,16 +19,14 @@ public class AnimalNpc : IDamageable
 
     [Header("Effects")]
     [SerializeField] protected ParticleSystem effect;
-    [SerializeField] protected AudioSource Death_Sound;
+    [SerializeField] protected AudioSource deathSound;
 
     [Header("Debug Options")]
     [SerializeField] protected bool debug = true;
 
     protected bool canSeePlayer;
     protected bool inDetectionRange;
-
     protected bool isAlive = true;
-
     protected ParticleSystem vfx = null;
 
     protected virtual void OnEnable()
@@ -49,8 +46,6 @@ public class AnimalNpc : IDamageable
         inDetectionRange = InRange();
         UpdateBaseAnimator();
 
-        if (Keyboard.current.tKey.wasPressedThisFrame) TakeDamage(10,new Vector3());
-
         if (health <= 0f && isAlive)
         {
             isAlive = false;
@@ -58,7 +53,7 @@ public class AnimalNpc : IDamageable
         }
     }
 
-    public void Roam()
+    public virtual void Roam()
     {
         if (!isAlive || agent == null || !agent.isOnNavMesh) return;
         agent.SetDestination(RandomNavMeshPoint(transform.position, roamingRange));
@@ -106,7 +101,7 @@ public class AnimalNpc : IDamageable
         }
     }
 
-    private Vector3 RandomNavMeshPoint(Vector3 origin, float range)
+    protected Vector3 RandomNavMeshPoint(Vector3 origin, float range)
     {
         for (int i = 0; i < 20; i++)
         {
@@ -117,6 +112,16 @@ public class AnimalNpc : IDamageable
         return origin;
     }
 
+    protected bool TrySetDestination(Vector3 target, float sampleRadius = 1f)
+    {
+        if (agent == null || !agent.isOnNavMesh) return false;
+
+        if (NavMesh.SamplePosition(target, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
+            return agent.SetDestination(hit.position);
+
+        return false;
+    }
+
     protected virtual void UpdateBaseAnimator()
     {
         if (animator == null) return;
@@ -124,28 +129,36 @@ public class AnimalNpc : IDamageable
         float speed = (agent != null) ? agent.velocity.magnitude : 0f;
         animator.SetFloat("Speed", speed);
         animator.SetBool("Alive", isAlive);
-        animator.SetBool("Sit", false);
     }
 
     protected override void Die()
     {
-        agent.enabled = false;
-
-
-        animator.SetBool("Alive", false);
+        if (agent != null) agent.enabled = false;
+        if (animator != null) animator.SetBool("Alive", false);
 
         if (debug) Debug.Log($"{gameObject.name} died.");
 
-        Death_Sound.Play();
-        vfx = Instantiate(effect, transform.position, Quaternion.identity);
-        vfx.Stop();
-        Destroy(gameObject, vfx.main.duration - 0.5f);
+        if (deathSound != null) deathSound.Play();
+
+        if (effect != null)
+        {
+            vfx = Instantiate(effect, transform.position, Quaternion.identity);
+            vfx.Stop();
+            Destroy(gameObject, vfx.main.duration - 0.5f);
+        }
+        else
+        {
+            Destroy(gameObject, 2f);
+        }
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        vfx.Play();
-        Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax + 0.5f);
+        if (vfx != null)
+        {
+            vfx.Play();
+            Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax + 0.5f);
+        }
     }
 
     public bool Alive()

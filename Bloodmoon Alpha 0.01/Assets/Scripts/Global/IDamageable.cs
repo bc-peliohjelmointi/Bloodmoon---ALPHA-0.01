@@ -6,40 +6,49 @@ public class IDamageable : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] protected float health = 50f;
     [SerializeField] protected float maxHealth = 50f;
-    [SerializeField] protected bool CanTakeKnockback = true;
+    [SerializeField] protected bool canTakeKnockback = true;
 
     [Header("Effects")]
-    [SerializeField] protected ParticleSystem Blood;
+    [SerializeField] protected ParticleSystem bloodEffect;
 
     public static Action OnPlayerDeath;
 
-    protected virtual void DealDamage(float dmg, GameObject target, Vector3 KnockBack)
+    public float Health => health;
+    public float MaxHealth => maxHealth;
+    public bool IsDead => health <= 0f;
+
+    protected virtual void DealDamage(float dmg, GameObject target, Vector3 knockBack)
     {
         if (target.TryGetComponent(out IDamageable damageable))
         {
-            Debug.Log($"Dealing {dmg} damage to {target.name}");
-            damageable.TakeDamage(dmg, KnockBack);
+            damageable.TakeDamage(dmg, knockBack);
         }
     }
 
-    protected virtual void TakeDamage(float dmg, Vector3 KnockBack)
+    protected virtual void TakeDamage(float dmg, Vector3 knockBack)
     {
+        if (IsDead) return;
+
         health = Mathf.Clamp(health - dmg, 0f, maxHealth);
 
-        if (CanTakeKnockback) { transform.position += KnockBack; }
+        if (canTakeKnockback)
+            transform.position += knockBack;
 
-        Instantiate(Blood, transform.position, Quaternion.identity);
-
-        Debug.Log($"{gameObject.name} took {dmg} damage. Remaining health: {health}/{maxHealth}");
+        if (bloodEffect != null)
+            Instantiate(bloodEffect, transform.position, Quaternion.identity);
 
         if (health <= 0f)
             Die();
     }
 
+    public virtual void Heal(float amount)
+    {
+        if (IsDead) return;
+        health = Mathf.Clamp(health + amount, 0f, maxHealth);
+    }
+
     protected virtual void Die()
     {
-        Debug.Log($"{gameObject.name} has died.");
-
         if (CompareTag("Player"))
         {
             OnPlayerDeath?.Invoke();

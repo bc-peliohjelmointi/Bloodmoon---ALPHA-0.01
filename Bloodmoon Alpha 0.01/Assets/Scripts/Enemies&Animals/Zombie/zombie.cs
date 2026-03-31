@@ -6,19 +6,26 @@ using UnityEngine.AI;
 public class Zombie : AnimalNpc
 {
     [Header("Horde Behaviour")]
-    [SerializeField] private float hordeAlertRadius = 20f;
-    [SerializeField] private float hordeAlertDuration = 6f;
-    [SerializeField] private int minHordeSize = 3;
-    [SerializeField] private float attackInterval = 2f;
-    [SerializeField] private float attackAnimationDuration = 1.2f;
+    [SerializeField] protected float hordeAlertRadius = 20f;
+    [SerializeField] protected float hordeAlertDuration = 6f;
+    [SerializeField] protected int minHordeSize = 3;
+
+    [Header("Attack Settings")]
+    [SerializeField] protected float attackInterval = 2f;
+    [SerializeField] protected float attackAnimationDuration = 1.2f;
+    [SerializeField] protected float attackKnockback = 0.1f;
+
+    [Header("Roaming")]
+    [SerializeField] protected float idleWaitMin = 2f;
+    [SerializeField] protected float idleWaitMax = 5f;
 
     private static readonly List<Zombie> ActiveZombies = new List<Zombie>();
 
-    private Coroutine routine;
-    private float hordeAlertUntil;
-    private float attackAnimationUntil;
-    private float nextAttackTime;
-    private bool isAttackAnimating;
+    protected Coroutine routine;
+    protected float hordeAlertUntil;
+    protected float attackAnimationUntil;
+    protected float nextAttackTime;
+    protected bool isAttackAnimating;
 
     protected override void OnEnable()
     {
@@ -27,10 +34,10 @@ public class Zombie : AnimalNpc
         if (!ActiveZombies.Contains(this))
             ActiveZombies.Add(this);
 
-        routine = StartCoroutine(ZombieCoroutine());
+        routine = StartCoroutine(BehaviorLoop());
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (routine != null) StopCoroutine(routine);
         routine = null;
@@ -48,7 +55,7 @@ public class Zombie : AnimalNpc
         UpdateZombieAnimator();
     }
 
-    private IEnumerator ZombieCoroutine()
+    protected virtual IEnumerator BehaviorLoop()
     {
         while (true)
         {
@@ -60,27 +67,37 @@ public class Zombie : AnimalNpc
 
             if (IsHordeAlerted())
             {
-                while (IsHordeAlerted())
-                {
-                    if (HordeNearbyCount() >= minHordeSize)
-                        Attack();
-                    else
-                        agent.SetDestination(player.transform.position);
-
-                    yield return null;
-                }
+                yield return StartCoroutine(AggressiveState());
             }
             else
             {
-                float wait = Random.Range(2f, 5f);
-                float t = 0f;
-
-                while (t < wait && !IsHordeAlerted())
-                {
-                    t += Time.deltaTime;
-                    yield return null;
-                }
+                yield return StartCoroutine(IdleState());
             }
+        }
+    }
+
+    protected virtual IEnumerator AggressiveState()
+    {
+        while (IsHordeAlerted())
+        {
+            if (HordeNearbyCount() >= minHordeSize)
+                Attack();
+            else if (player != null)
+                agent.SetDestination(player.transform.position);
+
+            yield return null;
+        }
+    }
+
+    protected virtual IEnumerator IdleState()
+    {
+        float wait = Random.Range(idleWaitMin, idleWaitMax);
+        float t = 0f;
+
+        while (t < wait && !IsHordeAlerted())
+        {
+            t += Time.deltaTime;
+            yield return null;
         }
     }
 
@@ -116,11 +133,11 @@ public class Zombie : AnimalNpc
         if (startedAttackThisFrame)
         {
             if (debug) Debug.Log($"{gameObject.name} attacks the player!");
-            DealDamage(damage, player, transform.forward / 10);
+            DealDamage(damage, player, transform.forward * attackKnockback);
         }
     }
 
-    private void AlertHorde()
+    protected virtual void AlertHorde()
     {
         float until = Time.time + hordeAlertDuration;
         hordeAlertUntil = Mathf.Max(hordeAlertUntil, until);
@@ -135,17 +152,17 @@ public class Zombie : AnimalNpc
         }
     }
 
-    private void ReceiveHordeAlert(float until)
+    protected void ReceiveHordeAlert(float until)
     {
         hordeAlertUntil = Mathf.Max(hordeAlertUntil, until);
     }
 
-    private bool IsHordeAlerted()
+    protected bool IsHordeAlerted()
     {
         return Time.time <= hordeAlertUntil;
     }
 
-    private int HordeNearbyCount()
+    protected int HordeNearbyCount()
     {
         int count = 1;
 
@@ -161,8 +178,10 @@ public class Zombie : AnimalNpc
         return count;
     }
 
-    private void UpdateZombieAnimator()
+    protected virtual void UpdateZombieAnimator()
     {
+        if (animator == null) return;
+
         bool isAlerted = IsHordeAlerted();
 
         if (!isAlerted)
