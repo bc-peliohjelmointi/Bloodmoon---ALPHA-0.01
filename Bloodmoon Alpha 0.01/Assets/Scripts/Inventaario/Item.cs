@@ -36,6 +36,10 @@ public class Item : ScriptableObject
     public Item ammoType;
     public GameObject projectilePrefab;
 
+    [Header("Combat")]
+    public float damage = 10f;
+    public float knockbackForce = 1f;
+
     public bool IsStackableItem()
     {
         return itemTag == SlotTag.Stackable || itemTag == SlotTag.Food || itemTag == SlotTag.Water;

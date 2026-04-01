@@ -22,3 +22,5 @@ MonoBehaviour:
   weaponType: 0
   ammoType: {fileID: 0}
   projectilePrefab: {fileID: 2873414467058878401, guid: 233f35b4c687c40498fb2182d9a83a70, type: 3}
+  damage: 20
+  knockbackForce: 0.1

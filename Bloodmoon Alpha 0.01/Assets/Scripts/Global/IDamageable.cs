@@ -22,7 +22,7 @@ public class IDamageable : MonoBehaviour
         }
     }
 
-    protected virtual void TakeDamage(float dmg, Vector3 KnockBack)
+    public virtual void TakeDamage(float dmg, Vector3 KnockBack)
     {
         health = Mathf.Clamp(health - dmg, 0f, maxHealth);
 

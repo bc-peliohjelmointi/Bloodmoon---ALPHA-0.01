@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: Pistol
+  m_Name: RifleBullet
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: d9c23f561b5e52f4d8b339b52d5e42eb, type: 3}
-  itemTag: 0
-  description: Shoot
+  sprite: {fileID: 21300000, guid: 636cc462d10d3c14db77d2c96dafce75, type: 3}
+  itemTag: 5
+  description: Shoot with rifle
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 819536883251324760, guid: b96193f459af553409b20093177a5226, type: 3}
+  equipmentPrefab: {fileID: 0}
   toolType: 0
-  weaponType: 3
-  ammoType: {fileID: 11400000, guid: b9806ebcc4ae21e4ebd2deb7f2355665, type: 2}
+  weaponType: 0
+  ammoType: {fileID: 0}
   projectilePrefab: {fileID: 0}
-  damage: 30
+  damage: 10
   knockbackForce: 0
