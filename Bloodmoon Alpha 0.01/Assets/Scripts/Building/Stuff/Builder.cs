@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class Builder : MonoBehaviour
 {
+    private PriceDisplay display;
+    private BuildingPrice price;
     /// <summary>
     /// Onko pelaaja rakentamassa?
     /// </summary>
@@ -39,6 +41,8 @@ public class Builder : MonoBehaviour
 
     private void Start()
     {
+        price = GetComponent<BuildingPrice>();
+        display = GameObject.Find("PlayerHUD").GetComponentInChildren<PriceDisplay>();
         pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
     }
 
@@ -47,6 +51,10 @@ public class Builder : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B) && !pause.isPaused) // Togle building mode
         {
             building = !building;
+            if (!building)
+            {
+                display.UpdatePriceDisplay(null, 0);
+            }
         }
         if (building)//Jos rakentamassa
         {
@@ -437,6 +445,7 @@ public class Builder : MonoBehaviour
     {
         Validation val = Ghoust.GetComponentInChildren<Validation>();
         bool valid_bool = val.valid;
+        priceHandler();
         if (valid_bool)
         {
             Renderer[] ren = Ghoust.transform.GetComponentsInChildren<Renderer>();
@@ -455,6 +464,28 @@ public class Builder : MonoBehaviour
         }
         return valid_bool;
     }
+
+    private void priceHandler()
+    {
+        bool Priced = false;
+        BuildingPrice.Price ghoustPrice = new BuildingPrice.Price();
+        foreach (BuildingPrice.Price pr in price.Pricing)
+        {
+            if (pr.BuildingName+"(Clone)" == Ghoust.name)
+            {
+                Priced = true;
+                ghoustPrice = pr;
+            }
+        }
+        if (Priced)
+        {
+            display.UpdatePriceDisplay(ghoustPrice.Material[0].sprite, ghoustPrice.Prices[0]);
+        }
+        else
+        {
+            Debug.Log("No Price");
+        }
+    } 
 
     private void SpinMeRightRound(RaycastHit hit)
     {
