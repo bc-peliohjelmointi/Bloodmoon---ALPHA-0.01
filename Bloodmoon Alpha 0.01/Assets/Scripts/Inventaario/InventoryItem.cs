@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IPointerClickHandler
+public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI References")]
     [SerializeField] private Image itemIcon;
@@ -61,7 +61,6 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // If we are carrying something and clicked another item → try merge
             if (Inventory.carriedItem != null && Inventory.carriedItem != this)
             {
                 TryMergeWith(Inventory.carriedItem);
@@ -90,7 +89,6 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
             Instantiate(this, Inventory.Singleton.DraggableRoot);
 
         splitItem.myItem = this.myItem;
-
         splitItem.activeSlot = null;
         splitItem.count = half;
         splitItem.UpdateCountText();
@@ -98,6 +96,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         Inventory.carriedItem = splitItem;
         splitItem.canvasGroup.blocksRaycasts = false;
     }
+
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
@@ -105,10 +104,10 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
         if (activeSlot != null)
         {
             activeSlot.SetItem(this);
-            // activeSlot will now reference this item, no problem
         }
     }
-    private void TryMergeWith(InventoryItem other) //merge
+
+    private void TryMergeWith(InventoryItem other)
     {
         if (!myItem.IsStackableItem()) return;
         if (other.myItem != myItem) return;
@@ -130,5 +129,18 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler
             Destroy(other.gameObject);
             Inventory.carriedItem = null;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (myItem != null)
+        {
+            ItemTooltipUI.Instance.Show(myItem, count);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ItemTooltipUI.Instance.Clear();
     }
 }

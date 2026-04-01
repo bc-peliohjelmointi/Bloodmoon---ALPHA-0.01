@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Drawing;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Storage : MonoBehaviour
 {
     GameObject storageUI;
     bool saved = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private class itemInfo
+    [System.Serializable]
+    public struct itemInfo
     {
         public string item;
         public int number;
         public string slot;
     }
-    private List<itemInfo> storage = new List<itemInfo>();
+    public List<itemInfo> storage = new List<itemInfo>();
     public int capasity;
 
     public void StorageSave()
@@ -60,7 +62,7 @@ public class Storage : MonoBehaviour
                 Destroy(child.GetComponentInChildren<InventoryItem>().gameObject);
             }
         }
-
+        Item _item = null;
         for (int i = 0; i < storage.Count; i++)
         {
             GameObject item = Instantiate(storageUI.GetComponentInParent<SaveMyStuff>().ItemPrefab, GameObject.Find(storage[i].slot).transform);
@@ -68,19 +70,23 @@ public class Storage : MonoBehaviour
             {
                 if (storage[i].item == storageUI.GetComponentInParent<SaveMyStuff>().items[j].name)
                 {
+                    _item = storageUI.GetComponentInParent<SaveMyStuff>().items[j];
                     item.GetComponent<InventoryItem>().myItem = storageUI.GetComponentInParent<SaveMyStuff>().items[j];
+                    item.GetComponent<InventoryItem>().Initialize(_item, item.GetComponentInParent<InventorySlot>());
+                    item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
+                    item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
                     if (storage[i].number > 1)
                     {
-                        item.GetComponentInChildren<Text>().text = Convert.ToString(storage[i].number);
+                        item.GetComponent<InventoryItem>().AddStack(storage[i].number-1);
                     }
-                    else
-                    {
-                        item.GetComponentInChildren<Text>().text = "";
-                    }
+                    RectTransform rt = item.GetComponent<RectTransform>();
+                    rt.anchorMin = Vector2.zero;
+                    rt.anchorMax = Vector2.one;
+                    rt.offsetMin = Vector2.zero;
+                    rt.offsetMax = Vector2.zero;
+                    rt.localScale = Vector3.one;
                 }
             }
-            item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
-            item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
         }
     }
 }

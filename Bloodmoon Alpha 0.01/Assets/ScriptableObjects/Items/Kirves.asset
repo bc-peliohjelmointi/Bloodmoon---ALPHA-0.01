@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   itemTag: 0
+  description: Hit tree
+  foodRestore: 0
+  waterRestore: 0
   equipmentPrefab: {fileID: 6686336160147936126, guid: d93f2bebc9558014783be094e4c2e03a, type: 3}
   toolType: 1
+  weaponType: 0
+  ammoType: {fileID: 0}
+  projectilePrefab: {fileID: 0}

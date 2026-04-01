@@ -59,6 +59,10 @@ public class SaveMyStuff : MonoBehaviour
             }
             item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
             item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
+            if (Data.InventoryNumbers[i] > 1)
+            {
+                item.GetComponent<InventoryItem>().AddStack(Data.InventoryNumbers[i] - 1);
+            }
         }
         GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(false);
     }

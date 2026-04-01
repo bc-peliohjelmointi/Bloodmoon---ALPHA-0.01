@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 21300000, guid: d9c23f561b5e52f4d8b339b52d5e42eb, type: 3}
   itemTag: 0
+  description: Shoot
   foodRestore: 0
   waterRestore: 0
   equipmentPrefab: {fileID: 819536883251324760, guid: b96193f459af553409b20093177a5226, type: 3}
