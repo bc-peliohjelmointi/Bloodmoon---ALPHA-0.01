@@ -88,5 +88,19 @@ public class BuildingPrice : MonoBehaviour
             price.Material.Add(material);
         }
         Pricing.Add(price);
+        price = new Price();
+        price.BuildingName = "ZipLine";
+        price.Prices = new List<int>();
+        price.OptionalMaterials = true;
+        price.Material = new List<Item>();
+        foreach (Item material in items.items)
+        {
+            if (material.name == "Wood" || (material.name == "Stone"))
+            {
+                price.Prices.Add(50);
+                price.Material.Add(material);
+            }
+        }
+        Pricing.Add(price);
     }
 }
