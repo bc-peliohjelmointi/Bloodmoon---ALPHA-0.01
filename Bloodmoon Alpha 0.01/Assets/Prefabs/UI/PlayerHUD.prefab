@@ -952,6 +952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a5291d477283e44820443484403c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PriceDisplay
+  spacing: 140
+  PriceImagePrefab: {fileID: 8665216857725985802, guid: f48a853352c5ab04fbf319dc065c29ee, type: 3}
 --- !u!1 &8475729636186678730
 GameObject:
   m_ObjectHideFlags: 0

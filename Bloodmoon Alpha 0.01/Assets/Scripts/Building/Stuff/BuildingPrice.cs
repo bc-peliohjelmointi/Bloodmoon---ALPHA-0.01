@@ -73,6 +73,20 @@ public class BuildingPrice : MonoBehaviour
             }
             Pricing.Add(price);
         }
-        
+        ComplexPrices();
+    }
+    void ComplexPrices()
+    {
+        Price price = new Price();
+        price.BuildingName = "Turret";
+        price.Prices = new List<int>();
+        price.OptionalMaterials = false;
+        price.Material = new List<Item>();
+        foreach (Item material in items.items)
+        {
+            price.Prices.Add(50);
+            price.Material.Add(material);
+        }
+        Pricing.Add(price);
     }
 }
