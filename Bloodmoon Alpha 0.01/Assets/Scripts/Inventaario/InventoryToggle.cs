@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryToggle : MonoBehaviour
@@ -6,11 +7,15 @@ public class InventoryToggle : MonoBehaviour
     public string excludeTag = "Hotbar"; // Tag for UI elements that should always stay visible
     public KeyCode toggleKey = KeyCode.I;
     PauseMenu pausemenu;
+    Builder builder;
+    private GameObject PHUD;
 
     private bool isOpen;
 
     void Start()
     {
+        PHUD = GameObject.Find("PlayerHUD");
+        builder = GameObject.Find("Builder").GetComponent<Builder>();
         pausemenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
         SetInventoryActive(false);
         LockCursor();
@@ -31,6 +36,8 @@ public class InventoryToggle : MonoBehaviour
     {
         if (!pausemenu.isPaused)
         {
+            builder.building = false;
+            PHUD.GetComponentInChildren<PriceDisplay>().UpdatePriceDisplay(null, new List<int>());
             isOpen = true;
             SetInventoryActive(true);
 
