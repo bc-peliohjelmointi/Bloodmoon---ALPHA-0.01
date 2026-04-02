@@ -32,6 +32,9 @@ public class EnemyManager : MonoBehaviour
                 }
             }
         }
+
+        Zombie zombie = FindObjectOfType<Zombie>();
+        zombie.TakeDamage(10f, Vector3.zero);
     }
 
     private bool TryGetGroundPosition(out Vector3 position)

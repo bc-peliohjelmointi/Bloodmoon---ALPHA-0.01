@@ -25,7 +25,7 @@ public class IDamageable : MonoBehaviour
         }
     }
 
-    protected virtual void TakeDamage(float dmg, Vector3 knockBack)
+    public virtual void TakeDamage(float dmg, Vector3 knockBack)
     {
         if (IsDead) return;
 
