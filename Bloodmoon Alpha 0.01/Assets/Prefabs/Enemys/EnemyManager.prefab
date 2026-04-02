@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5117061165616636446}
-  - component: {fileID: 4845938866608949947}
+  - component: {fileID: 4637243591764796214}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4845938866608949947
+--- !u!114 &4637243591764796214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1770665879486875031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 357c6f10ab3feb74ea51a8cdb20b3bd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e9b371b793d3724a86f288a4b288504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
+  enemyPrefabs:
+  - enemyName: Wolf
+    prefab: {fileID: 8867960657160430145, guid: effca14265586c84cbefc5b8508a6b64, type: 3}
+  - enemyName: Zombie
+    prefab: {fileID: 8154510427642076248, guid: a7e559c9cefcdc54297819aec3e3ec27, type: 3}
+  maxEntities: 128
+  spawnRadius: 50

@@ -11,6 +11,8 @@ public class Wolf : AnimalNpc
     [SerializeField] private float packSpacing = 2.5f;
     [SerializeField] private float packAlertDuration = 4f;
     [SerializeField] private float alertAnimationDuration = 1.1f;
+
+    [Header("Attack Settings")]
     [SerializeField] private float attackFaceAngle = 15f;
     [SerializeField] private float attackTurnSpeed = 240f;
     [SerializeField] private float attackInterval = 5f;
@@ -67,7 +69,7 @@ public class Wolf : AnimalNpc
 
             yield return new WaitUntil(() =>
                 canSeePlayer || inDetectionRange || IsPackAlerted() ||
-                (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance));
+                (agent.isOnNavMesh && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance));
 
             if (canSeePlayer || inDetectionRange || IsPackAlerted())
             {
@@ -131,7 +133,7 @@ public class Wolf : AnimalNpc
 
         if (Vector3.Distance(transform.position, center) > packCohesionRadius)
         {
-            TrySetDestinationOnNavMesh(center, 2f);
+            TrySetDestination(center, 2f);
             return;
         }
 
@@ -145,10 +147,10 @@ public class Wolf : AnimalNpc
                 Vector3 side = Vector3.Cross(Vector3.up, away.normalized);
                 float sideSign = ((GetInstanceID() & 1) == 0) ? 1f : -1f;
                 Vector3 target = transform.position + away.normalized * packSpacing + side * (packSpacing * 0.5f * sideSign);
-                if (TrySetDestinationOnNavMesh(target, 2f))
+                if (TrySetDestination(target, 2f))
                     return;
 
-                if (TrySetDestinationOnNavMesh(center, 2f))
+                if (TrySetDestination(center, 2f))
                     return;
             }
         }
@@ -156,7 +158,7 @@ public class Wolf : AnimalNpc
         Roam();
     }
 
-    public override void Attack()
+    protected override void Attack()
     {
         if (agent == null || player == null || !agent.isOnNavMesh)
         {
@@ -165,17 +167,17 @@ public class Wolf : AnimalNpc
         }
 
         Vector3 target = GetPackAttackTarget();
-        TrySetDestinationOnNavMesh(target, 2f);
+        TrySetDestination(target, 2f);
 
         float stopDistance = Mathf.Max(agent.stoppingDistance, packSpacing * 0.75f);
-        bool isPlayingAlertAnimation = IsPlayingAlertAnimation();
+        bool isPlayingAlertAnim = IsPlayingAlertAnimation();
         bool inAttackRange = !agent.pathPending && agent.remainingDistance <= stopDistance;
         bool isFacingPlayer = true;
 
         if (inAttackRange)
             isFacingPlayer = TurnTowardsPlayer();
 
-        bool canAttackNow = !isPlayingAlertAnimation && inAttackRange && isFacingPlayer;
+        bool canAttackNow = !isPlayingAlertAnim && inAttackRange && isFacingPlayer;
 
         bool startedAttackThisFrame = false;
 
@@ -258,17 +260,6 @@ public class Wolf : AnimalNpc
         return playerPos + offset;
     }
 
-    private bool TrySetDestinationOnNavMesh(Vector3 target, float sampleRadius)
-    {
-        if (agent == null || !agent.isOnNavMesh)
-            return false;
-
-        if (NavMesh.SamplePosition(target, out NavMeshHit hit, sampleRadius, NavMesh.AllAreas))
-            return agent.SetDestination(hit.position);
-
-        return false;
-    }
-
     private bool TurnTowardsPlayer()
     {
         Vector3 toPlayer = player.transform.position - transform.position;
@@ -289,6 +280,8 @@ public class Wolf : AnimalNpc
 
     private void UpdateWolfAnimator()
     {
+        if (animator == null) return;
+
         bool isAlerted = canSeePlayer || inDetectionRange || IsPackAlerted();
         if (!isAlerted)
         {
@@ -300,9 +293,9 @@ public class Wolf : AnimalNpc
 
         bool isMoving = agent != null && agent.velocity.sqrMagnitude > 0.01f;
         bool idle = !isAlerted && !isAttackAnimating && !isMoving;
-        bool playAlertAnimation = IsPlayingAlertAnimation();
+        bool playAlertAnim = IsPlayingAlertAnimation();
 
-        animator.SetBool("alert", playAlertAnimation);
+        animator.SetBool("alert", playAlertAnim);
         animator.SetBool("Attack", isAttackAnimating);
         animator.SetBool("Idling", idle);
     }
