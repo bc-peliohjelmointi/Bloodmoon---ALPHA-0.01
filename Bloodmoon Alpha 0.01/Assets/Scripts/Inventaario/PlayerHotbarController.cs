@@ -19,6 +19,21 @@ public class PlayerHotbarController : MonoBehaviour
     {
         Instance = this;
         inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+
+        // Subscribe to slot change events
+        inventory.InventorySlotChanged += OnInventorySlotChanged;
+    }
+
+    private void OnInventorySlotChanged(InventorySlot slot)
+    {
+        // If the changed slot is the currently selected hotbar slot, re-equip
+        int currentIndex = selectedIndex;
+        InventorySlot currentSlot = inventory.GetHotbarSlot(currentIndex);
+
+        if (slot == currentSlot)
+        {
+            EquipSelectedSlot();
+        }
     }
 
     private void Update()
@@ -64,8 +79,10 @@ public class PlayerHotbarController : MonoBehaviour
     {
         InventorySlot slot = inventory.GetHotbarSlot(selectedIndex);
 
+        // Always unequip current first
         UnequipCurrent();
 
+        // If slot is empty, just leave nothing equipped
         if (slot == null || slot.myItem == null)
             return;
 
@@ -73,10 +90,7 @@ public class PlayerHotbarController : MonoBehaviour
 
         if (item.equipmentPrefab != null)
         {
-            currentEquippedGO = Instantiate(
-                item.equipmentPrefab,
-                handSocket
-            );
+            currentEquippedGO = Instantiate(item.equipmentPrefab, handSocket);
         }
     }
 
@@ -124,5 +138,23 @@ public class PlayerHotbarController : MonoBehaviour
 
         inventory.ConsumeFromSlot(slot, 1);
         EquipSelectedSlot();
+    }
+    public void OnSlotUpdated(InventorySlot slot)
+    {
+        // If the slot that changed is the currently selected hotbar slot
+        if (inventory.GetHotbarSlot(selectedIndex) == slot)
+        {
+            // Unequip immediately
+            UnequipCurrent();
+
+            // Equip again only if there's an item
+            InventorySlot currentSlot = inventory.GetHotbarSlot(selectedIndex);
+            if (currentSlot != null && currentSlot.myItem != null)
+            {
+                Item item = currentSlot.myItem.myItem;
+                if (item.equipmentPrefab != null)
+                    currentEquippedGO = Instantiate(item.equipmentPrefab, handSocket);
+            }
+        }
     }
 }

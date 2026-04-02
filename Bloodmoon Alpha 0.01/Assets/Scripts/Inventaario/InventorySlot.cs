@@ -60,13 +60,19 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
 
         Inventory.carriedItem = null;
+        Inventory.Singleton.UpdateSlot(this);
     }
+
 
     protected void PlaceItemInSlot(InventoryItem item)
     {
         myItem = item;
         item.activeSlot = this;
         item.transform.SetParent(transform, false);
+        if(item.canvasGroup == null)
+        {
+            item.canvasGroup = GetComponentInChildren<CanvasGroup>();
+        }
         item.canvasGroup.blocksRaycasts = true;
 
         RectTransform rt = item.GetComponent<RectTransform>();
@@ -75,10 +81,14 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         rt.offsetMin = Vector2.zero;
         rt.offsetMax = Vector2.zero;
         rt.localScale = Vector3.one;
+
+        // --- Notify hotbar controller ---
+        PlayerHotbarController.Instance?.OnSlotUpdated(this);
     }
 
     public void ClearSlot()
     {
         myItem = null;
+        PlayerHotbarController.Instance?.OnSlotUpdated(this);
     }
 }

@@ -8,7 +8,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     [SerializeField] private Image itemIcon;
     [SerializeField] private Text countText;
 
-    public CanvasGroup canvasGroup { get; private set; }
+    public CanvasGroup canvasGroup { get; set; }
 
     public Item myItem { get; set; }
     public InventorySlot activeSlot { get; set; }

@@ -234,4 +234,11 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+    public delegate void OnInventorySlotChanged(InventorySlot slot);
+    public event OnInventorySlotChanged InventorySlotChanged;
+
+    public void UpdateSlot(InventorySlot slot)
+    {
+        InventorySlotChanged?.Invoke(slot);
+    }
 }

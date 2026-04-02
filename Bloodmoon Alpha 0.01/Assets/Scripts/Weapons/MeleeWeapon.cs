@@ -6,7 +6,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private Item weaponItem;
 
     [Header("Attack Settings")]
-    [SerializeField] private float range = 2f;
+    [SerializeField] private float range = 2f; // melee distance
     [SerializeField] private float attackCooldown = 0.5f;
 
     [Header("Hit Detection")]
@@ -15,9 +15,6 @@ public class MeleeWeapon : MonoBehaviour
     [Header("Swing Animation")]
     [SerializeField] private float tiltAngle = 35f;
     [SerializeField] private float swingSpeed = 10f;
-
-    [Header("Attack Origin")]
-    [SerializeField] private Transform attackPoint; // usually in front of weapon
 
     private float lastAttackTime = -Mathf.Infinity;
     private Quaternion originalRotation;
@@ -44,16 +41,14 @@ public class MeleeWeapon : MonoBehaviour
         lastAttackTime = Time.time;
         isSwinging = true;
 
-        // Raycast from attackPoint or weapon position
-        Vector3 origin = attackPoint != null ? attackPoint.position : transform.position;
-        Vector3 direction = transform.forward; // weapon’s forward
-
-        if (Physics.Raycast(origin, direction, out RaycastHit hit, range, hitMask))
+        // Raycast from camera forward (like guns) but shorter
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, range, hitMask))
         {
             IDamageable dmg = hit.collider.GetComponentInParent<IDamageable>();
             if (dmg != null)
             {
-                Vector3 knockback = direction * weaponItem.knockbackForce;
+                Vector3 knockback = Camera.main.transform.forward * weaponItem.knockbackForce;
                 dmg.TakeDamage(weaponItem.damage, knockback);
                 Debug.Log($"Hit {dmg.name} for {weaponItem.damage} damage!");
             }
@@ -82,8 +77,8 @@ public class MeleeWeapon : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector3 origin = attackPoint != null ? attackPoint.position : transform.position;
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(origin, transform.forward * range);
+        if (Camera.main != null)
+            Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * range);
     }
 }
