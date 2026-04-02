@@ -158,7 +158,7 @@ public class Wolf : AnimalNpc
         Roam();
     }
 
-    public override void Attack()
+    protected override void Attack()
     {
         if (agent == null || player == null || !agent.isOnNavMesh)
         {

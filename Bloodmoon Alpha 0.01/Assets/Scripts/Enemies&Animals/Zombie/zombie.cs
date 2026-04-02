@@ -99,7 +99,7 @@ public abstract class Zombie : AnimalNpc
         }
     }
 
-    public override void Attack()
+    protected override void Attack()
     {
         if (agent == null || player == null || !agent.isOnNavMesh)
         {

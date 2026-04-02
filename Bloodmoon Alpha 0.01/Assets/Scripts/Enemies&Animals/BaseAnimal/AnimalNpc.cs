@@ -88,7 +88,7 @@ public abstract class AnimalNpc : IDamageable
         return Vector3.Distance(transform.position, player.transform.position) <= detectionRange;
     }
 
-    public virtual void Attack()
+    protected virtual void Attack()
     {
         if (!isAlive || agent == null || player == null) return;
 

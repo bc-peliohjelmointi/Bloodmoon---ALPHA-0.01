@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BomberZombie : Zombie
 {
@@ -12,41 +15,52 @@ public class BomberZombie : Zombie
     protected override void Update()
     {
         base.Update();
+    }
 
-        if (isAttackAnimating && Time.time >= attackAnimationUntil)
+    protected override void Attack() {
+
+    }
+
+    protected override void Die() {
+        if (effect != null)
         {
-            Explode();
+            vfx = Instantiate(effect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
-    /*
+    
     protected override IEnumerator BehaviorLoop()
     {
         while (true)
         {
-            if (!isAlive) yield break;
 
-            if (canSeePlayer || inDetectionRange)
+            if (!isAlive) yield break;
+            if (health <= 0f) Explode();
+            if (canSeePlayer)
             {
-                if (!isAttackAnimating && Time.time >= nextAttackTime)
+                agent.SetDestination(player.transform.position);
+
+                if (inDetectionRange)
                 {
-                    StartAttack();
+                    Explode();
                 }
             }
             else
             {
                 Roam();
+                yield return new WaitUntil(() =>
+                    canSeePlayer ||
+                    (agent.isOnNavMesh && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance));
+
+                yield return new WaitForSeconds(Random.Range(idleWaitMin, idleWaitMax));
             }
 
             yield return null;
         }
-    }
-    */
-
-    private void StartAttack()
-    {
-        isAttackAnimating = true;
-        attackAnimationUntil = Time.time + attackAnimationDuration;
-        animator.SetTrigger("Attack");
     }
 
     private void Explode()
@@ -59,8 +73,7 @@ public class BomberZombie : Zombie
         {
             if (hit.TryGetComponent(out IDamageable damageable))
             {
-                Vector3 knockBackDir = (hit.transform.position - transform.position).normalized;
-                damageable.TakeDamage(explosionDamage, knockBackDir * explosionForce);
+                damageable.TakeDamage(explosionDamage, Vector3.zero);
             }
         }
 
