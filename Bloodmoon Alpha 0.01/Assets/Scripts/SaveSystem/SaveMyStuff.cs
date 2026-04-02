@@ -21,9 +21,9 @@ public class SaveMyStuff : MonoBehaviour
         {
             Data.InventoryItems.Add(item.myItem.name);
             Data.ParentsNames.Add(item.transform.parent.name);
-            if (item.GetComponentInChildren<Text>().text != "")
+            if (item.myItem.IsStackableItem())
             {
-                Data.InventoryNumbers.Add(Convert.ToInt16(item.GetComponentInChildren<Text>().text));
+                Data.InventoryNumbers.Add(item.count);
             }
             else
             {
@@ -59,9 +59,9 @@ public class SaveMyStuff : MonoBehaviour
             }
             item.GetComponentInParent<InventorySlot>().SetItem(item.GetComponent<InventoryItem>());
             item.GetComponent<Image>().sprite = item.GetComponent<InventoryItem>().myItem.sprite;
-            if (Data.InventoryNumbers[i] > 1)
+            if (Data.InventoryNumbers[i] > 0)
             {
-                item.GetComponent<InventoryItem>().AddStack(Data.InventoryNumbers[i] - 1);
+                item.GetComponent<InventoryItem>().AddStack(Data.InventoryNumbers[i]);
             }
         }
         GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(false);
