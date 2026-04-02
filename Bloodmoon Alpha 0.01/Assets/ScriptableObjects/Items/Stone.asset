@@ -14,4 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   itemTag: 5
+  description: Crafting item
+  foodRestore: 0
+  waterRestore: 0
   equipmentPrefab: {fileID: 0}
+  toolType: 0
+  weaponType: 0
+  ammoType: {fileID: 0}
+  projectilePrefab: {fileID: 0}

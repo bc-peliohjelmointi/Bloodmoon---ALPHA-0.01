@@ -55,8 +55,11 @@ public class Bow : MonoBehaviour
 
         if (projectile != null)
         {
-            // 🔥 Use camera direction instead of weapon forward
-            projectile.Launch(Camera.main.transform.forward);
+            projectile.Launch(
+                Camera.main.transform.forward,
+                bowItemData.damage,
+                bowItemData.knockbackForce
+            );
         }
     }
 

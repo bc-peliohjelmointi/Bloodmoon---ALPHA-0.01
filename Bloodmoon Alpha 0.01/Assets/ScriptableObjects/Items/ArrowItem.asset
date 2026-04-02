@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 21300000, guid: 2d00db24c60f46c46989385e0e56a084, type: 3}
   itemTag: 5
+  description: Shoot arrow with bow
+  foodRestore: 0
+  waterRestore: 0
   equipmentPrefab: {fileID: 0}
   toolType: 0
   weaponType: 0
   ammoType: {fileID: 0}
   projectilePrefab: {fileID: 2873414467058878401, guid: 233f35b4c687c40498fb2182d9a83a70, type: 3}
+  damage: 20
+  knockbackForce: 0.1

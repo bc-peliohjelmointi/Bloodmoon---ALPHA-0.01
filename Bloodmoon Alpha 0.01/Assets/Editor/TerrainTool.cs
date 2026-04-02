@@ -26,6 +26,7 @@ public class TerrainScenesCreatorWindow : EditorWindow
     private int baseMapResolution = 1024;
     private int detailResolution = 1024;
     private int detailResolutionPerPatch = 16;
+    private int terrainLayer = 0;
 
     // Options
     private bool addTerrainCollider = true;
@@ -72,6 +73,7 @@ public class TerrainScenesCreatorWindow : EditorWindow
         addTerrainCollider = EditorGUILayout.Toggle("Add TerrainCollider", addTerrainCollider);
         markTerrainsAutoConnect = EditorGUILayout.Toggle("Terrain.allowAutoConnect", markTerrainsAutoConnect);
         terrainTag = EditorGUILayout.TagField("Terrain Tag", terrainTag);
+        terrainLayer = EditorGUILayout.LayerField("Terrain Layer", terrainLayer);
         addDirectionalLight = EditorGUILayout.Toggle("Add Directional Light", addDirectionalLight);
         addCamera = EditorGUILayout.Toggle("Add Camera", addCamera);
         promptToSaveOpenScenes = EditorGUILayout.Toggle("Prompt to save current scenes", promptToSaveOpenScenes);
@@ -172,6 +174,7 @@ public class TerrainScenesCreatorWindow : EditorWindow
                 var terrainGO = Terrain.CreateTerrainGameObject(td);
                 terrainGO.name = terrainName;
                 terrainGO.tag = terrainTag;
+                terrainGO.layer = terrainLayer;
 
                 // IMPORTANT: place this terrain into the correct world grid position
                 terrainGO.transform.position = tileOrigin;

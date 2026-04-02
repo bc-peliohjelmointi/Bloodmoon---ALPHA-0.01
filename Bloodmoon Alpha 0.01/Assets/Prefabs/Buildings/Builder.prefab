@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9055824944912316176}
   - component: {fileID: 6833737170043693406}
   - component: {fileID: 7235921782786839940}
+  - component: {fileID: 1301953579111956201}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Untagged
@@ -70,6 +71,8 @@ MonoBehaviour:
   - {fileID: 4348215961839368542, guid: 6735f57f1a8afbf418f3e3ae45065157, type: 3}
   - {fileID: 7602303825485279183, guid: 650705e0db38b1b448863588d6996cb6, type: 3}
   - {fileID: 4603741429500536484, guid: 4dc611e074ce249469a715e208e7b2c7, type: 3}
+  - {fileID: 2623467858474109928, guid: defe4eaa3d7d0ce42aa8c9b8a9a0cbce, type: 3}
+  - {fileID: 3274083160327374844, guid: 0e092d5cc487d4b47b5e0c53222c967b, type: 3}
   mask:
     serializedVersion: 2
     m_Bits: 439
@@ -100,3 +103,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c707ff45c2929cd498b11a03177a0544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingColapse
+--- !u!114 &1301953579111956201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015971508887585505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660c6ed290942e24e8a6e72bef9a4df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZiplineManager
+  linemask:
+    serializedVersion: 2
+    m_Bits: 1024
+  zipmask:
+    serializedVersion: 2
+    m_Bits: 256
+  ZiplineMat: {fileID: 2100000, guid: f06784e08c54eb941b750f5c32581f16, type: 2}

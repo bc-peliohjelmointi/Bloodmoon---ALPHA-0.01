@@ -128,13 +128,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11e481d416a04a42bf88433a70ee07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponItem: {fileID: 11400000, guid: 26595ece6d15e2a4f847424e6c7c1388, type: 2}
   range: 1.5
-  attackCooldown: 1.5
+  attackCooldown: 1
   attackPoint: {fileID: 2249110932273884833}
   hitMask:
     serializedVersion: 2
     m_Bits: 512
-  tiltAngle: -35
+  tiltAngle: 35
   swingSpeed: 10
 --- !u!1 &5074419263528168843
 GameObject:

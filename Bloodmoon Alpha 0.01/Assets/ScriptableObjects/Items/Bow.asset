@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 21300000, guid: ac69690ca525aae468baa56344395396, type: 3}
   itemTag: 0
+  description: Shoot arrows
+  foodRestore: 0
+  waterRestore: 0
   equipmentPrefab: {fileID: 7557518792489884820, guid: f07676aa7a710e242aaae65a097fdf41, type: 3}
   toolType: 0
   weaponType: 1
   ammoType: {fileID: 11400000, guid: c0f7044e275eab348b9e85dc99d913ea, type: 2}
   projectilePrefab: {fileID: 0}
+  damage: 20
+  knockbackForce: 0

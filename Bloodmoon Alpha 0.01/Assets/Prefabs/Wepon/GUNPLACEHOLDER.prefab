@@ -133,6 +133,7 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 512
+  autoFire: 0
 --- !u!1 &2041696864946166498
 GameObject:
   m_ObjectHideFlags: 0

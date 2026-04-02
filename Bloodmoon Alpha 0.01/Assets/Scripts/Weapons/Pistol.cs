@@ -13,13 +13,22 @@ public class Pistol : MonoBehaviour
     [SerializeField] private float range = 100f;
     [SerializeField] private LayerMask hitMask;
 
+    [Header("Fire Mode")]
+    [SerializeField] private bool autoFire = false;
+
     private float lastShotTime;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (autoFire)
         {
-            TryShoot();
+            if (Input.GetMouseButton(0))
+                TryShoot();
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+                TryShoot();
         }
     }
 
@@ -40,7 +49,6 @@ public class Pistol : MonoBehaviour
 
     void Shoot()
     {
-        // 🔥 Shoot from camera center
         Ray ray = new Ray(
             Camera.main.transform.position,
             Camera.main.transform.forward
@@ -50,10 +58,12 @@ public class Pistol : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, range, hitMask))
         {
-            if (hit.collider.CompareTag("Enemy") ||
-                hit.collider.gameObject.layer == LayerMask.NameToLayer("Entitys"))
+            IDamageable dmg = hit.collider.GetComponentInParent<IDamageable>();
+
+            if (dmg != null)
             {
-                Destroy(hit.transform.root.gameObject);
+                Vector3 knockback = Camera.main.transform.forward * pistolItem.knockbackForce;
+                dmg.TakeDamage(pistolItem.damage, knockback);
             }
         }
     }

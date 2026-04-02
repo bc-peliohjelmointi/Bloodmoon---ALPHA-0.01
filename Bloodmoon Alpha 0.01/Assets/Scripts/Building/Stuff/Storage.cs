@@ -12,14 +12,14 @@ public class Storage : MonoBehaviour
 {
     GameObject storageUI;
     bool saved = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private class itemInfo
+    [System.Serializable]
+    public struct itemInfo
     {
         public string item;
         public int number;
         public string slot;
     }
-    private List<itemInfo> storage = new List<itemInfo>();
+    public List<itemInfo> storage = new List<itemInfo>();
     public int capasity;
 
     public void StorageSave()
