@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class Builder : MonoBehaviour
 {
+    private int priceNum;
     private PriceDisplay display;
     private BuildingPrice price;
     /// <summary>
@@ -492,7 +493,15 @@ public class Builder : MonoBehaviour
         }
         if (Priced)
         {
-            display.UpdatePriceDisplay(ghoustPrice.Material[0].sprite, ghoustPrice.Prices[0]);
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                priceNum = (priceNum + 1) % ghoustPrice.Prices.Count;
+            }
+            else
+            {
+                priceNum = priceNum % ghoustPrice.Prices.Count;
+            }
+            display.UpdatePriceDisplay(ghoustPrice.Material[priceNum].sprite, ghoustPrice.Prices[priceNum]);
         }
         else
         {
