@@ -6,7 +6,6 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
     public InventoryItem myItem { get; set; }
     public SlotTag myTag;
 
-    // Make this method virtual
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button != PointerEventData.InputButton.Left) return;
@@ -16,14 +15,23 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         SetItem(Inventory.carriedItem);
     }
 
-    // Make this method virtual
     public virtual void SetItem(InventoryItem item)
     {
         if (item == null) return;
 
-        InventoryItem itemInSlot = myItem;
         InventorySlot fromSlot = item.activeSlot;
+        InventoryItem itemInSlot = myItem;
 
+        // Case: dropping into the same slot
+        if (fromSlot == this)
+        {
+            // Just reset the item's position in the slot
+            PlaceItemInSlot(item);
+            Inventory.carriedItem = null;
+            return;
+        }
+
+        // Case: slot empty
         if (itemInSlot == null)
         {
             PlaceItemInSlot(item);
@@ -32,9 +40,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        // Case: stackable merge
         if (itemInSlot.myItem.IsStackableItem() && item.myItem.IsStackableItem() && itemInSlot.myItem == item.myItem)
         {
-            int maxStack = 100;
+            int maxStack = itemInSlot.myItem.GetMaxStackSize();
             int spaceLeft = maxStack - itemInSlot.count;
             if (spaceLeft > 0)
             {
@@ -42,12 +51,19 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
                 itemInSlot.AddStack(amountToMove);
                 item.count -= amountToMove;
                 item.UpdateCountText();
+
+                if (item.count <= 0)
+                {
+                    if (fromSlot != null) fromSlot.myItem = null;
+                    Destroy(item.gameObject);
+                    Inventory.carriedItem = null;
+                }
             }
             return;
         }
 
+        // Case: swap items
         PlaceItemInSlot(item);
-
         if (fromSlot != null)
         {
             fromSlot.myItem = itemInSlot;
@@ -60,7 +76,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         }
 
         Inventory.carriedItem = null;
-        Inventory.Singleton.UpdateSlot(this);
+        PlayerHotbarController.Instance?.OnSlotUpdated(this);
     }
 
 
