@@ -477,6 +477,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItemPickup
   item: {fileID: 11400000, guid: 9007dd44e7208154280294062ed5c797, type: 2}
+  pickupDelay: 0.5
+  magnetRange: 2
+  magnetSpeed: 10
 --- !u!1 &358540779
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +606,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItemPickup
   item: {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
+  pickupDelay: 0.5
+  magnetRange: 2
+  magnetSpeed: 10
 --- !u!224 &445871222 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4342189233093714866, guid: 5e41571786d5152479420480cff9acfc, type: 3}
@@ -846,6 +852,11 @@ Transform:
   - {fileID: 1804456268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &835180506 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8383808652842038496, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
+  m_PrefabInstance: {fileID: 2074219982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &899237087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,14 +1351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4782267861040067575, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4782267861040067575, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2850531298342384064, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
+      propertyPath: dropPoint
+      value: 
+      objectReference: {fileID: 835180506}
     - target: {fileID: 5923722206109291862, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1426,14 +1433,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5923722206109291862, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5961264343502963845, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6357647055821001515, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7114428602049360796, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
@@ -2034,6 +2033,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItemPickup
   item: {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
+  pickupDelay: 0.5
+  magnetRange: 2
+  magnetSpeed: 10
 --- !u!1 &1514073229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,6 +2773,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItemPickup
   item: {fileID: 11400000, guid: f1f922c47d6ebaa47949763dacb61b5d, type: 2}
+  pickupDelay: 0.5
+  magnetRange: 2
+  magnetSpeed: 10
 --- !u!1001 &2074219982
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2913,6 +2918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StackableItem
       objectReference: {fileID: 0}
+    - target: {fileID: 7216530111589929016, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 26595ece6d15e2a4f847424e6c7c1388, type: 2}
     - target: {fileID: 7279048762685642323, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31

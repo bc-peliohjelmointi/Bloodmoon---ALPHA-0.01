@@ -24,3 +24,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 2873414467058878401, guid: 233f35b4c687c40498fb2182d9a83a70, type: 3}
   damage: 20
   knockbackForce: 0.1
+  worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}

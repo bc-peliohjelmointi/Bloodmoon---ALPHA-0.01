@@ -19,7 +19,7 @@ public class Item : ScriptableObject
     public SlotTag itemTag;
 
     [TextArea]
-    public string description; // 🔥 NEW
+    public string description;
 
     [Header("Consumable Settings")]
     public int foodRestore;
@@ -40,6 +40,8 @@ public class Item : ScriptableObject
     public float damage = 10f;
     public float knockbackForce = 1f;
 
+    [Header("World")]
+    public GameObject worldPrefab;
     public bool IsStackableItem()
     {
         return itemTag == SlotTag.Stackable || itemTag == SlotTag.Food || itemTag == SlotTag.Water;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6833737170043693406}
   - component: {fileID: 7235921782786839940}
   - component: {fileID: 1301953579111956201}
+  - component: {fileID: 426650745168154035}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Untagged
@@ -122,3 +123,37 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   ZiplineMat: {fileID: 2100000, guid: f06784e08c54eb941b750f5c32581f16, type: 2}
+--- !u!114 &426650745168154035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8015971508887585505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0cd861ec6c1364e888eac1a34347e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPrice
+  DefaultShapeNames:
+  - Wall
+  - Floor
+  - Doorway
+  - Window
+  - Fansywall
+  - Ramp
+  - FunnyStair
+  - FunnyStair2
+  - LoopStairs
+  - LoopStair2
+  - Door3
+  - Door2
+  - Storage Crate
+  HalfShapeNames:
+  - HalfWall1
+  - HalfFloor
+  - HalfStair
+  - HalfStair2
+  QuaterShapeNames:
+  - FloorCorner
+  - CornerWall

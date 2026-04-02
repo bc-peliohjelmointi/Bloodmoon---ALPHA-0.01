@@ -19,7 +19,6 @@ public class BuildingID : MonoBehaviour
                 scale.z = 2;
                 if (Physics.OverlapBox(transform.position, scale / 100 * 2, new Quaternion(), Mask).Length >= 1)
                 {
-                    Debug.LogWarning(Physics.OverlapBox(transform.position, scale / 100 * 2, new Quaternion(), Mask).Length);
                     IsOnGround = true;
                 }
             }
@@ -29,7 +28,6 @@ public class BuildingID : MonoBehaviour
                 scale.x = 2;
                 if (Physics.OverlapBox(transform.position, scale / 100 * 2, new Quaternion(), Mask).Length >= 1)
                 {
-                    Debug.LogWarning(Physics.OverlapBox(transform.position, scale / 100 * 2, new Quaternion(), Mask).Length);
                     IsOnGround = true;
                 }
             }
@@ -40,7 +38,6 @@ public class BuildingID : MonoBehaviour
             scale.y = 2;
             if (Physics.OverlapBox(transform.position, scale / 100 * 2, new Quaternion(), Mask).Length >= 1)
             {
-                Debug.LogWarning(Physics.OverlapBox(transform.position, scale / 100 * 2, new Quaternion(), Mask).Length);
                 IsOnGround = true;
             }
         }
@@ -48,7 +45,6 @@ public class BuildingID : MonoBehaviour
         {
             if (Physics.OverlapBox(transform.position, transform.localScale / 100 * 2, new Quaternion(), Mask).Length >= 1)
             {
-                Debug.LogWarning(Physics.OverlapBox(transform.position, transform.localScale / 100 * 4, new Quaternion(), Mask).Length);
                 IsOnGround = true;
             }
         }

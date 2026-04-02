@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7181004515364863018}
   - component: {fileID: 1835472940653223214}
   m_Layer: 0
-  m_Name: StackableItem
+  m_Name: BaseWorldItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b53a413a99cefb49bca9c2c0ac49a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItemPickup
-  item: {fileID: 11400000, guid: 29968a31935ac7443bed5855d3a7e086, type: 2}
+  item: {fileID: 0}
 --- !u!54 &7181004515364863018
 Rigidbody:
   m_ObjectHideFlags: 0
