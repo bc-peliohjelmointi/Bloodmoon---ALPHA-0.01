@@ -69,6 +69,10 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         myItem = item;
         item.activeSlot = this;
         item.transform.SetParent(transform, false);
+        if(item.canvasGroup == null)
+        {
+            item.canvasGroup = GetComponentInChildren<CanvasGroup>();
+        }
         item.canvasGroup.blocksRaycasts = true;
 
         RectTransform rt = item.GetComponent<RectTransform>();

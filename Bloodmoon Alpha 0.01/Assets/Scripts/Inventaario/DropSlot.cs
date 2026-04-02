@@ -11,18 +11,18 @@ public class DropSlot : InventorySlot
     {
         if (item == null || item.myItem == null) return;
 
-        DropItem(item);
+        // Drop all of the stack
+        int totalCount = item.count;
 
-        // Reduce stack or destroy UI item
-        item.count--;
-        item.UpdateCountText();
-
-        if (item.count <= 0)
+        for (int i = 0; i < totalCount; i++)
         {
-            Destroy(item.gameObject);
+            DropItem(item);
         }
 
-        // Clear carried item
+        // Destroy the inventory UI item
+        Destroy(item.gameObject);
+
+        // Clear carried item and slot
         Inventory.carriedItem = null;
         myItem = null;
     }

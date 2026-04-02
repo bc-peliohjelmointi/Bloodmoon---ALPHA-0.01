@@ -32,8 +32,7 @@ Transform:
   m_LocalPosition: {x: 0.28, y: 0.72, z: 0}
   m_LocalScale: {x: 0.26, y: 0.6, z: 0.29}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2249110932273884833}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &914857731144865385
@@ -129,42 +128,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
   weaponItem: {fileID: 11400000, guid: 26595ece6d15e2a4f847424e6c7c1388, type: 2}
-  range: 1.5
+  range: 10
   attackCooldown: 1
-  attackPoint: {fileID: 2249110932273884833}
   hitMask:
     serializedVersion: 2
     m_Bits: 512
   tiltAngle: 35
   swingSpeed: 10
---- !u!1 &5074419263528168843
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2249110932273884833}
-  m_Layer: 0
-  m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2249110932273884833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074419263528168843}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.07}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3119412265044146729}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  attackPoint: {fileID: 0}
