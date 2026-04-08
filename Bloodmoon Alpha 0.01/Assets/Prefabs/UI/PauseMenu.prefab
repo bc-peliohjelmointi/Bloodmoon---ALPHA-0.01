@@ -1950,7 +1950,7 @@ RectTransform:
   m_Children:
   - {fileID: 2197551840067257867}
   - {fileID: 2620191672879310003}
-  - {fileID: 3743472868227343533}
+  - {fileID: 2541970147391153755}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2011,7 +2011,7 @@ MonoBehaviour:
   pauseMenuCanvas: {fileID: 7357461342322685931}
   mainMenuSceneName: MainMenu
   isPaused: 0
-  settingsPanel: {fileID: 7409635289693056754}
+  settingsPanel: {fileID: 8530319987523398660}
 --- !u!114 &5323948565411920162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1001 &8501352870727048722
+--- !u!1001 &7300132377262267620
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2754,13 +2754,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa8d6d19df01ad04986cf42d6c4e9cdc, type: 3}
---- !u!224 &3743472868227343533 stripped
+--- !u!224 &2541970147391153755 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5046745012951202495, guid: aa8d6d19df01ad04986cf42d6c4e9cdc, type: 3}
-  m_PrefabInstance: {fileID: 8501352870727048722}
+  m_PrefabInstance: {fileID: 7300132377262267620}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7409635289693056754 stripped
+--- !u!1 &8530319987523398660 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1382199835787309280, guid: aa8d6d19df01ad04986cf42d6c4e9cdc, type: 3}
-  m_PrefabInstance: {fileID: 8501352870727048722}
+  m_PrefabInstance: {fileID: 7300132377262267620}
   m_PrefabAsset: {fileID: 0}
