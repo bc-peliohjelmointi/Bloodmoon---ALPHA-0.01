@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,18 +12,28 @@ public class PauseMenu : MonoBehaviour
 
     public bool isPaused = false;
 
+    public GameObject settingsPanel;
+
     void Start()
     {
         PHUD = GameObject.Find("PlayerHUD");
         builder = GameObject.Find("Builder").GetComponent<Builder>();
         inventoryToggle = GameObject.Find("InventoryManager").GetComponent<InventoryToggle>();
+
         pauseMenuCanvas.SetActive(false);
+        settingsPanel.SetActive(false); // 👈 add this
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (settingsPanel.activeSelf)
+            {
+                CloseSettings();
+                return;
+            }
+
             if (isPaused)
                 ResumeGame();
             else
@@ -56,5 +66,16 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f; // important so the next scene isn't frozen
         SceneManager.LoadScene(mainMenuSceneName);
+    }
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
+        pauseMenuCanvas.SetActive(false);
+    }
+
+    public void CloseSettings()
+    {
+        settingsPanel.SetActive(false);
+        pauseMenuCanvas.SetActive(true);
     }
 }
