@@ -79,6 +79,10 @@ public class BuildingColapse : MonoBehaviour
         {
             foreach (Structure struc in buildings[listnum])
             {
+                if (struc.Me.GetComponent<IDamageable>().bloodEffect != null)
+                {
+                    Instantiate(struc.Me.GetComponent<IDamageable>().bloodEffect, struc.Me.transform.position, struc.Me.transform.rotation);
+                }
                 struc.Me.GetComponent<BuildingID>().enabled = false;
                 Destroy(struc.Me);
             }

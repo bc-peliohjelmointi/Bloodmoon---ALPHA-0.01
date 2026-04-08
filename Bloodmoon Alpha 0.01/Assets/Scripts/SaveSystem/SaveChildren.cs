@@ -53,7 +53,7 @@ public class SaveChildren : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
         int StorageNumber = 0;
         GameObject builder = GameObject.Find("Builder");

@@ -5,6 +5,7 @@ public class BreakableObject : MonoBehaviour
     [Header("Stats")]
     public int maxHealth = 5;
     public float currentHealth = 5;
+    public ParticleSystem BreackEffect;
 
     [Header("Break Settings")]
     public BreakType breakType = BreakType.Tree;
@@ -45,7 +46,10 @@ public class BreakableObject : MonoBehaviour
                 drop.GetComponent<WorldItemPickup>().item = dropItem;
             }
         }
-
+        if (BreackEffect != null)
+        {
+            Instantiate(BreackEffect, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 }
