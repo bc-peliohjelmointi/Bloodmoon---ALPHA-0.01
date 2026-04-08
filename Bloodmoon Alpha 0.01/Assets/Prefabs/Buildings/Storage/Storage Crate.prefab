@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 3274083160327374844}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000087810564, y: -0.0064840456, z: 0.002601198, w: 0.9999756}
-  m_LocalPosition: {x: 1.9821359, y: 0.000000062774156, z: -1.8480138}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -213,6 +213,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  health: 50
+  maxHealth: 50
+  canTakeKnockback: 1
+  bloodEffect: {fileID: 2614750557253978003, guid: a3644ecd54f07004eb2f6b82ba3a9ff5, type: 3}
   BuildingListID: 0
   IsOnGround: 0
   Mask:
@@ -230,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f59ae61652ae34aab2cdbf257bb404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Storage
+  storage: []
   capasity: 12
 --- !u!65 &1400535185043072253
 BoxCollider:
@@ -250,5 +255,5 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2755489, y: 0.25, z: 0.4}
-  m_Center: {x: -0.00020646058, y: 0.13, z: -0.0000000099344994}
+  m_Size: {x: 0.2755489, y: 0.23, z: 0.40000004}
+  m_Center: {x: -0.00020646048, y: 0.13, z: 1.4895708e-12}

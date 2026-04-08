@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static BuildingPrice;
 
 public class Builder : MonoBehaviour
 {
@@ -125,6 +126,21 @@ public class Builder : MonoBehaviour
                 {
                     GetComponent<BuildingColapse>().newObject(go, -1);
                 }
+
+                bool Priced = false;
+                BuildingPrice.Price ghoustPrice = new BuildingPrice.Price();
+                foreach (BuildingPrice.Price pr in price.Pricing)
+                {
+                    if (pr.BuildingName + "(Clone)" == Ghoust.name)
+                    {
+                        Priced = true;
+                        ghoustPrice = pr;
+                    }
+                }
+                if (Priced)
+                {
+                    payToBuild(ghoustPrice.Material, ghoustPrice.Prices, ghoustPrice.OptionalMaterials);
+                }
             }
         }
         else if (Ghoust != null) // Jos ei rakentamassa ja haamu on olemassa, tuhoa haamu
@@ -156,6 +172,21 @@ public class Builder : MonoBehaviour
                     Bounds bounds2 = renderer2.bounds;
                     float bottomOffset2 = bounds2.min.y - Ghoust.transform.position.y;
                     Vector3 position2 = hit.transform.position;
+                    position2.y -= bottomOffset2;
+                    Ghoust.transform.position = position2;
+                    Ghoust.transform.rotation = new Quaternion();
+                }
+                else if (Ghoust.tag == "Decoration")
+                {
+                    Renderer renderer2 = Ghoust.GetComponentInChildren<Renderer>();
+                    if (renderer2 == null)
+                    {
+                        Ghoust.transform.rotation = new Quaternion();
+                        Ghoust.transform.position = hit.point;
+                    }
+                    Bounds bounds2 = renderer2.bounds;
+                    float bottomOffset2 = bounds2.min.y - Ghoust.transform.position.y;
+                    Vector3 position2 = hit.point;
                     position2.y -= bottomOffset2;
                     Ghoust.transform.position = position2;
                     Ghoust.transform.rotation = new Quaternion();
@@ -459,7 +490,10 @@ public class Builder : MonoBehaviour
     {
         Validation val = Ghoust.GetComponentInChildren<Validation>();
         bool valid_bool = val.valid;
-        priceHandler();
+        if (!priceHandler())
+        {
+            valid_bool = false;
+        }
         if (valid_bool)
         {
             Renderer[] ren = Ghoust.transform.GetComponentsInChildren<Renderer>();
@@ -479,7 +513,7 @@ public class Builder : MonoBehaviour
         return valid_bool;
     }
 
-    private void priceHandler()
+    private bool priceHandler()
     {
         bool Priced = false;
         BuildingPrice.Price ghoustPrice = new BuildingPrice.Price();
@@ -503,22 +537,21 @@ public class Builder : MonoBehaviour
                 {
                     priceNum = priceNum % ghoustPrice.Prices.Count;
                 }
-                display.UpdatePriceDisplay(new List<Sprite> { ghoustPrice.Material[priceNum].sprite }, new List<int> { ghoustPrice.Prices[priceNum] });
+                return display.UpdatePriceDisplay(new List<Item> { ghoustPrice.Material[priceNum] }, new List<int> { ghoustPrice.Prices[priceNum] });
             }
             else
             {
-                List<Sprite> list = new List<Sprite>();
+                List<Item> list = new List<Item>();
                 foreach (Item material in ghoustPrice.Material)
                 {
-                    list.Add(material.sprite);
+                    list.Add(material);
                 }
-                display.UpdatePriceDisplay(list, ghoustPrice.Prices);
+                return display.UpdatePriceDisplay(list, ghoustPrice.Prices);
             }
         }
         else
         {
-            display.UpdatePriceDisplay(null, new List<int>());
-            Debug.Log("No Price");
+            return display.UpdatePriceDisplay(null, new List<int>());
         }
     } 
 
@@ -582,6 +615,74 @@ public class Builder : MonoBehaviour
         else if (rotat != 0 && hit.transform.tag == "Ground")
         {
             Ghoust.transform.Rotate(0, rotat, 0);
+        }
+    }
+
+    private void payToBuild(List<Item> item, List<int> number, bool optionalMaterials)
+    {
+        if (!optionalMaterials)
+        {
+            for (int i = 0; i < item.Count; i++)
+            {
+                int amountToRemove = number[i];
+
+                foreach (InventorySlot slot in display.slot)
+                {
+                    if (slot.myItem == null) continue;
+                    if (slot.myItem.myItem != item[i]) continue;
+
+                    int removeFromThisSlot = Mathf.Min(amountToRemove, slot.myItem.count);
+
+                    slot.myItem.count -= removeFromThisSlot;
+                    slot.myItem.UpdateCountText();
+
+                    amountToRemove -= removeFromThisSlot;
+
+                    if (slot.myItem.count <= 0)
+                    {
+                        Destroy(slot.myItem.gameObject);
+                        slot.ClearSlot();
+                    }
+
+                    if (amountToRemove <= 0)
+                        break;
+                }
+            }
+        }
+        else
+        {
+            int i = 0;
+            for (int x = 0; x < item.Count; x++)
+            { 
+                if (item[x]  == display.currentItem)
+                {
+                    i = x; break;
+                }
+            }
+
+            int amountToRemove = number[i];
+
+            foreach (InventorySlot slot in display.slot)
+            {
+                if (slot.myItem == null) continue;
+                if (slot.myItem.myItem != item[i]) continue;
+
+                int removeFromThisSlot = Mathf.Min(amountToRemove, slot.myItem.count);
+
+                slot.myItem.count -= removeFromThisSlot;
+                slot.myItem.UpdateCountText();
+
+                amountToRemove -= removeFromThisSlot;
+
+                if (slot.myItem.count <= 0)
+                {
+                    Destroy(slot.myItem.gameObject);
+                    slot.ClearSlot();
+                }
+
+                if (amountToRemove <= 0)
+                    break;
+            }
         }
     }
 }

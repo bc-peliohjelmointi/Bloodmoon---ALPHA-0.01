@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TurretAI : IDamageable
+public class TurretAI : MonoBehaviour
 {
     [Header("Targeting Settings")]
     public float range = 1;
@@ -187,13 +187,13 @@ public class TurretAI : IDamageable
             {
                 for (int i = 0; (1 / ShotPerSec) / Time.deltaTime > i; i++)
                 {
-                    DealDamage(ShotDamage, target, KnockBack);
+                    target.GetComponent<IDamageable>().TakeDamage(ShotDamage, KnockBack);
                 }
                 LastShotTime = Time.time;
             }
             else
             {
-                DealDamage(ShotDamage, target, KnockBack);
+                target.GetComponent<IDamageable>().TakeDamage(ShotDamage, KnockBack);
                 LastShotTime = Time.time;
             }
         }

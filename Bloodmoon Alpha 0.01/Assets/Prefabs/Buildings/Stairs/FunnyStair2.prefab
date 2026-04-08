@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BreakableObject
   maxHealth: 5
   currentHealth: 5
+  BreackEffect: {fileID: 2614750557253978003, guid: a3644ecd54f07004eb2f6b82ba3a9ff5, type: 3}
   breakType: 1
   dropItem: {fileID: 0}
   minDrops: 1
@@ -147,5 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd467b4ce07ab1d40956d764b4cb7403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingID
+  health: 50
+  maxHealth: 50
+  canTakeKnockback: 0
+  bloodEffect: {fileID: 2614750557253978003, guid: a3644ecd54f07004eb2f6b82ba3a9ff5, type: 3}
   BuildingListID: 0
   IsOnGround: 0
+  Mask:
+    serializedVersion: 2
+    m_Bits: 0

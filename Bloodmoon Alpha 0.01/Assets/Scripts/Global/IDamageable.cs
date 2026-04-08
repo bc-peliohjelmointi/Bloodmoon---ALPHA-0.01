@@ -9,7 +9,7 @@ public class IDamageable : MonoBehaviour
     [SerializeField] protected bool canTakeKnockback = true;
 
     [Header("Effects")]
-    [SerializeField] protected ParticleSystem bloodEffect;
+    [SerializeField] public ParticleSystem bloodEffect;
 
     public static Action OnPlayerDeath;
 

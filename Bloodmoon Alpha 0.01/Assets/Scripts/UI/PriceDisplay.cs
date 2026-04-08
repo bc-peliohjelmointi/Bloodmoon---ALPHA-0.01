@@ -12,16 +12,21 @@ public class PriceDisplay : MonoBehaviour
     private Vector3 Midle;
     private Image Mainimage;
     private TMP_Text Maintext;
+    public InventorySlot[] slot;
+    public Item currentItem;
     private void Start()
     {
         Mainimage = GetComponentInChildren<Image>();
         Maintext = GetComponentInChildren<TMP_Text>();
         Midle = Mainimage.rectTransform.position;
         Mainimage.enabled = false;
+        GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(true);
+        slot = GameObject.Find("MainInventory").GetComponentsInChildren<InventorySlot>();
+        GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().SetInventoryActive(false);
     }
-    public void UpdatePriceDisplay(List<Sprite> sprite, List<int> amount)
+    public bool UpdatePriceDisplay(List<Item> Item, List<int> amount)
     {
-        if (sprite == null)
+        if (Item == null)
         {
             Mainimage.enabled = false;
             Maintext.text = "";
@@ -34,17 +39,19 @@ public class PriceDisplay : MonoBehaviour
                 }
             }
             PriceClones.Clear();
+            return false;
         }
         else 
         {
-            if (sprite.Count == 1)
+            currentItem = Item[0];
+            if (Item.Count == 1)
             {
                 Mainimage.rectTransform.position = Midle;
                 Mainimage.enabled = true;
-                Mainimage.sprite = sprite[0];
+                Mainimage.sprite = Item[0].sprite;
                 Maintext.text = amount[0].ToString();
             }
-            if (sprite.Count != PriceClones.Count)
+            if (Item.Count != PriceClones.Count)
             {
                 foreach (Transform child in transform)
                 {
@@ -55,9 +62,9 @@ public class PriceDisplay : MonoBehaviour
                 }
                 PriceClones.Clear();
             }
-            if (sprite.Count > 1)
+            if (Item.Count > 1)
             {
-                while (PriceClones.Count < sprite.Count)
+                while (PriceClones.Count < Item.Count)
                 {
                     PriceClones.Add(Instantiate(PriceImagePrefab, transform));
                     PriceClones[PriceClones.Count - 1].GetComponent<RectTransform>().position = Midle;
@@ -93,13 +100,34 @@ public class PriceDisplay : MonoBehaviour
                 for (int i = 0; i < PriceClones.Count; i++)
                 {
                     PriceClones[i].GetComponent<Image>().enabled = true;
-                    PriceClones[i].GetComponent<Image>().sprite = sprite[i];
+                    PriceClones[i].GetComponent<Image>().sprite = Item[i].sprite;
                     PriceClones[i].GetComponentInChildren<TMP_Text>().text = amount[i].ToString();
                 }
                 Mainimage.enabled = true;
-                Mainimage.sprite = sprite[sprite.Count - 1];
-                Maintext.text = amount[sprite.Count - 1].ToString();
+                Mainimage.sprite = Item[Item.Count - 1].sprite;
+                Maintext.text = amount[Item.Count - 1].ToString();
             }
         }
+        return ValidatePrice(Item, amount);
+    }
+
+    private bool ValidatePrice(List<Item> items, List<int> amount)
+    {
+        for (int i = 0; i<items.Count; i++)
+        {
+            int totalFound = 0;
+
+            foreach (InventorySlot slot in slot)
+            {
+                if (slot.myItem != null && slot.myItem.myItem == items[i])
+                {
+                    totalFound += slot.myItem.count;
+                }
+            }
+
+            if (totalFound < amount[i])
+                return false;
+        }
+        return true;
     }
 }
