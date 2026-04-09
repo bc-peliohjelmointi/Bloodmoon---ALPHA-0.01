@@ -60,7 +60,6 @@ public class BoxOpener : MonoBehaviour
             if (Storage.active == false)
             {
                 open = false;
-                GetComponent<Storage>().StorageSave();
             }
             OpenUpdate();
             yield return null; // next frame

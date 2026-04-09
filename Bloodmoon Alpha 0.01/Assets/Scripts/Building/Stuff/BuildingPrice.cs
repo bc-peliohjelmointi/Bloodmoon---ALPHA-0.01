@@ -84,8 +84,11 @@ public class BuildingPrice : MonoBehaviour
         price.Material = new List<Item>();
         foreach (Item material in items.items)
         {
-            price.Prices.Add(50);
-            price.Material.Add(material);
+            if (material.name == "Wood" || (material.name == "Stone"))
+            {
+                price.Prices.Add(1);
+                price.Material.Add(material);
+            }
         }
         Pricing.Add(price);
         price = new Price();
@@ -97,7 +100,7 @@ public class BuildingPrice : MonoBehaviour
         {
             if (material.name == "Wood" || (material.name == "Stone"))
             {
-                price.Prices.Add(50);
+                price.Prices.Add(1);
                 price.Material.Add(material);
             }
         }

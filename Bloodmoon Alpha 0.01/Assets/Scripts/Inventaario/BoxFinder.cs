@@ -7,6 +7,8 @@ public class BoxFinder : MonoBehaviour
     public GameObject MainInventory;
     public GameObject Storage;
     PauseMenu Pausemenu;
+    Storage currentStorage;
+    bool saved = true;
     
     private void Start()
     {
@@ -21,6 +23,8 @@ public class BoxFinder : MonoBehaviour
             {
                 if (hit.transform.GetComponent<Storage>() != null)
                 {
+                    currentStorage = hit.transform.GetComponent<Storage>();
+                    saved = false;
                     GameObject.Find("InventoryManager").GetComponent<InventoryToggle>().OpenInventory();
                     GameObject.Find("CraftingMenu").SetActive(false);
                     Storage.SetActive(true);
@@ -48,9 +52,14 @@ public class BoxFinder : MonoBehaviour
                     {
                         hit.transform.GetComponent<BoxOpener>().StartLoop();
                     }
-                    hit.transform.GetComponent<Storage>().StorageLoad();
+                    currentStorage.StorageLoad();
                 }
             }
+        }
+        if (!Storage.active && !saved)
+        {
+            saved = true;
+            currentStorage.StorageSave();
         }
     }
 }

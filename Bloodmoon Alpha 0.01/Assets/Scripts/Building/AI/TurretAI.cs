@@ -22,6 +22,15 @@ public class TurretAI : MonoBehaviour
 
     Wolf Animal = null;
 
+    private Storage ammo;
+
+    public Item AmmoType;
+
+    private void Start()
+    {
+        ammo = GetComponent<Storage>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -183,15 +192,7 @@ public class TurretAI : MonoBehaviour
         }
         if (LastShotTime + (1 / ShotPerSec) < Time.time)
         {
-            if (1 / ShotPerSec < Time.deltaTime)
-            {
-                for (int i = 0; (1 / ShotPerSec) / Time.deltaTime > i; i++)
-                {
-                    target.GetComponent<IDamageable>().TakeDamage(ShotDamage, KnockBack);
-                }
-                LastShotTime = Time.time;
-            }
-            else
+            if (ConsumeAmmo())
             {
                 target.GetComponent<IDamageable>().TakeDamage(ShotDamage, KnockBack);
                 LastShotTime = Time.time;
@@ -204,4 +205,25 @@ public class TurretAI : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    private bool ConsumeAmmo()
+    {
+        if (ammo != null && AmmoType != null)
+        {
+            for(int i = 0; i < ammo.storage.Count; i++)
+            {
+                if (ammo.storage[i].item == AmmoType.name.ToString())
+                {
+                    ammo.storage[i].number -= 1;
+                    if (ammo.storage[i].number < 1)
+                    {
+                        ammo.storage.RemoveAt(i);
+                    }
+                    return true;
+                }
+            }
+        }
+        else { return true; }
+        return false;
+    } 
 }

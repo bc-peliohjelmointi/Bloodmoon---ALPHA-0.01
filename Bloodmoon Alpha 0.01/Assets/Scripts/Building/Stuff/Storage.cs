@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditorInternal.Profiling.Memory.Experimental;
@@ -13,7 +14,7 @@ public class Storage : MonoBehaviour
     GameObject storageUI;
     bool saved = false;
     [System.Serializable]
-    public struct itemInfo
+    public class itemInfo
     {
         public string item;
         public int number;
@@ -24,6 +25,7 @@ public class Storage : MonoBehaviour
 
     public void StorageSave()
     {
+        Debug.Log(saved);
         if (saved) {  return; }
         storageUI.SetActive(true);
         foreach (Transform t in storageUI.transform) 
@@ -41,7 +43,7 @@ public class Storage : MonoBehaviour
             { info.number = Convert.ToInt16(item.GetComponentInChildren<Text>().text); }
             else { info.number = 0; }
             info.slot = item.GetComponentInParent<InventorySlot>().transform.name;
-
+            
             storage.Add(info);
         }
         foreach (Transform t in storageUI.transform)
