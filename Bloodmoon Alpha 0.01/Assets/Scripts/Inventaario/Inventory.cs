@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -89,6 +89,11 @@ public class Inventory : MonoBehaviour
     }
     public void Craft(Recipe recipe)
     {
+        if (carriedItem != null)
+        {
+            Debug.Log("Cannot craft while dragging an item!");
+            return;
+        }
         if (!CanCraft(recipe))
         {
             Debug.Log("Not enough materials!");
