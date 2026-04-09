@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.010778
+      value: 15.82048
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000010296408
+      value: -0.00000078272944
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.27089
+      value: -10.370492
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalRotation.w
@@ -400,7 +400,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Wolf
   health: 50
   maxHealth: 50
-  Blood: {fileID: 3802586455251347144, guid: c68e5687c76bddf4eb0a8f46c143704e, type: 3}
+  canTakeKnockback: 1
+  bloodEffect: {fileID: 0}
   agent: {fileID: 1385007520431286146}
   player: {fileID: 0}
   raycastPoint: {fileID: 8095927965497407739}
@@ -411,7 +412,7 @@ MonoBehaviour:
   detectionRange: 5
   damage: 10
   effect: {fileID: 5774021493654583103, guid: 3f33605b02aed464a864d7351882fb0d, type: 3}
-  Death_Sound: {fileID: 5660024077882072743}
+  deathSound: {fileID: 5660024077882072743}
   debug: 1
   packSenseRadius: 20
   packCohesionRadius: 8
