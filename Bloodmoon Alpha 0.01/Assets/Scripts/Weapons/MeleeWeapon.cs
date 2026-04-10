@@ -35,6 +35,7 @@ public class MeleeWeapon : MonoBehaviour
 
     void TryAttack()
     {
+        if (PauseMenu.IsPaused) return;
         if (Time.time < lastAttackTime + attackCooldown)
             return;
 

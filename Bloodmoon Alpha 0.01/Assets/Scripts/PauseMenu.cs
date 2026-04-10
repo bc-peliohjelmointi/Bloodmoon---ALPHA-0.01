@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     public bool isPaused = false;
 
     public GameObject settingsPanel;
+    public static bool IsPaused;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class PauseMenu : MonoBehaviour
         inventoryToggle = GameObject.Find("InventoryManager").GetComponent<InventoryToggle>();
 
         pauseMenuCanvas.SetActive(false);
-        settingsPanel.SetActive(false); // 👈 add this
+        settingsPanel.SetActive(false);
     }
 
     void Update()
@@ -51,6 +52,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        IsPaused = true;
     }
 
     public void ResumeGame()
@@ -60,6 +62,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        IsPaused = false;
     }
 
     public void ExitToMainMenu()

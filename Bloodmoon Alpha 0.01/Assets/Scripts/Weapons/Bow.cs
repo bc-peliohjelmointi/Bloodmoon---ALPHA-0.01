@@ -24,6 +24,7 @@ public class Bow : MonoBehaviour
 
     void TryShoot()
     {
+        if (PauseMenu.IsPaused) return;
         if (Time.time < lastShotTime + shootCooldown)
             return;
 

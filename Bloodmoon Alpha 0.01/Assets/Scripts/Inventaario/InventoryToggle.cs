@@ -45,6 +45,7 @@ public class InventoryToggle : MonoBehaviour
             Cursor.visible = true;
 
             Time.timeScale = 0f; // optional
+            PauseMenu.IsPaused = true;
         }
     }
 
@@ -57,6 +58,7 @@ public class InventoryToggle : MonoBehaviour
         Cursor.visible = false;
 
         Time.timeScale = 1f; // optional
+        PauseMenu.IsPaused = false;
     }
 
     void LockCursor()
