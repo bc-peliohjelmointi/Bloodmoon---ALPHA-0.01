@@ -85,7 +85,7 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         myItem = item;
         item.activeSlot = this;
         item.transform.SetParent(transform, false);
-        if(item.canvasGroup == null)
+        if (item.canvasGroup == null)
         {
             item.canvasGroup = GetComponentInChildren<CanvasGroup>();
         }
@@ -98,13 +98,15 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
         rt.offsetMax = Vector2.zero;
         rt.localScale = Vector3.one;
 
-        // --- Notify hotbar controller ---
         PlayerHotbarController.Instance?.OnSlotUpdated(this);
+        Inventory.Singleton?.UpdateSlot(this); // ADD THIS
     }
 
     public void ClearSlot()
     {
         myItem = null;
         PlayerHotbarController.Instance?.OnSlotUpdated(this);
+        Inventory.Singleton?.UpdateSlot(this); // ADD THIS
     }
+
 }

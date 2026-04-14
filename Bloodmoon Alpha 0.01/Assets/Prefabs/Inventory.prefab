@@ -334,7 +334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -74}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7582903974070527339
@@ -2583,7 +2583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6129684085812467360
@@ -3367,7 +3367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 31}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7800952216713444429
@@ -3812,6 +3812,7 @@ GameObject:
   - component: {fileID: 23790901645002244}
   - component: {fileID: 5784377896577587354}
   - component: {fileID: 8942126922061330360}
+  - component: {fileID: 5009804624751008924}
   m_Layer: 5
   m_Name: Panel (1)
   m_TagString: Untagged
@@ -3838,9 +3839,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -96.42572}
-  m_SizeDelta: {x: 725.2009, y: -131.18665}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6701073365169278147
 CanvasRenderer:
@@ -3962,6 +3963,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 8cde2d2086c963b408f161d5acc35471, type: 2}
+--- !u!114 &5009804624751008924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439662998933699672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: 8cde2d2086c963b408f161d5acc35471, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &1455107920078048072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5598,7 +5619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -52}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5249318856956773006
@@ -5882,7 +5903,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 45}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111489067339857391
@@ -6290,7 +6311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 35}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1951473914178920856
@@ -8441,7 +8462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 23}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6412992895431570370
@@ -9074,7 +9095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -66}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2288925412843270739
@@ -9518,6 +9539,7 @@ GameObject:
   - component: {fileID: 6670787258936109794}
   - component: {fileID: 7507092491013799657}
   - component: {fileID: 5497772716396532231}
+  - component: {fileID: 4999979976378107666}
   m_Layer: 5
   m_Name: Panel (5)
   m_TagString: Untagged
@@ -9543,9 +9565,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -738.24146}
-  m_SizeDelta: {x: 725.2009, y: -129.59332}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3051068157151478238
 CanvasRenderer:
@@ -9654,6 +9676,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: fe27cdb4edd38c24f9f339a99ab71083, type: 2}
+--- !u!114 &4999979976378107666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259941115980616308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: fe27cdb4edd38c24f9f339a99ab71083, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &3264940215387881654
 GameObject:
   m_ObjectHideFlags: 0
@@ -10530,7 +10572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4592165907646885526
@@ -11895,7 +11937,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -69}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1252847255016667609
@@ -13275,7 +13317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4374532093654902
@@ -16661,6 +16703,7 @@ GameObject:
   - component: {fileID: 887629968697383936}
   - component: {fileID: 5084689259443222681}
   - component: {fileID: 7547388488802631487}
+  - component: {fileID: 8662030862277991796}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -16687,9 +16730,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: 66}
-  m_SizeDelta: {x: 725.2009, y: -136.03809}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8784934292225846243
 CanvasRenderer:
@@ -16811,6 +16854,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 9a56f78a11b74ae46bccfd73211cf88c, type: 2}
+--- !u!114 &8662030862277991796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161315354195615536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: 9a56f78a11b74ae46bccfd73211cf88c, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &5188811256350775549
 GameObject:
   m_ObjectHideFlags: 0
@@ -19586,6 +19649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6357647055821001515}
+  - component: {fileID: 7905364572439329254}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -19620,6 +19684,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &7905364572439329254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6104290289684922190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 100
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &6113727344796720679
 GameObject:
   m_ObjectHideFlags: 0
@@ -20938,6 +21028,7 @@ GameObject:
   - component: {fileID: 5739682505987983931}
   - component: {fileID: 619994422506010902}
   - component: {fileID: 3245839040607300736}
+  - component: {fileID: 395227424304914419}
   m_Layer: 5
   m_Name: Panel (4)
   m_TagString: Untagged
@@ -20963,9 +21054,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -577.44476}
-  m_SizeDelta: {x: 725.2009, y: -131.18665}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2765460420731828621
 CanvasRenderer:
@@ -21074,6 +21165,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: c66d971a524665b49a8febbf24c567eb, type: 2}
+--- !u!114 &395227424304914419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6596643890247368013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: c66d971a524665b49a8febbf24c567eb, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &6612395993412275880
 GameObject:
   m_ObjectHideFlags: 0
@@ -22062,7 +22173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 36}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &523478348205140076
@@ -22366,6 +22477,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 237e8d1812a26c84a992aeca1a0ba02a, type: 2}
   - {fileID: 11400000, guid: 2056740c67f267c42afd26fe65419a51, type: 2}
   - {fileID: 11400000, guid: f344f321d2359574389400e1c032fff9, type: 2}
+  - {fileID: 11400000, guid: bad14c48e93decd4fa6094f428cae8e9, type: 2}
   giveItemBtn: {fileID: 7871723213060288303}
 --- !u!114 &3915245123481920150
 MonoBehaviour:
@@ -22402,6 +22514,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 237e8d1812a26c84a992aeca1a0ba02a, type: 2}
   - {fileID: 11400000, guid: 2056740c67f267c42afd26fe65419a51, type: 2}
   - {fileID: 11400000, guid: f344f321d2359574389400e1c032fff9, type: 2}
+  - {fileID: 11400000, guid: bad14c48e93decd4fa6094f428cae8e9, type: 2}
 --- !u!114 &6197118933186147625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22936,7 +23049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -79}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6299764394977423446
@@ -23282,7 +23395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -62}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5552870360904650146
@@ -24344,6 +24457,7 @@ GameObject:
   - component: {fileID: 8280156308330222136}
   - component: {fileID: 7409327559902934299}
   - component: {fileID: 7703163171510638369}
+  - component: {fileID: 5477765789890998466}
   m_Layer: 5
   m_Name: Panel (6)
   m_TagString: Untagged
@@ -24369,9 +24483,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -912.24146}
-  m_SizeDelta: {x: 725.2009, y: -129.59332}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6736597977159645835
 CanvasRenderer:
@@ -24480,6 +24594,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 3dc4a7a6794bf6f47ab9f982072b1983, type: 2}
+--- !u!114 &5477765789890998466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658003933057551634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: 3dc4a7a6794bf6f47ab9f982072b1983, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &7721196078391269899
 GameObject:
   m_ObjectHideFlags: 0
@@ -27333,6 +27467,7 @@ GameObject:
   - component: {fileID: 4227768744884624867}
   - component: {fileID: 6514316030620061346}
   - component: {fileID: 1920002610213822177}
+  - component: {fileID: 665904798825959372}
   m_Layer: 5
   m_Name: Panel (2)
   m_TagString: Untagged
@@ -27358,9 +27493,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -257.2224}
-  m_SizeDelta: {x: 725.2009, y: -129.59332}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2221643172437485653
 CanvasRenderer:
@@ -27469,6 +27604,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 7602178d31ccd814db7862bc5d6ee4a8, type: 2}
+--- !u!114 &665904798825959372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8342635861243917651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: 7602178d31ccd814db7862bc5d6ee4a8, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &8372362749263711103
 GameObject:
   m_ObjectHideFlags: 0
@@ -28108,7 +28263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 451.2, y: -8.1}
+  m_AnchoredPosition: {x: 451.2, y: 21}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3917282379660475906
@@ -28813,6 +28968,7 @@ GameObject:
   - component: {fileID: 6213416275055981316}
   - component: {fileID: 1473071722735970845}
   - component: {fileID: 6885862497880975379}
+  - component: {fileID: 8897672739571439516}
   m_Layer: 5
   m_Name: Panel (7)
   m_TagString: Untagged
@@ -28838,9 +28994,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -1092.2415}
-  m_SizeDelta: {x: 725.2009, y: -129.59332}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6749401106618779718
 CanvasRenderer:
@@ -28949,6 +29105,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 5cce8c47204225d44925944898a50a44, type: 2}
+--- !u!114 &8897672739571439516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845833887898582646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: 5cce8c47204225d44925944898a50a44, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &8866042248482576596
 GameObject:
   m_ObjectHideFlags: 0
@@ -29187,6 +29363,7 @@ GameObject:
   - component: {fileID: 5130595824514865503}
   - component: {fileID: 843713240973277995}
   - component: {fileID: 8463953525371654383}
+  - component: {fileID: 1943616560866390857}
   m_Layer: 5
   m_Name: Panel (3)
   m_TagString: Untagged
@@ -29212,9 +29389,9 @@ RectTransform:
   m_Father: {fileID: 6357647055821001515}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -67.5, y: -415.01904}
-  m_SizeDelta: {x: 725.2009, y: -136.03809}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 838.41, y: 37.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4170880638158224542
 CanvasRenderer:
@@ -29323,6 +29500,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 565e8afd536fee0459a65bde74cbcba5, type: 2}
+--- !u!114 &1943616560866390857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936725563197142555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a5b81eefecf2146be72a9a267fcaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipeSlot
+  recipe: {fileID: 11400000, guid: 565e8afd536fee0459a65bde74cbcba5, type: 2}
+  recipeNameText: {fileID: 0}
+  resultIcon: {fileID: 0}
+  ingredientsText: {fileID: 0}
+  craftButton: {fileID: 0}
+  backgroundImage: {fileID: 0}
+  craftableColor: {r: 1, g: 1, b: 1, a: 1}
+  uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
 --- !u!1 &8993098756876074715
 GameObject:
   m_ObjectHideFlags: 0
@@ -29644,7 +29841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 454.9, y: -161.5}
+  m_AnchoredPosition: {x: 454.9, y: -73}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4354576652635187050
@@ -30403,10 +30600,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1618570557284419543, guid: 1f3b14e382394dc4ea4833b581696ca0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 414392642662110186}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6441952498944080593, guid: 1f3b14e382394dc4ea4833b581696ca0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8018079236776355832}
   m_SourcePrefab: {fileID: 100100000, guid: 1f3b14e382394dc4ea4833b581696ca0, type: 3}
 --- !u!224 &2691704872773383 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1618570557284419543, guid: 1f3b14e382394dc4ea4833b581696ca0, type: 3}
   m_PrefabInstance: {fileID: 1621226939246190800}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5699772506820336129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6441952498944080593, guid: 1f3b14e382394dc4ea4833b581696ca0, type: 3}
+  m_PrefabInstance: {fileID: 1621226939246190800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8018079236776355832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699772506820336129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c9bb0b38d2a6143a8aecf3a0dd5b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingUI
+  contentParent: {fileID: 6357647055821001515}

@@ -49,6 +49,7 @@ public class InventoryItem : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     {
         count += amount;
         UpdateCountText();
+        Inventory.Singleton?.UpdateSlot(activeSlot);
     }
 
     public void UpdateCountText()
