@@ -428,41 +428,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &345988402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7734980911737004477, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-  m_PrefabInstance: {fileID: 1411158699}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &345988424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345988402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 312844080}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: df70fa95-8a34-4494-b137-73ab6b9c7d37
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &389825035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,17 +908,13 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 2027383896}
-    - target: {fileID: 4082049603505926246, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-      propertyPath: 'm_BlendShapeWeights.Array.data[51]'
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2215344506987207994, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
+      propertyPath: m_UIInputModule
+      value: 
+      objectReference: {fileID: 312844080}
     - target: {fileID: 7734980911737004477, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: m_Name
       value: Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 8249791328718386091, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8767435390818594262, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -998,10 +959,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7734980911737004477, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 345988424}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
 --- !u!114 &1412073517
 MonoBehaviour:
@@ -1652,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6357647055821001515, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6403322748077935893, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
       propertyPath: m_AnchorMax.y

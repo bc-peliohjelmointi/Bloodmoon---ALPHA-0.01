@@ -3261,7 +3261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   headTarget: {fileID: 1427245455155807263}
   playerBody: {fileID: 8767435390818594262}
-  mouseSensitivity: 100
+  mouseSensitivity: 0.2
   offset: {x: 0, y: 0.27, z: 0.18}
   followSmoothSpeed: 500
   aimSensitivityMultiplier: 0.3
