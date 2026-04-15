@@ -39,8 +39,8 @@ public class CameraFollow : MonoBehaviour
 
         Vector2 LookDirections = input.actions.FindAction("Look").ReadValue<Vector2>();
 
-        float mouseX = LookDirections.x * currentSensitivity;
-        float mouseY = LookDirections.y * currentSensitivity;
+        float mouseX = LookDirections.x * currentSensitivity * Time.deltaTime;
+        float mouseY = LookDirections.y * currentSensitivity * Time.deltaTime;
 
         // Rotate player horizontally
         playerBody.Rotate(Vector3.up * mouseX);
