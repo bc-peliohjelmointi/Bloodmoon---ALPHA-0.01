@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using static BuildingPrice;
 
@@ -41,8 +42,16 @@ public class Builder : MonoBehaviour
 
     PauseMenu pause;
 
+    PlayerInput input;
+
+    private bool ReadyToBuild = true;
+    private bool GonaBuild = true;
+    private bool ReadyToSwapMaterial = true;
+    private bool ReadyToRotate = true;
+
     private void Start()
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         price = GetComponent<BuildingPrice>();
         display = GameObject.Find("PlayerHUD").GetComponentInChildren<PriceDisplay>();
         pause = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
@@ -50,20 +59,25 @@ public class Builder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && !pause.isPaused) // Togle building mode
+        if (input.actions.FindAction("OpenBuildMenu").IsPressed() && ReadyToBuild && !pause.isPaused) // Togle building mode
         {
+            ReadyToBuild = false;
             building = !building;
             if (!building)
             {
                 display.UpdatePriceDisplay(null, new List<int>());
             }
         }
+        else if (!input.actions.FindAction("OpenBuildMenu").IsPressed())
+        {
+            ReadyToBuild = true;
+        }
         if (building)//Jos rakentamassa
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            if (scroll != 0) // jos painat oikeaa hiiren nappia vaihda rakennettavaa esinettä listan sisällä
+            Vector2 scroll = input.actions.FindAction("Scroll").ReadValue<Vector2>();
+            if (scroll.y != 0) // jos painat oikeaa hiiren nappia vaihda rakennettavaa esinettä listan sisällä
             {
-                if (scroll > 0)
+                if (scroll.y > 0)
                 {
                     build = (build + 1) % buildings.Count;
                     Destroy(Ghoust);
@@ -97,13 +111,18 @@ public class Builder : MonoBehaviour
                     Ghoust.GetComponent<TurretAI>().enabled = false;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (input.actions.FindAction("RotateBuilding").IsPressed() && ReadyToRotate)
             {
+                ReadyToRotate = false;
                 rotat += 90;
                 if (rotat >= 360)
                 {
                     rotat = 0;
                 }
+            }
+            else if (!input.actions.FindAction("RotateBuilding").IsPressed())
+            {
+                ReadyToRotate = true;
             }
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 50f, mask, QueryTriggerInteraction.Ignore)) // Katso minne pelaaja katsoo ja tallenna raycast hitinfo
             {
@@ -113,8 +132,9 @@ public class Builder : MonoBehaviour
             }
             else { Ghoust.SetActive(false); }
             bool can = Valid();
-            if (Ghoust.active && Input.GetMouseButtonDown(0) && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
+            if (Ghoust.active && GonaBuild && input.actions.FindAction("Attack").IsPressed() && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
+                GonaBuild = false;
                 GameObject go = Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
                 update.NavUpdate();
                 rotat = 0;
@@ -141,6 +161,10 @@ public class Builder : MonoBehaviour
                 {
                     payToBuild(ghoustPrice.Material, ghoustPrice.Prices, ghoustPrice.OptionalMaterials);
                 }
+            }
+            else if (!input.actions.FindAction("Attack").IsPressed())
+            {
+                GonaBuild = true;
             }
         }
         else if (Ghoust != null) // Jos ei rakentamassa ja haamu on olemassa, tuhoa haamu
@@ -529,12 +553,17 @@ public class Builder : MonoBehaviour
         {
             if (ghoustPrice.OptionalMaterials)
             {
-                if (Input.GetKeyDown(KeyCode.Mouse1))
+                if (input.actions.FindAction("SwichBuildingMaterial").IsPressed() && ReadyToSwapMaterial)
                 {
+                    ReadyToSwapMaterial = false;
                     priceNum = (priceNum + 1) % ghoustPrice.Prices.Count;
                 }
                 else
                 {
+                    if (!input.actions.FindAction("SwichBuildingMaterial").IsPressed())
+                    {
+                        ReadyToSwapMaterial = true;
+                    }
                     priceNum = priceNum % ghoustPrice.Prices.Count;
                 }
                 return display.UpdatePriceDisplay(new List<Item> { ghoustPrice.Material[priceNum] }, new List<int> { ghoustPrice.Prices[priceNum] });
