@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: Metalli
+  m_Name: Mechanical Parts
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: e2e89c842378d7044a825bc1f26cc497, type: 3}
+  sprite: {fileID: 21300000, guid: 09e4566e1af50f0488e1306fdef81ff6, type: 3}
   itemTag: 5
-  description: Metalli
+  description: Used for crafting complex tools
   foodRestore: 0
   waterRestore: 0
   equipmentPrefab: {fileID: 0}
