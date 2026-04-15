@@ -8,20 +8,6 @@ using UnityEngine.Rendering.HighDefinition;
 public class SaveChildren : MonoBehaviour
 {
     // Update is called once per frame
-    bool loaded = false;
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SaveSystem.Save();
-            loaded = true;
-        }
-        if (Input.GetKeyDown(KeyCode.P) && !loaded)
-        {
-            SaveSystem.Load();
-            loaded = true;
-        }
-    }
 
     public void Save(ref ChildSaveData data)
     {
