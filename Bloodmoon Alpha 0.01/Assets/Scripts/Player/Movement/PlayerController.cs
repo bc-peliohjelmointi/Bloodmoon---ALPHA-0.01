@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -42,6 +43,8 @@ public class PlayerController : IDamageable
     private float staminaDrainAcc;
     private float staminaRegenAcc;
 
+    private PlayerInput input;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -50,6 +53,7 @@ public class PlayerController : IDamageable
 
     void Start()
     {
+        input = GetComponent<PlayerInput>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -82,7 +86,7 @@ public class PlayerController : IDamageable
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (input.actions.FindAction("Jump").IsPressed())
             TryJump();
 
         HandleMovementAndAnimation();
@@ -95,13 +99,10 @@ public class PlayerController : IDamageable
 
     private void HandleMovementAndAnimation()
     {
-        bool w = Input.GetKey(KeyCode.W);
-        bool s = Input.GetKey(KeyCode.S);
-        bool a = Input.GetKey(KeyCode.A);
-        bool d = Input.GetKey(KeyCode.D);
+        Vector2 movementDirection = input.actions.FindAction("Move").ReadValue<Vector2>();
 
-        bool wantRun = Input.GetKey(KeyCode.LeftShift);
-        bool wantCrouch = Input.GetKey(KeyCode.LeftControl);
+        bool wantRun = input.actions.FindAction("Sprint").IsPressed();
+        bool wantCrouch = input.actions.FindAction("Crouch").IsPressed();
 
         Vector3 forward = transform.forward;
         Vector3 right = -transform.right;
@@ -114,10 +115,10 @@ public class PlayerController : IDamageable
 
         Vector3 moveDir = Vector3.zero;
 
-        if (w) moveDir += forward;
-        if (s) moveDir -= forward;
-        if (a) moveDir += right;
-        if (d) moveDir -= right;
+        if (movementDirection.y > 0) moveDir += forward;
+        if (movementDirection.y < 0) moveDir -= forward;
+        if (movementDirection.x < 0) moveDir += right;
+        if (movementDirection.x > 0) moveDir -= right;
 
         bool isMovingInput = moveDir.sqrMagnitude > 0.0001f;
 
