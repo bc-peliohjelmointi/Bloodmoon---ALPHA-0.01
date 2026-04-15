@@ -132,7 +132,7 @@ public class Builder : MonoBehaviour
             }
             else { Ghoust.SetActive(false); }
             bool can = Valid();
-            if (Ghoust.active && GonaBuild && input.actions.FindAction("Attack").IsPressed() && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
+            if (Ghoust.active && GonaBuild && input.actions.FindAction("PlaceBuilding").IsPressed() && can) // Mikäli haamun pystyy laittaa nykyiseen siaintiinsa ja pelaaja painaa vasenta hiiren nappia, luo uusi rakennelma valittua tyyppiä haamun kohdalle, "Builder"in lapsi objectina
             {
                 GonaBuild = false;
                 GameObject go = Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
