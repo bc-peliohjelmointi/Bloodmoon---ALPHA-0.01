@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -12,10 +13,13 @@ public class CameraFollow : MonoBehaviour
     public float followSmoothSpeed = 10f;
     public float aimSensitivityMultiplier = 0.5f;
 
+    PlayerInput input;
+
     private float xRotation = 0f; // vertical rotation
 
     void Start()
     {
+        input = GetComponentInParent<PlayerInput>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -33,8 +37,10 @@ public class CameraFollow : MonoBehaviour
         if (IsAiming())
             currentSensitivity *= aimSensitivityMultiplier;
 
-        float mouseX = Input.GetAxis("Mouse X") * currentSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * currentSensitivity * Time.deltaTime;
+        Vector2 LookDirections = input.actions.FindAction("Look").ReadValue<Vector2>();
+
+        float mouseX = LookDirections.x * currentSensitivity * Time.deltaTime;
+        float mouseY = LookDirections.y * currentSensitivity * Time.deltaTime;
 
         // Rotate player horizontally
         playerBody.Rotate(Vector3.up * mouseX);
