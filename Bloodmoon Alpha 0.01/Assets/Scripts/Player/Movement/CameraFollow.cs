@@ -61,7 +61,7 @@ public class CameraFollow : MonoBehaviour
     }
     bool IsAiming()
     {
-        if (!Input.GetMouseButton(1)) return false;
+        if (!input.actions.FindAction("AimDownSights").IsPressed()) return false;
 
         Item equipped = PlayerHotbarController.Instance?.GetEquippedItem();
         if (equipped == null) return false;

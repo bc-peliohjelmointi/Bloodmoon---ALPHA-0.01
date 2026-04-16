@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponAim : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class WeaponAim : MonoBehaviour
     private float defaultFOV;
     private bool isAiming;
 
+    private PlayerInput input;
+
     private void Start()
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         cam = Camera.main;
         defaultFOV = cam.fieldOfView;
     }
@@ -24,7 +28,7 @@ public class WeaponAim : MonoBehaviour
         if (weaponItem == null) return;
 
         // Right mouse = aim
-        isAiming = Input.GetMouseButton(1);
+        isAiming = input.actions.FindAction("AimDownSights").IsPressed();
 
         float targetFOV = isAiming ? weaponItem.aimFOV : defaultFOV;
 

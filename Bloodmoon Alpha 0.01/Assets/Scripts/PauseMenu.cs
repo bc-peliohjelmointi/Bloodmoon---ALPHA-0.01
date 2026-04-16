@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -15,8 +17,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsPanel;
     public static bool IsPaused;
 
+    private PlayerInput input;
+
+    private bool readytopause = true;
+
     void Start()
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         PHUD = GameObject.Find("PlayerHUD");
         builder = GameObject.Find("Builder").GetComponent<Builder>();
         inventoryToggle = GameObject.Find("InventoryManager").GetComponent<InventoryToggle>();
@@ -27,8 +34,9 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (input.actions.FindAction("PauseButton").IsPressed() && readytopause)
         {
+            readytopause = false;
             if (settingsPanel.activeSelf)
             {
                 CloseSettings();
@@ -39,6 +47,10 @@ public class PauseMenu : MonoBehaviour
                 ResumeGame();
             else
                 PauseGame();
+        }
+        else if(!input.actions.FindAction("PauseButton").IsPressed()) 
+        {
+            readytopause = true;
         }
     }
 

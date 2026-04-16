@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MeleeWeapon : MonoBehaviour
 {
@@ -20,15 +21,22 @@ public class MeleeWeapon : MonoBehaviour
     private Quaternion originalRotation;
     private bool isSwinging;
 
+    private PlayerInput input;
+
+    private bool readytoshoot = true;
+
     private void Start()
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         originalRotation = transform.localRotation;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (input.actions.FindAction("Attack").IsPressed() && readytoshoot)
             TryAttack();
+        else if (!input.actions.FindAction("Attack").IsPressed())
+            readytoshoot = true;
 
         HandleSwingAnimation();
     }
@@ -41,6 +49,7 @@ public class MeleeWeapon : MonoBehaviour
 
         lastAttackTime = Time.time;
         isSwinging = true;
+        readytoshoot = false;
 
         // Raycast from camera forward (like guns) but shorter
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);

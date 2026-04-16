@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Pistol : MonoBehaviour
 {
@@ -18,17 +19,28 @@ public class Pistol : MonoBehaviour
 
     private float lastShotTime;
 
+    private PlayerInput input;
+
+    private bool readytoshoot = true;
+
+    private void Start()
+    {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
+    }
+
     private void Update()
     {
         if (autoFire)
         {
-            if (Input.GetMouseButton(0))
+            if (input.actions.FindAction("Attack").IsPressed())
                 TryShoot();
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (input.actions.FindAction("Attack").IsPressed() && readytoshoot)
                 TryShoot();
+            else if (!input.actions.FindAction("Attack").IsPressed())
+                readytoshoot = true;
         }
     }
 
@@ -46,6 +58,7 @@ public class Pistol : MonoBehaviour
 
         lastShotTime = Time.time;
         Shoot();
+        readytoshoot = false;
     }
 
     void Shoot()

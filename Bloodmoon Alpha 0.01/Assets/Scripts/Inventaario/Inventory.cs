@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class Inventory : MonoBehaviour
 {
@@ -23,9 +25,14 @@ public class Inventory : MonoBehaviour
     [Header("Debug")]
     [SerializeField] Button giveItemBtn;
 
+    private PlayerInput input;
+
+    Vector3 mousepoint;
+    Vector2 mouseposition;
 
     private void Awake() //Tapahtuu kun alku
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         Singleton = this;
         giveItemBtn.onClick.AddListener(() => SpawnInventoryItem());
     }
@@ -33,7 +40,11 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         if (carriedItem != null)
-            carriedItem.transform.position = Input.mousePosition;
+        {
+            mouseposition = input.actions.FindAction("Point").ReadValue<Vector2>();
+            mousepoint = new Vector3(mouseposition.x, mouseposition.y, 0);
+            carriedItem.transform.position = mousepoint;
+        }
     }
 
     public void SetCarriedItem(InventoryItem item)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryToggle : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class InventoryToggle : MonoBehaviour
     Builder builder;
     private GameObject PHUD;
 
+    private PlayerInput input;
+
     private bool isOpen;
+
+    private bool readyToTogle = true;
 
     void Start()
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         PHUD = GameObject.Find("PlayerHUD");
         builder = GameObject.Find("Builder").GetComponent<Builder>();
         pausemenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
@@ -23,12 +29,17 @@ public class InventoryToggle : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (input.actions.FindAction("TogleInventory").IsPressed() && readyToTogle)
         {
+            readyToTogle = false;
             if (isOpen)
                 CloseInventory();
             else
                 OpenInventory();
+        }
+        else if(!input.actions.FindAction("TogleInventory").IsPressed())
+        {
+            readyToTogle = true;
         }
     }
 

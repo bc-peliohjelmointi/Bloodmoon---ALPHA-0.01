@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RocketLauncher : MonoBehaviour
 {
@@ -13,11 +14,24 @@ public class RocketLauncher : MonoBehaviour
 
     private float lastShotTime = -Mathf.Infinity;
 
+    private PlayerInput input;
+
+    private bool readytoshoot = true;
+
+    private void Start()
+    {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (input.actions.FindAction("Attack").IsPressed() && readytoshoot)
         {
             TryShoot();
+        }
+        else if (!input.actions.FindAction("Attack").IsPressed())
+        {
+            readytoshoot = true;
         }
     }
 
@@ -35,6 +49,7 @@ public class RocketLauncher : MonoBehaviour
 
         lastShotTime = Time.time;
         Shoot();
+        readytoshoot = false;
     }
 
     void Shoot()

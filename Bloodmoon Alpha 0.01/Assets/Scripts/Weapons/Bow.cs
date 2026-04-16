@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bow : MonoBehaviour
 {
@@ -14,11 +15,25 @@ public class Bow : MonoBehaviour
 
     private float lastShotTime;
 
+
+    private PlayerInput input;
+
+    private bool readytoshoot = true;
+
+    private void Start()
+    {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (input.actions.FindAction("Attack").IsPressed() && readytoshoot)
         {
             TryShoot();
+        }
+        else if (!input.actions.FindAction("Attack").IsPressed())
+        {
+            readytoshoot = true;
         }
     }
 
@@ -42,6 +57,7 @@ public class Bow : MonoBehaviour
 
         lastShotTime = Time.time;
         Shoot();
+        readytoshoot = false;
     }
 
     void Shoot()

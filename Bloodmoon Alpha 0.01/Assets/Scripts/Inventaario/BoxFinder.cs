@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class BoxFinder : MonoBehaviour
 {
@@ -9,15 +11,17 @@ public class BoxFinder : MonoBehaviour
     PauseMenu Pausemenu;
     Storage currentStorage;
     bool saved = true;
-    
+    private PlayerInput input;
+
     private void Start()
     {
+        input = GameObject.Find("Character").GetComponent<PlayerInput>();
         Pausemenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && MainInventory.active == false && !Pausemenu.isPaused)
+        if (input.actions.FindAction("Interact").IsPressed() && MainInventory.active == false && !Pausemenu.isPaused)
         {
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, 10f))
             {

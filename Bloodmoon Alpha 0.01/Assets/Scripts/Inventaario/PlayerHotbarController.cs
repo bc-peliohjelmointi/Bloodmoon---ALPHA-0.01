@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerHotbarController : MonoBehaviour
 {
@@ -15,8 +17,12 @@ public class PlayerHotbarController : MonoBehaviour
 
     private GameObject currentEquippedGO;
 
+    private PlayerInput input;
+    private bool readyToConsume = true;
+
     private void Awake()
     {
+        input = GetComponent<PlayerInput>();
         Instance = this;
         inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
 
@@ -45,7 +51,7 @@ public class PlayerHotbarController : MonoBehaviour
 
     void HandleScroll()
     {
-        float scroll = Input.mouseScrollDelta.y;
+        float scroll = input.actions.FindAction("Scroll").ReadValue<Vector2>().y;
 
         if (scroll == 0) return;
 
@@ -67,7 +73,7 @@ public class PlayerHotbarController : MonoBehaviour
     {
         for (int i = 0; i < inventory.HotbarCount; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            if (input.actions.FindAction((i + 1).ToString()).IsPressed())
             {
                 selectedIndex = i;
                 EquipSelectedSlot();
@@ -108,8 +114,15 @@ public class PlayerHotbarController : MonoBehaviour
 
     void TryUseSelectedConsumable()
     {
-        if (!Input.GetKeyDown(useConsumableKey))
+        if (!input.actions.FindAction("Interact").IsPressed() || !readyToConsume)
+        {
+            if (!input.actions.FindAction("Interact").IsPressed())
+            {
+                readyToConsume = true;
+            }
             return;
+        }
+        readyToConsume = false;
 
         InventorySlot slot = inventory.GetHotbarSlot(selectedIndex);
         if (slot == null || slot.myItem == null || slot.myItem.myItem == null)

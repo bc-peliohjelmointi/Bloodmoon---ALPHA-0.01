@@ -1,5 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 /// <summary>
 /// Handles player interactions with breakable objects (trees, rocks, etc.)
@@ -11,10 +13,16 @@ public class PlayerInteraction : MonoBehaviour
     public float range = 2f;   // Interaction distance
     public LayerMask mask;
 
+    private PlayerInput input;
+    private void Start()
+    {
+        input = GetComponent<PlayerInput>();
+    }
+
     void Update()
     {
         // Left mouse click
-        if (Input.GetMouseButton(0))
+        if (input.actions.FindAction("Attack").IsPressed())
         {
             TryHit();
         }
