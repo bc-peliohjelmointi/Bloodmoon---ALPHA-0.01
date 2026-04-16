@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
   m_Name: Pickaxe
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 575a1e2821f78e24bb70f3ba24d83bde, type: 3}
   itemTag: 0
   description: Hit rock
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 1562418660021281822, guid: db019d3256b03c54a9ff83f396ca6b8a, type: 3}
+  equipmentPrefab: {fileID: 2446829401942333329, guid: f8834d5f45c6f6c40906a029b73145c6, type: 3}
   toolType: 2
   weaponType: 0
   ammoType: {fileID: 0}
@@ -25,3 +25,5 @@ MonoBehaviour:
   damage: 10
   knockbackForce: 1
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
+  aimFOV: 40
+  aimSpeed: 10

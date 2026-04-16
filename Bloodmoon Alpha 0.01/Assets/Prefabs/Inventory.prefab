@@ -3614,7 +3614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c810edc0a9b2ea7479482cafbbc0bd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  myTag: 4
+  myTag: 2
 --- !u!114 &8246643455894246149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5594,7 +5594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c810edc0a9b2ea7479482cafbbc0bd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  myTag: 1
+  myTag: 4
 --- !u!114 &7628106521359377458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16777,7 +16777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c810edc0a9b2ea7479482cafbbc0bd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  myTag: 3
+  myTag: 1
 --- !u!114 &5253236005325517141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21524,7 +21524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c810edc0a9b2ea7479482cafbbc0bd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlot
-  myTag: 2
+  myTag: 3
 --- !u!114 &4409055414577296290
 MonoBehaviour:
   m_ObjectHideFlags: 0

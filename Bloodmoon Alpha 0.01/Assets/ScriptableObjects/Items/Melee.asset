@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: 34761277b4d169e49bcc3ff31eaeabbf, type: 3}
+  sprite: {fileID: 21300000, guid: 1ba4cc20b1594cc4dbcad40a27d00e1a, type: 3}
   itemTag: 0
   description: Hit
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 4344195911141412706, guid: 9dc527568c4357b4a9319abecfa7eec5, type: 3}
+  equipmentPrefab: {fileID: 7505499703950806449, guid: 8d1205197ce57bf48b0d586eccfd9e61, type: 3}
   toolType: 0
   weaponType: 2
   ammoType: {fileID: 11400000, guid: b9806ebcc4ae21e4ebd2deb7f2355665, type: 2}
@@ -25,3 +25,5 @@ MonoBehaviour:
   damage: 20
   knockbackForce: 0.05
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
+  aimFOV: 40
+  aimSpeed: 10

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: 154a789380360ff45b4513a28d71a6eb, type: 3}
+  sprite: {fileID: 21300000, guid: fb38af54312632d47bc615bfe636f9a4, type: 3}
   itemTag: 7
   description: Drink
   foodRestore: 0
@@ -25,3 +25,5 @@ MonoBehaviour:
   damage: 10
   knockbackForce: 1
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
+  aimFOV: 40
+  aimSpeed: 10
