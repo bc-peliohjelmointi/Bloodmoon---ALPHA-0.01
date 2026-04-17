@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1571025617765347049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1868303775849743911}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1868303775849743911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571025617765347049}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.527, y: -0.429, z: 0.031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1788145734209191536}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8054533140301882152
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,13 +58,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8054533140301882152}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.2053756, y: 0.20308714, z: -0.68075204, w: 0.6731665}
-  m_LocalPosition: {x: 0.38, y: 0.91, z: 0.51}
+  m_LocalRotation: {x: 0.68113923, y: -0, z: -0, w: -0.7321539}
+  m_LocalPosition: {x: 0.478, y: 0.768, z: 0.51061124}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1868303775849743911}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 33.576, z: -90.642006}
+  m_LocalEulerAnglesHint: {x: 274.135, y: 0, z: 0}
 --- !u!33 &7702144209211541502
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -104,6 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bow
   bowItemData: {fileID: 11400000, guid: d17391163030f884f815c800ec2b28b6, type: 2}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1868303775849743911}
   shootForce: 20
   shootCooldown: 0.8

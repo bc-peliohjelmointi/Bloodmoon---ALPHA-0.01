@@ -7,7 +7,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private Item weaponItem;
 
     [Header("Attack Settings")]
-    [SerializeField] private float range = 2f; // melee distance
+    [SerializeField] private float range = 2f;
     [SerializeField] private float attackCooldown = 0.5f;
 
     [Header("Hit Detection")]
@@ -15,20 +15,22 @@ public class MeleeWeapon : MonoBehaviour
 
     [Header("Swing Animation")]
     [SerializeField] private float tiltAngle = 35f;
+    [SerializeField] private float thrustDistance = 0.3f;
     [SerializeField] private float swingSpeed = 10f;
 
     private float lastAttackTime = -Mathf.Infinity;
     private Quaternion originalRotation;
+    private Vector3 originalPosition;
     private bool isSwinging;
 
     private PlayerInput input;
-
     private bool readytoshoot = true;
 
     private void Start()
     {
         input = GameObject.Find("Character").GetComponent<PlayerInput>();
         originalRotation = transform.localRotation;
+        originalPosition = transform.localPosition;
     }
 
     private void Update()
@@ -44,14 +46,12 @@ public class MeleeWeapon : MonoBehaviour
     void TryAttack()
     {
         if (PauseMenu.IsPaused) return;
-        if (Time.time < lastAttackTime + attackCooldown)
-            return;
+        if (Time.time < lastAttackTime + attackCooldown) return;
 
         lastAttackTime = Time.time;
         isSwinging = true;
         readytoshoot = false;
 
-        // Raycast from camera forward (like guns) but shorter
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, range, hitMask))
         {
@@ -73,8 +73,11 @@ public class MeleeWeapon : MonoBehaviour
     {
         if (isSwinging)
         {
-            Quaternion targetRotation = originalRotation * Quaternion.Euler(-tiltAngle, 0f, 0f);
+            Quaternion targetRotation = originalRotation * Quaternion.Euler(0f, 0f, -tiltAngle);
+            Vector3 targetPosition = originalPosition + new Vector3(0f, 0f, thrustDistance);
+
             transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime * swingSpeed);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * swingSpeed);
 
             if (Quaternion.Angle(transform.localRotation, targetRotation) < 1f)
                 isSwinging = false;
@@ -82,6 +85,7 @@ public class MeleeWeapon : MonoBehaviour
         else
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation, originalRotation, Time.deltaTime * swingSpeed);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * swingSpeed);
         }
     }
 
