@@ -181,11 +181,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
---- !u!95 &72463756 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7007956906748583636, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
-  m_PrefabInstance: {fileID: 72463755}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &258140430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,7 +323,7 @@ GameObject:
   - component: {fileID: 467449146}
   - component: {fileID: 467449145}
   - component: {fileID: 467449144}
-  - component: {fileID: 467449143}
+  - component: {fileID: 467449149}
   m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
@@ -336,47 +331,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &467449143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467449142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7042d74809f2d6d4d9d4a709c67383f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BomberZombie
-  health: 50
-  maxHealth: 50
-  canTakeKnockback: 1
-  bloodEffect: {fileID: 1067510171}
-  agent: {fileID: 467449144}
-  player: {fileID: 0}
-  raycastPoint: {fileID: 467449148}
-  animator: {fileID: 72463756}
-  roamingRange: 10
-  viewDistance: 15
-  fov: 60
-  detectionRange: 3
-  damage: 25
-  effect: {fileID: 5774021493654583103, guid: 3f33605b02aed464a864d7351882fb0d, type: 3}
-  deathSound: {fileID: 0}
-  debug: 1
-  hordeAlertRadius: 20
-  hordeAlertDuration: 0
-  minHordeSize: 0
-  attackInterval: 0
-  attackAnimationDuration: 0
-  attackKnockback: 0
-  idleWaitMin: 2
-  idleWaitMax: 5
-  explosionRadius: 5
-  explosionDamage: 30
-  explosionForce: 5
-  explosionEffect: {fileID: 0}
-  explosionSound: {fileID: 0}
 --- !u!195 &467449144
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -494,6 +448,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &467449149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467449142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038dc664f3383f54fba8a5ae6eb59044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpitterZombie
+  health: 50
+  maxHealth: 50
+  canTakeKnockback: 1
+  bloodEffect: {fileID: 1067510171}
+  agent: {fileID: 467449144}
+  player: {fileID: 0}
+  raycastPoint: {fileID: 467449148}
+  animator: {fileID: 0}
+  roamingRange: 10
+  viewDistance: 15
+  fov: 60
+  detectionRange: 5
+  damage: 10
+  buildingAttackRange: 1.6
+  buildingDamage: 10
+  buildingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  effect: {fileID: 0}
+  deathSound: {fileID: 0}
+  debug: 1
+  hordeAlertRadius: 20
+  hordeAlertDuration: 6
+  minHordeSize: 3
+  attackInterval: 2
+  attackAnimationDuration: 1.2
+  attackKnockback: 0.1
+  idleWaitMin: 2
+  idleWaitMax: 5
+  spitPrefab: {fileID: 8838616929701194134, guid: 406b98225cd8404479b032b2508644f5, type: 3}
+  firePoint: {fileID: 467449148}
+  spitDamage: 12
+  spitKnockback: 0.2
+  spitSpeed: 12
+  spitArc: 0.2
+  spitInterval: 2.5
+  minRange: 5
+  maxRange: 12
 --- !u!1 &891120476
 GameObject:
   m_ObjectHideFlags: 0

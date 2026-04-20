@@ -17,6 +17,11 @@ public abstract class AnimalNpc : IDamageable
     [SerializeField] protected float detectionRange = 5f;
     [SerializeField] protected int damage = 10;
 
+    [Header("Building Attack")]
+    [SerializeField] protected float buildingAttackRange = 1.6f;
+    [SerializeField] protected float buildingDamage = 10f;
+    [SerializeField] protected LayerMask buildingMask = ~0;
+
     [Header("Effects")]
     [SerializeField] protected ParticleSystem effect;
     [SerializeField] protected AudioSource deathSound;
@@ -110,6 +115,44 @@ public abstract class AnimalNpc : IDamageable
                 return hit.position;
         }
         return origin;
+    }
+
+    protected virtual BuildingID FindBuildingInRange()
+    {
+        Vector3 center = transform.position + Vector3.up * 0.5f;
+        Collider[] hits = Physics.OverlapSphere(center, buildingAttackRange, buildingMask, QueryTriggerInteraction.Ignore);
+
+        BuildingID closest = null;
+        float closestDistSqr = float.MaxValue;
+        int ghoustLayer = LayerMask.NameToLayer("Ghoust");
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            BuildingID building = hits[i].GetComponentInParent<BuildingID>();
+            if (building == null) continue;
+            if (building.gameObject.layer == ghoustLayer) continue;
+
+            float distSqr = (building.transform.position - center).sqrMagnitude;
+            if (distSqr < closestDistSqr)
+            {
+                closestDistSqr = distSqr;
+                closest = building;
+            }
+        }
+
+        return closest;
+    }
+
+    protected virtual bool TryAttackBuilding()
+    {
+        if (!isAlive) return false;
+
+        BuildingID building = FindBuildingInRange();
+        if (building == null) return false;
+
+        DealDamage(buildingDamage, building.gameObject, Vector3.zero);
+        if (debug) Debug.Log($"{gameObject.name} smashes {building.name}!");
+        return true;
     }
 
     protected bool TrySetDestination(Vector3 target, float sampleRadius = 1f)

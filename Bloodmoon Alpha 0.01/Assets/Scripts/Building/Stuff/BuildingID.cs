@@ -57,5 +57,13 @@ public class BuildingID : IDamageable
             transform.GetComponentInParent<BuildingColapse>().Colapse(BuildingListID, gameObject);
         }
     }
+
+    protected override void Die()
+    {
+        if (bloodEffect != null)
+            Instantiate(bloodEffect, transform.position, transform.rotation);
+
+        Destroy(gameObject);
+    }
 }
 

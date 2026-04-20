@@ -109,9 +109,12 @@ public abstract class Zombie : AnimalNpc
 
         agent.SetDestination(player.transform.position);
 
+        bool pathBlocked = !agent.pathPending && agent.pathStatus != UnityEngine.AI.NavMeshPathStatus.PathComplete;
         bool inAttackRange = !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
+        bool playerPhysicallyClose = Vector3.Distance(transform.position, player.transform.position) <= agent.stoppingDistance + 0.5f;
+        bool buildingInRange = pathBlocked && FindBuildingInRange() != null;
 
-        if (!inAttackRange)
+        if (!inAttackRange && !buildingInRange)
         {
             isAttackAnimating = false;
             return;
@@ -130,8 +133,15 @@ public abstract class Zombie : AnimalNpc
 
         if (startedAttackThisFrame)
         {
-            if (debug) Debug.Log($"{gameObject.name} attacks the player!");
-            DealDamage(damage, player, transform.forward * attackKnockback);
+            if (playerPhysicallyClose)
+            {
+                if (debug) Debug.Log($"{gameObject.name} attacks the player!");
+                DealDamage(damage, player, transform.forward * attackKnockback);
+            }
+            else
+            {
+                TryAttackBuilding();
+            }
         }
     }
 

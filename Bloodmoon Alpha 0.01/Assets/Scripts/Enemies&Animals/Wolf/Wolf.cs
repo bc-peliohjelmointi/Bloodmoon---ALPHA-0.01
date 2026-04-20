@@ -199,8 +199,17 @@ public class Wolf : AnimalNpc
 
         if (startedAttackThisFrame)
         {
-            if (debug) Debug.Log($"{gameObject.name} attacks the player!");
-            DealDamage(damage, player, transform.forward / 10);
+            bool playerPhysicallyClose = Vector3.Distance(transform.position, player.transform.position) <= stopDistance + 0.5f;
+
+            if (playerPhysicallyClose)
+            {
+                if (debug) Debug.Log($"{gameObject.name} attacks the player!");
+                DealDamage(damage, player, transform.forward / 10);
+            }
+            else
+            {
+                TryAttackBuilding();
+            }
         }
     }
 
