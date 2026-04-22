@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Rapid fire gun
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 590101283616826231, guid: c867cd1a87788a940a87a996c59eb544, type: 3}
+  equipmentPrefab: {fileID: 4185518912306324553, guid: 34d9918439c82da478947f5832aed8b9, type: 3}
   toolType: 0
   weaponType: 3
   ammoType: {fileID: 11400000, guid: 1e13dcd62a4dd344ea16c5ad1242f191, type: 2}
