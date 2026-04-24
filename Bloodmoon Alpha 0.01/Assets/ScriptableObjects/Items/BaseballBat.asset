@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: Melee
+  m_Name: BaseballBat
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: 1ba4cc20b1594cc4dbcad40a27d00e1a, type: 3}
+  sprite: {fileID: 21300000, guid: f6293f20fd85aa143bead12afd67ebbb, type: 3}
   itemTag: 0
-  description: Hit
+  description: Hit enemies
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 7505499703950806449, guid: 8d1205197ce57bf48b0d586eccfd9e61, type: 3}
+  equipmentPrefab: {fileID: 6705367872142520749, guid: b2c2eaa77adbe704690e52a50768f2a8, type: 3}
   toolType: 0
   weaponType: 2
-  ammoType: {fileID: 11400000, guid: b9806ebcc4ae21e4ebd2deb7f2355665, type: 2}
+  ammoType: {fileID: 0}
   projectilePrefab: {fileID: 0}
-  damage: 20
-  knockbackForce: 0.05
+  damage: 13
+  knockbackForce: 1
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
   aimFOV: 40
   aimSpeed: 10

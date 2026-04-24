@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  sprite: {fileID: 21300000, guid: 1ba4cc20b1594cc4dbcad40a27d00e1a, type: 3}
+  itemTag: 0
+  description: Hit
+  foodRestore: 0
+  waterRestore: 0
+  equipmentPrefab: {fileID: 7505499703950806449, guid: 8d1205197ce57bf48b0d586eccfd9e61, type: 3}
+  toolType: 0
+  weaponType: 2
+  ammoType: {fileID: 0}
+  projectilePrefab: {fileID: 0}
+  damage: 20
+  knockbackForce: 0.05
+  worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
+  aimFOV: 40
+  aimSpeed: 10
