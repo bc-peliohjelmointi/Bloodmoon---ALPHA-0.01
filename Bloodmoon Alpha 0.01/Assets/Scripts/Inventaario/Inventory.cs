@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
     Vector3 mousepoint;
     Vector2 mouseposition;
 
-    private void Awake() //Tapahtuu kun alku
+    private void Awake()
     {
         input = GameObject.Find("Character").GetComponent<PlayerInput>();
         Singleton = this;
@@ -78,6 +78,7 @@ public class Inventory : MonoBehaviour
             case SlotTag.Feet: break;
         }
     }
+
     public bool CanCraft(Recipe recipe)
     {
         foreach (var ingredient in recipe.ingredients)
@@ -98,6 +99,7 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+
     public void Craft(Recipe recipe)
     {
         if (carriedItem != null)
@@ -111,7 +113,6 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        // REMOVE INGREDIENTS
         foreach (var ingredient in recipe.ingredients)
         {
             int amountToRemove = ingredient.amount;
@@ -139,18 +140,18 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // SPAWN RESULT
         for (int i = 0; i < recipe.resultAmount; i++)
         {
             SpawnInventoryItem(recipe.result);
         }
     }
 
-    public void SpawnInventoryItem(Item item = null)
+    // Returns true if item was added, false if inventory is full
+    public bool SpawnInventoryItem(Item item = null)
     {
         Item _item = item ?? PickRandomItem();
 
-        // Merge stackable items if possible
+        // Try to merge into an existing stack
         if (_item.IsStackableItem())
         {
             foreach (InventorySlot slot in inventorySlots)
@@ -163,20 +164,19 @@ public class Inventory : MonoBehaviour
                     if (spaceLeft > 0)
                     {
                         slot.myItem.AddStack(1);
-                        return; // merged successfully
+                        return true;
                     }
                 }
             }
         }
 
-        // Otherwise, spawn in an empty slot
+        // Spawn in an empty slot
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (inventorySlots[i].myItem == null)
             {
                 InventoryItem newItem = Instantiate(itemPrefab, inventorySlots[i].transform);
 
-                // Reset RectTransform to fill the slot
                 RectTransform rt = newItem.GetComponent<RectTransform>();
                 rt.anchorMin = Vector2.zero;
                 rt.anchorMax = Vector2.one;
@@ -185,13 +185,25 @@ public class Inventory : MonoBehaviour
                 rt.localScale = Vector3.one;
 
                 newItem.Initialize(_item, inventorySlots[i]);
-
-                // Place the item into the slot properly
                 inventorySlots[i].SetItem(newItem);
 
-                break;
+                return true;
             }
         }
+
+        // No slot available
+        return false;
+    }
+
+    // Returns true if every inventory slot is occupied
+    public bool IsFull()
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (slot.myItem == null)
+                return false;
+        }
+        return true;
     }
 
     private Item PickRandomItem()
@@ -199,6 +211,7 @@ public class Inventory : MonoBehaviour
         int random = Random.Range(0, items.Length);
         return items[random];
     }
+
     public int HotbarCount => hotbarSlots.Length;
 
     public InventorySlot GetHotbarSlot(int index)
@@ -208,6 +221,7 @@ public class Inventory : MonoBehaviour
 
         return hotbarSlots[index];
     }
+
     public bool ConsumeItem(Item item, int amount)
     {
         foreach (InventorySlot slot in inventorySlots)
@@ -250,6 +264,7 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+
     public delegate void OnInventorySlotChanged(InventorySlot slot);
     public event OnInventorySlotChanged InventorySlotChanged;
 

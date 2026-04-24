@@ -21,9 +21,6 @@ public class WorldItemPickup : MonoBehaviour
     private void Awake()
     {
         colliders = GetComponents<Collider>();
-
-        foreach (var col in colliders)
-            col.isTrigger = col.isTrigger; // keep original setup
     }
 
     private void Start()
@@ -38,15 +35,24 @@ public class WorldItemPickup : MonoBehaviour
     private void Update()
     {
         if (pickedUp || player == null) return;
-
-        // Wait for pickup delay
         if (Time.time < spawnTime + pickupDelay) return;
+
+        // Stop magnetism if inventory is full
+        if (Inventory.Singleton != null && Inventory.Singleton.IsFull())
+        {
+            // If we were already flying toward the player, reset
+            if (magnetActive)
+            {
+                magnetActive = false;
+                ReEnableSolidColliders();
+            }
+            return;
+        }
 
         float distance = Vector3.Distance(transform.position, player.position);
 
         if (distance <= magnetRange)
         {
-            // Activate magnet once
             if (!magnetActive)
             {
                 magnetActive = true;
@@ -65,7 +71,6 @@ public class WorldItemPickup : MonoBehaviour
     {
         if (pickedUp) return;
         if (Time.time < spawnTime + pickupDelay) return;
-
         if (!other.CompareTag("Player")) return;
 
         if (item == null)
@@ -74,19 +79,19 @@ public class WorldItemPickup : MonoBehaviour
             return;
         }
 
+        // Try to add to inventory — if full, item stays in the world
+        bool success = Inventory.Singleton.SpawnInventoryItem(item);
+        if (!success) return;
+
         pickedUp = true;
-
         DisableObject();
-
-        Inventory.Singleton.SpawnInventoryItem(item);
-
         Destroy(gameObject);
     }
 
     void DisableObject()
     {
-        Collider col = GetComponent<Collider>();
-        if (col != null) col.enabled = false;
+        foreach (var col in colliders)
+            col.enabled = false;
 
         Renderer rend = GetComponent<Renderer>();
         if (rend != null) rend.enabled = false;
@@ -94,14 +99,22 @@ public class WorldItemPickup : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null) rb.linearVelocity = Vector3.zero;
     }
+
     void DisableSolidColliders()
     {
         foreach (var col in colliders)
         {
             if (!col.isTrigger)
-            {
                 col.enabled = false;
-            }
+        }
+    }
+
+    void ReEnableSolidColliders()
+    {
+        foreach (var col in colliders)
+        {
+            if (!col.isTrigger)
+                col.enabled = true;
         }
     }
 }
