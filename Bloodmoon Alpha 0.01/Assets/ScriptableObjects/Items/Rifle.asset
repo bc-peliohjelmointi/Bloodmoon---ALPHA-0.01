@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: 34761277b4d169e49bcc3ff31eaeabbf, type: 3}
+  sprite: {fileID: 21300000, guid: f84b8c92027f88745946a69edca56d50, type: 3}
   itemTag: 0
   description: Rapid fire gun
   foodRestore: 0
