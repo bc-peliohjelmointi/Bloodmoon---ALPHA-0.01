@@ -65,7 +65,7 @@ public class BuildingPrice : MonoBehaviour
             price.Material = new List<Item>();
             foreach (Item material in items.items)
             {
-                if (material.name == "Wood" || (material.name == "Stone"))
+                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
                 {
                     price.Prices.Add(2);
                     price.Material.Add(material);
@@ -84,9 +84,9 @@ public class BuildingPrice : MonoBehaviour
         price.Material = new List<Item>();
         foreach (Item material in items.items)
         {
-            if (material.name == "Wood" || (material.name == "Stone"))
+            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
             {
-                price.Prices.Add(1);
+                price.Prices.Add(10);
                 price.Material.Add(material);
             }
         }
@@ -94,13 +94,28 @@ public class BuildingPrice : MonoBehaviour
         price = new Price();
         price.BuildingName = "ZipLine";
         price.Prices = new List<int>();
-        price.OptionalMaterials = true;
+        price.OptionalMaterials = false;
         price.Material = new List<Item>();
         foreach (Item material in items.items)
         {
-            if (material.name == "Wood" || (material.name == "Stone"))
+            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
             {
-                price.Prices.Add(1);
+                price.Prices.Add(5);
+                price.Material.Add(material);
+            }
+        }
+        Pricing.Add(price);
+        Pricing.Add(price);
+        price = new Price();
+        price.BuildingName = "Storage Crate";
+        price.Prices = new List<int>();
+        price.OptionalMaterials = false;
+        price.Material = new List<Item>();
+        foreach (Item material in items.items)
+        {
+            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+            {
+                price.Prices.Add(5);
                 price.Material.Add(material);
             }
         }

@@ -64,7 +64,7 @@ public class PriceDisplay : MonoBehaviour
             }
             if (Item.Count > 1)
             {
-                while (PriceClones.Count < Item.Count)
+                while (PriceClones.Count < Item.Count-1)
                 {
                     PriceClones.Add(Instantiate(PriceImagePrefab, transform));
                     PriceClones[PriceClones.Count - 1].GetComponent<RectTransform>().position = Midle;

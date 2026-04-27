@@ -45,7 +45,10 @@ public class Item : ScriptableObject
 
     [Header("Aiming")]
     public float aimFOV = 40f;     
-    public float aimSpeed = 10f;   
+    public float aimSpeed = 10f;
+
+    [Header("Building Material")]
+    public Material Material;
 
     public bool IsStackableItem()
     {

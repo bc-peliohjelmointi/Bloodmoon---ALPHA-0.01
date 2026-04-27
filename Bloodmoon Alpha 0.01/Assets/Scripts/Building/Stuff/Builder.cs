@@ -160,6 +160,39 @@ public class Builder : MonoBehaviour
                 if (Priced)
                 {
                     payToBuild(ghoustPrice.Material, ghoustPrice.Prices, ghoustPrice.OptionalMaterials);
+                    if (display.currentItem.Material != null)
+                    {
+                        foreach (MeshRenderer renderer in go.GetComponentsInChildren<MeshRenderer>())
+                        {
+                            renderer.materials[0] = display.currentItem.Material;
+                        }
+                        if (go.GetComponent<MeshRenderer>() != null)
+                        {
+                            Material mat = display.currentItem.Material;
+                            go.GetComponent<MeshRenderer>().material = mat;
+                            switch (mat.name) 
+                            {
+                                case "Stone":
+                                    go.GetComponent<IDamageable>().health *= 2;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Material place not found");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Material problems");
+                        Debug.LogWarning("Material on olemassa: " + (display.currentItem.Material != null));
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Building not priced");
                 }
             }
             else if (!input.actions.FindAction("Attack").IsPressed())
