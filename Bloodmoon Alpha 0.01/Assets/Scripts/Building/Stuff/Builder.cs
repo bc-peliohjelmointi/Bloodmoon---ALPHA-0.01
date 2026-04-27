@@ -172,8 +172,13 @@ public class Builder : MonoBehaviour
                             go.GetComponent<MeshRenderer>().material = mat;
                             switch (mat.name) 
                             {
-                                case "Stone":
-                                    go.GetComponent<IDamageable>().health *= 2;
+                                case "004":
+                                    go.GetComponent<IDamageable>().health *= 4;
+                                    go.GetComponent<IDamageable>().maxHealth *= 4;
+                                    break;
+                                case "Metal":
+                                    go.GetComponent<IDamageable>().health *= 20;
+                                    go.GetComponent<IDamageable>().maxHealth *= 20;
                                     break;
                                 default:
                                     break;
