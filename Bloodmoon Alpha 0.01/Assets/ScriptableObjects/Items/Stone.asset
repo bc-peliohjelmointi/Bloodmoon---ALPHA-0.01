@@ -27,4 +27,4 @@ MonoBehaviour:
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
   aimFOV: 40
   aimSpeed: 10
-  Material: {fileID: 2100000, guid: 8d35245d1114c264e973aaaaa2a9bd82, type: 2}
+  Material: {fileID: 2100000, guid: 390db36535a6922448d9eb40f1b11738, type: 2}
