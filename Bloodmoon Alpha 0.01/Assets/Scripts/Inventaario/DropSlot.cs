@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DropSlot : InventorySlot
 {
@@ -40,6 +41,11 @@ public class DropSlot : InventorySlot
             : Camera.main.transform.position + Camera.main.transform.forward * 2f;
 
         GameObject dropped = Instantiate(item.myItem.worldPrefab, spawnPos, Quaternion.identity);
+
+        if (dropped.GetComponentInChildren<Image>() != null)
+        {
+            dropped.GetComponentInChildren<Image>().sprite = item.myItem.sprite;
+        }
 
         // Optional: add a little force so it "pops" out
         Rigidbody rb = dropped.GetComponent<Rigidbody>();
