@@ -23990,6 +23990,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0d11a410c41f8441916936dd5803918, type: 2}
   - {fileID: 11400000, guid: d07f5b0169836114faa5d80b0c328d3b, type: 2}
   - {fileID: 11400000, guid: c08b843f0dc1455498ede5fbc45e0798, type: 2}
+  - {fileID: 11400000, guid: 2eb6e9b9f5fd2e247a9ef2c4c5e731a0, type: 2}
   giveItemBtn: {fileID: 7871723213060288303}
 --- !u!114 &3915245123481920150
 MonoBehaviour:
@@ -24030,6 +24031,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0d11a410c41f8441916936dd5803918, type: 2}
   - {fileID: 11400000, guid: d07f5b0169836114faa5d80b0c328d3b, type: 2}
   - {fileID: 11400000, guid: c08b843f0dc1455498ede5fbc45e0798, type: 2}
+  - {fileID: 11400000, guid: 2eb6e9b9f5fd2e247a9ef2c4c5e731a0, type: 2}
 --- !u!114 &6197118933186147625
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -108,6 +108,7 @@ MonoBehaviour:
   attackCooldown: 0.5
   hitMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   tiltAngle: 30
+  thrustDistance: 0.3
   swingSpeed: 10

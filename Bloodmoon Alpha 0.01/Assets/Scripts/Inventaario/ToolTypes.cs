@@ -4,7 +4,8 @@ using UnityEngine;
     {
         None,
         Axe,
-        Pickaxe
+        Pickaxe,
+        Hammer
     }
 
     public enum BreakType

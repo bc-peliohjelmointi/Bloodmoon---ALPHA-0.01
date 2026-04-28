@@ -52,4 +52,9 @@ public class BreakableObject : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    public void Repair(float amount)
+    {
+        // Increase health but don't go over the max
+        currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+    }
 }
