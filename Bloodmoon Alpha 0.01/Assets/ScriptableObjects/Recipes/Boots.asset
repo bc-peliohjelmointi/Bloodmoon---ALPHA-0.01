@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96c4c3991dc781408f0a2571af4b610, type: 3}
+  m_Name: Boots
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  ingredients:
+  - item: {fileID: 11400000, guid: bad14c48e93decd4fa6094f428cae8e9, type: 2}
+    amount: 6
+  result: {fileID: 11400000, guid: effc8f3d4cccb5c4483b27b2dc0a96ea, type: 2}
+  resultAmount: 1
