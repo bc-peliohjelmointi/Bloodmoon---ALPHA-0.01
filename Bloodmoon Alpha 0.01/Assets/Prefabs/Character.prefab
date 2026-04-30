@@ -7636,10 +7636,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   damage: 1
-  range: 2
+  range: 5
   mask:
     serializedVersion: 2
     m_Bits: 375
+  hpDisplayParent: {fileID: 0}
+  hpText: {fileID: 0}
 --- !u!114 &310157435590329273
 MonoBehaviour:
   m_ObjectHideFlags: 0

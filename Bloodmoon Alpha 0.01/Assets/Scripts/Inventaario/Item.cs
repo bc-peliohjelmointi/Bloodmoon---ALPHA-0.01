@@ -50,6 +50,9 @@ public class Item : ScriptableObject
     [Header("Building Material")]
     public Material Material;
 
+    [Header("Hammer Settings")]
+    public float repairPower = 10f;
+
     public bool IsStackableItem()
     {
         return itemTag == SlotTag.Stackable || itemTag == SlotTag.Food || itemTag == SlotTag.Water;
