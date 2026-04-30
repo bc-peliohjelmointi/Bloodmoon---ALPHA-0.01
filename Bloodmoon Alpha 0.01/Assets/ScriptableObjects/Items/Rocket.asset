@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: ArrowItem
+  m_Name: Rocket
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: e50febd6717db2b43a8fa67d1259fa02, type: 3}
+  sprite: {fileID: 21300000, guid: 2082753275c196b48995fffc6876faa1, type: 3}
   itemTag: 5
-  description: Shoot arrow with bow
+  description: 'shoot with launcher
+
+'
   foodRestore: 0
   waterRestore: 0
   equipmentPrefab: {fileID: 0}
   toolType: 0
   weaponType: 0
   ammoType: {fileID: 0}
-  projectilePrefab: {fileID: 2873414467058878401, guid: 233f35b4c687c40498fb2182d9a83a70, type: 3}
-  damage: 20
+  projectilePrefab: {fileID: 2873414467058878401, guid: 8484be64bc8f774418ff4de086a1f4a3, type: 3}
+  damage: 120
   knockbackForce: 0.1
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
   aimFOV: 40

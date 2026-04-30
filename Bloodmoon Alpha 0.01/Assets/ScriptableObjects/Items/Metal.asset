@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: Metalli
+  m_Name: Metal
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 21300000, guid: 3e4fcc84a0ac95b429c56452575f6021, type: 3}
   itemTag: 5
-  description: Metalli
+  description: Crafting item
   foodRestore: 0
   waterRestore: 0
   equipmentPrefab: {fileID: 0}
@@ -28,3 +28,4 @@ MonoBehaviour:
   aimFOV: 40
   aimSpeed: 10
   Material: {fileID: 2100000, guid: 8d35245d1114c264e973aaaaa2a9bd82, type: 2}
+  repairPower: 10

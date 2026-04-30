@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: MuntingRifle
+  m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: 3d8cead3a824af9478777979f871bbe2, type: 3}
+  sprite: {fileID: 21300000, guid: 81e9ec1d21e1f8f43a06e7e75c17fc37, type: 3}
   itemTag: 0
-  description: Shoot
+  description: Hit tree
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 590101283616826231, guid: cd5b4e78382eddd4ba91d83491d8dbd7, type: 3}
-  toolType: 0
-  weaponType: 3
-  ammoType: {fileID: 11400000, guid: 1e13dcd62a4dd344ea16c5ad1242f191, type: 2}
+  equipmentPrefab: {fileID: 7757701744868425547, guid: 6a881db9233fb0748ad9709b178e05e2, type: 3}
+  toolType: 1
+  weaponType: 0
+  ammoType: {fileID: 0}
   projectilePrefab: {fileID: 0}
-  damage: 60
-  knockbackForce: 0
+  damage: 10
+  knockbackForce: 1
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
-  aimFOV: 15
+  aimFOV: 40
   aimSpeed: 10

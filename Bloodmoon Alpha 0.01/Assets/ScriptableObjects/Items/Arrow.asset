@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 310adf3a4b7b3ea49b672611c19c4576, type: 3}
-  m_Name: Kirves
+  m_Name: Arrow
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  sprite: {fileID: 21300000, guid: 81e9ec1d21e1f8f43a06e7e75c17fc37, type: 3}
-  itemTag: 0
-  description: Hit tree
+  sprite: {fileID: 21300000, guid: e50febd6717db2b43a8fa67d1259fa02, type: 3}
+  itemTag: 5
+  description: Shoot arrow with bow
   foodRestore: 0
   waterRestore: 0
-  equipmentPrefab: {fileID: 7757701744868425547, guid: 6a881db9233fb0748ad9709b178e05e2, type: 3}
-  toolType: 1
+  equipmentPrefab: {fileID: 0}
+  toolType: 0
   weaponType: 0
   ammoType: {fileID: 0}
-  projectilePrefab: {fileID: 0}
-  damage: 10
-  knockbackForce: 1
+  projectilePrefab: {fileID: 2873414467058878401, guid: 233f35b4c687c40498fb2182d9a83a70, type: 3}
+  damage: 20
+  knockbackForce: 0.1
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
   aimFOV: 40
   aimSpeed: 10
