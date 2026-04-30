@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.Linq; // used for Sum of array
 
@@ -99,14 +98,10 @@ public class SetWorldTextures : MonoBehaviour
 
         TerrainData data = terrain.terrainData;
 
-        Undo.RegisterCompleteObjectUndo(data, "Clear Trees");
-
         // Remove all placed trees
         data.treeInstances = new TreeInstance[0];
 
         // Remove all tree prototypes (references)
         data.treePrototypes = new TreePrototype[0];
-
-        EditorUtility.SetDirty(data);
     }
 }
