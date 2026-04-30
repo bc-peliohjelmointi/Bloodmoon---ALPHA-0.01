@@ -12,6 +12,7 @@ public class SlowTextureGenerationManager : MonoBehaviour
         else
         {
             Terrains.TextureGenerators[Terrains.TextureGenerators.Count - 1].MaterialChange();
+            //Terrains.TextureGenerators[Terrains.TextureGenerators.Count - 1].ClearTrees();
             Terrains.TextureGenerators.RemoveAt(Terrains.TextureGenerators.Count - 1);
             Debug.Log("Tiles Left: " + Terrains.TextureGenerators.Count);
         }
