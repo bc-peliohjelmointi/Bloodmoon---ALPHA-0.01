@@ -18,10 +18,17 @@ public class SaveChildren : MonoBehaviour
             Transform[] trans = transform.GetComponentsInChildren<Transform>();
             data.locations = new List<Vector3>();
             data.rotations = new List<Quaternion>();
+            data.HealthPoints = new List<float>();
+            data.MaterialNames = new List<string>();
             for (int i = 0; trans.Length > i; i++)
             {
-                data.locations.Add(trans[i].position);
-                data.rotations.Add(trans[i].rotation);
+                if (trans[i].GetComponent<MeshRenderer>() != null)
+                {
+                    data.locations.Add(trans[i].position);
+                    data.rotations.Add(trans[i].rotation);
+                    data.HealthPoints.Add(trans[i].GetComponent<IDamageable>().health);
+                    data.MaterialNames.Add(trans[i].GetComponent<MeshRenderer>().material.name);
+                }
             }
             Debug.Log(Convert.ToString(trans.Count()));
             for (int i = 0; trans.Length > i; i++)
@@ -52,6 +59,7 @@ public class SaveChildren : MonoBehaviour
                 {
                     found = true;
                     GameObject work = Instantiate(builder.GetComponent<Builder>().buildings[x], data.locations[i], data.rotations[i], transform);
+                    work.GetComponent<IDamageable>().health = data.HealthPoints[i];
                     if (work == null)
                     {
                         Debug.Log("load " + i + " Faild");
@@ -126,6 +134,8 @@ public struct ChildSaveData
 {
     public List<Vector3> locations;
     public List<Quaternion> rotations;
+    public List<float> HealthPoints;
+    public List<string> MaterialNames;
     public List<string> names;
     public List<BoxData> Storages;
 }
