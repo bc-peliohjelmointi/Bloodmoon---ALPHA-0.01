@@ -75,7 +75,7 @@ public class SaveChildren : MonoBehaviour
                 Debug.Log("Object " + i + " not found");
             }
         }
-        builder.GetComponent<Builder>().update.NavUpdate();
+        builder.GetComponent<Builder>().update.NavUpdate(null);
     }
 
     public void SaveLines(ref LineSaveData data)

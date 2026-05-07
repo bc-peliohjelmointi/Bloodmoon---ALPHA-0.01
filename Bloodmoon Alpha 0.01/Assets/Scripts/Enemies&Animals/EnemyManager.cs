@@ -27,7 +27,7 @@ public class EnemyManager : MonoBehaviour
 
                 if (TryGetGroundPosition(out Vector3 spawnPos))
                 {
-                    Instantiate(spawn.prefab, spawnPos, Quaternion.identity);
+                    Instantiate(spawn.prefab, spawnPos, Quaternion.identity, transform);
                     currentEntityCount++;
                 }
             }

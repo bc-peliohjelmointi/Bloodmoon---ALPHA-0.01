@@ -135,7 +135,7 @@ public class Builder : MonoBehaviour
             {
                 GonaBuild = false;
                 GameObject go = Instantiate(buildings[build], Ghoust.transform.position, Ghoust.transform.rotation, transform);
-                update.NavUpdate();
+                update.NavUpdate(go);
                 rotat = 0;
                 if (hit.transform.tag != "Ground")
                 {
