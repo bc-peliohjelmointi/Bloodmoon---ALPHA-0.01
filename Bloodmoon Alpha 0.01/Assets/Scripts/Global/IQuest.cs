@@ -212,5 +212,5 @@ public class Requirement {
     public int neededAmount = 1;
     public int currentAmount = 0;
 
-    public bool CanBeDone() => currentAmount >= neededAmount;
+    public bool IsMet() => currentAmount >= neededAmount;
 }
