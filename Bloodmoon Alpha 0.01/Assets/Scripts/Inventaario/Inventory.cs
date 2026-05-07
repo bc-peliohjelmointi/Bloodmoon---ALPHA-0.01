@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] InventoryItem itemPrefab;
 
     [Header("Item List")]
-    [SerializeField] Item[] items;
+    [SerializeField] public Item[] items;
 
     [Header("Debug")]
     [SerializeField] Button giveItemBtn;

@@ -1,0 +1,29 @@
+{
+    "playerData": {
+        "Location": {
+            "x": 7.0854291915893559,
+            "y": 0.004016697406768799,
+            "z": -4.907169818878174
+        },
+        "Rotation": {
+            "x": 0.0,
+            "y": -0.3218366801738739,
+            "z": 0.0,
+            "w": 0.9467952251434326
+        },
+        "health": 50.0,
+        "food": 98,
+        "water": 98,
+        "stamina": 100
+    },
+    "childSaveData": {
+        "locations": [],
+        "rotations": [],
+        "names": []
+    },
+    "inventoryData": {
+        "InventoryItems": [],
+        "ParentsNames": [],
+        "InventoryNumbers": []
+    }
+}
