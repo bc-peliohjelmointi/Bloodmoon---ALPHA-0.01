@@ -561,23 +561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
---- !u!1 &549096255 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1770665879486875031, guid: 27a989214db07a043b65d7c7dd1d7282, type: 3}
-  m_PrefabInstance: {fileID: 235834723192902184}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &549096258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549096255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9ae681f9b8a7d3468376e3a2fd7fe6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PerformanseTester
 --- !u!1 &790895308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1114761397914510640, guid: e8efc3dcad7cbf14ba3bec10c50ba33b, type: 3}
@@ -3001,10 +2984,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1770665879486875031, guid: 27a989214db07a043b65d7c7dd1d7282, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 549096258}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27a989214db07a043b65d7c7dd1d7282, type: 3}
 --- !u!1001 &962493293988391254
 PrefabInstance:
@@ -3183,6 +3163,14 @@ PrefabInstance:
     - target: {fileID: 3259542791121592523, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327830325089259770, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
+      propertyPath: worldSizeX
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327830325089259770, guid: 20fd31ddb8476764eabdf7d1c326ab13, type: 3}
+      propertyPath: worldSizeZ
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

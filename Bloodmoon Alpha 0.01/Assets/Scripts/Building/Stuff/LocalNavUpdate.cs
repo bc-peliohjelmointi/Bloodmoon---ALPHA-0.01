@@ -14,15 +14,28 @@ public class LocalNavUpdate : MonoBehaviour
     private Bounds bounds;
     public LayerMask mask;
     private NavMeshSurface surface;
+    private GameObject Player;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        bounds = new Bounds(new Vector3(worldSizeX/2, worldSizeY/2+1, worldSizeZ/2), new Vector3(worldSizeX, worldSizeY, worldSizeZ));
+        Player = GameObject.Find("Character");
+        bounds = new Bounds(new Vector3(2000/2, 250/2, 2500/2), new Vector3(2000, 250, 2500));
+        NavMeshBuilder.CollectSources(bounds, mask, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sourses);
+        bounds = new Bounds(new Vector3(Player.transform.position.x, worldSizeY/2+1, Player.transform.position.z), new Vector3(worldSizeX, worldSizeY, worldSizeZ));
         surface = GetComponent<NavMeshSurface>();
         buildSettings = surface.GetBuildSettings();
         navMeshData = surface.navMeshData;
         NavUpdate();
+    }
+
+    private void Update()
+    {
+        if (Mathf.Abs(Player.transform.position.x - bounds.min.x) > worldSizeX / 1.5f || Mathf.Abs(Player.transform.position.z - bounds.min.z) > worldSizeZ / 1.5f) 
+        {
+            bounds = new Bounds(new Vector3(Player.transform.position.x, worldSizeY / 2 + 1, Player.transform.position.z), new Vector3(worldSizeX, worldSizeY, worldSizeZ));
+            FinalizedUpdate();
+        }
     }
 
     public void NavUpdate(GameObject go = null)
@@ -36,9 +49,16 @@ public class LocalNavUpdate : MonoBehaviour
         }
         else
         {
+            bounds = new Bounds(new Vector3(2000 / 2, 250 / 2, 2500 / 2), new Vector3(2000, 250, 2500));
             NavMeshBuilder.CollectSources(bounds, mask, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sourses);
+            bounds = new Bounds(new Vector3(Player.transform.position.x, worldSizeY / 2 + 1, Player.transform.position.z), new Vector3(worldSizeX, worldSizeY, worldSizeZ));
             Debug.LogWarning("Navmesh updated when go = null");
         }
+        FinalizedUpdate();
+    }
+
+    public void FinalizedUpdate()
+    {
         NavMeshBuilder.Cancel(navMeshData);
         NavMeshBuilder.UpdateNavMeshDataAsync(navMeshData, buildSettings, sourses, bounds);
     }
