@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 439
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7831e80e0d7bd7e4891d701e4212bded, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9171483bcdfe56b4cb1931efb07fb7b2, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &7347065341681905058
 MonoBehaviour:
@@ -92,7 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalNavUpdate
   navMeshData: {fileID: 0}
-  worldSize: 100
+  worldSizeX: 2000
+  worldSizeY: 200
+  worldSizeZ: 2500
   mask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 439

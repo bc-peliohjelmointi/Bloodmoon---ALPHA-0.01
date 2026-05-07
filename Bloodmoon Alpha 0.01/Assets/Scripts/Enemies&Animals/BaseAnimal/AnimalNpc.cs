@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class AnimalNpc : IDamageable
@@ -25,6 +28,9 @@ public abstract class AnimalNpc : IDamageable
     [Header("Effects")]
     [SerializeField] protected ParticleSystem effect;
     [SerializeField] protected AudioSource deathSound;
+
+    [Header("On Death Drops")]
+    [SerializeField] protected List<Item> DropedItems = new List<Item>();
 
     [Header("Debug Options")]
     [SerializeField] protected bool debug = true;
@@ -199,6 +205,10 @@ public abstract class AnimalNpc : IDamageable
     {
         if (vfx != null)
         {
+            foreach (Item item in DropedItems)
+            {
+                DropItem(item);
+            }
             vfx.Play();
             Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax + 0.5f);
         }
@@ -207,5 +217,15 @@ public abstract class AnimalNpc : IDamageable
     public bool Alive()
     {
         return isAlive;
+    }
+
+    protected virtual void DropItem(Item item)
+    {
+        GameObject worlditem = Instantiate(item.worldPrefab, transform.position, Quaternion.identity);
+        worlditem.GetComponent<WorldItemPickup>().item = item;
+        if (worlditem.GetComponentInChildren<Image>() != null)
+        {
+            worlditem.GetComponentInChildren<Image>().sprite = item.sprite;
+        }
     }
 }

@@ -411,8 +411,15 @@ MonoBehaviour:
   fov: 60
   detectionRange: 5
   damage: 10
+  buildingAttackRange: 1.6
+  buildingDamage: 10
+  buildingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   effect: {fileID: 5774021493654583103, guid: 3f33605b02aed464a864d7351882fb0d, type: 3}
   deathSound: {fileID: 5660024077882072743}
+  DropedItems:
+  - {fileID: 11400000, guid: 06d42345ee784db58828f483b0970379, type: 2}
   debug: 1
   packSenseRadius: 20
   packCohesionRadius: 8
