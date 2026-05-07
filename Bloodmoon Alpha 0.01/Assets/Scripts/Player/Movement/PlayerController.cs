@@ -30,9 +30,9 @@ public class PlayerController : IDamageable
     [SerializeField] protected Slider staminaBar;
 
     [Header("Player stats")]
-    [SerializeField] int food = 100;
-    [SerializeField] int water = 100;
-    [SerializeField] int stamina = 100;
+    public int food = 100;
+    public int water = 100;
+    public int stamina = 100;
 
     private Animator animator;
     private Rigidbody rb;

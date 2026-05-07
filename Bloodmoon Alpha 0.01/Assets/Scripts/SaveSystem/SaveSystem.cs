@@ -16,6 +16,7 @@ public class SaveSystem
         public ChildSaveData childSaveData;
         public LineSaveData lineSaveData;
         public InventoryData inventoryData;
+        public QuestManagerData questData;
     }
 
     public static string SaveFileName()
@@ -23,7 +24,7 @@ public class SaveSystem
         string saveFile = Application.persistentDataPath + "/save" + ".save";
         return saveFile;
     }
-
+    
     public static void Save()
     {
         HandleSaveData();
@@ -37,6 +38,10 @@ public class SaveSystem
         GameObject.Find("Builder").GetComponent<SaveChildren>().Save(ref saveData.childSaveData);
         GameObject.Find("Character").GetComponent<SaveMeeee>().Save(ref saveData.playerData);
         GameObject.Find("Inventory").GetComponent<SaveMyStuff>().Save(ref saveData.inventoryData);
+        SaveMyQuests questSave = Object.FindAnyObjectByType<SaveMyQuests>();
+        if (questSave != null) {
+            questSave.Save(ref saveData.questData);
+        }
         GameObject.Find("Builder").GetComponent<SaveChildren>().SaveLines(ref saveData.lineSaveData);
     }
 
@@ -54,6 +59,10 @@ public class SaveSystem
         GameObject.Find("Builder").GetComponent<SaveChildren>().Load(saveData.childSaveData);
         GameObject.Find("Character").GetComponent<SaveMeeee>().Load(saveData.playerData);
         GameObject.Find("Inventory").GetComponent<SaveMyStuff>().Load(saveData.inventoryData);
+        SaveMyQuests questSave = Object.FindAnyObjectByType<SaveMyQuests>();
+        if (questSave != null) {
+            questSave.Load(saveData.questData);
+        }
         GameObject.Find("Builder").GetComponent<SaveChildren>().LoadLines(saveData.lineSaveData);
     }
 }
