@@ -15,10 +15,13 @@ public class LocalNavUpdate : MonoBehaviour
     public LayerMask mask;
     private NavMeshSurface surface;
     private GameObject Player;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private GameObject Enemymanager;
+
+    AsyncOperation navUpdate;
+
     private void Start()
     {
+        Enemymanager = GameObject.Find("EnemyManager");
         Player = GameObject.Find("Character");
         bounds = new Bounds(new Vector3(2000/2, 250/2, 2500/2), new Vector3(2000, 250, 2500));
         NavMeshBuilder.CollectSources(bounds, mask, NavMeshCollectGeometry.RenderMeshes, 0, new List<NavMeshBuildMarkup>(), sourses);
@@ -59,8 +62,23 @@ public class LocalNavUpdate : MonoBehaviour
 
     public void FinalizedUpdate()
     {
+        if (Enemymanager != null)
+        {
+            foreach (Transform child in Enemymanager.transform)
+            {
+                if (child.name != "EnemyManager")
+                {
+                    if(Mathf.Abs(child.transform.position.x - bounds.min.x) > worldSizeX || Mathf.Abs(child.transform.position.y - bounds.min.y) > worldSizeY)
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
         NavMeshBuilder.Cancel(navMeshData);
-        NavMeshBuilder.UpdateNavMeshDataAsync(navMeshData, buildSettings, sourses, bounds);
+        navUpdate = NavMeshBuilder.UpdateNavMeshDataAsync(navMeshData, buildSettings, sourses, bounds);
+
+        navUpdate.completed += OnNavMeshUpdateFinished;
     }
 
     public static bool TryCreateSource(GameObject go, out NavMeshBuildSource source)
@@ -91,5 +109,19 @@ public class LocalNavUpdate : MonoBehaviour
         }
 
         return false;
+    }
+
+    void OnNavMeshUpdateFinished(AsyncOperation op)
+    {
+        foreach (Transform child in Enemymanager.transform)
+        {
+            if (child.name != "EnemyManager")
+            {
+                if (Mathf.Abs(child.transform.position.x - bounds.min.x) < worldSizeX || Mathf.Abs(child.transform.position.y - bounds.min.y) < worldSizeY)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 }
