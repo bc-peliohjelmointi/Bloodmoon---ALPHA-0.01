@@ -1095,7 +1095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8249791328718386091, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8470177942619154592, guid: aa87d034c7bda3640b2d9438118445fe, type: 3}
       propertyPath: hpText
@@ -2589,7 +2589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1793817723
 MonoBehaviour:
   m_ObjectHideFlags: 0
