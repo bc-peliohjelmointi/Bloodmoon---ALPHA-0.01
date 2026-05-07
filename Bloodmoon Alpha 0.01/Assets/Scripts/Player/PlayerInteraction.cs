@@ -1,23 +1,25 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 using TMPro;
 
-/// <summary>
-/// Handles player interactions with breakable objects (trees, rocks, etc.)
-/// Supports multi-mesh objects using parent lookup
-/// </summary>
 public class PlayerInteraction : MonoBehaviour
 {
-    public int damage = 1;    
-    public float range = 2f;  
+    public int damage = 1;
+    public float range = 2f;
     public LayerMask mask;
+
     [Header("UI Setup")]
     [SerializeField] private GameObject hpDisplayParent;
-    [SerializeField] private TextMeshProUGUI hpText;             
+    [SerializeField] private TextMeshProUGUI hpText;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource loopSource;
+    [SerializeField] private AudioClip repairSound;
+
+    private bool isPlayingLoop = false;
 
     private PlayerInput input;
+
     private void Start()
     {
         input = GetComponent<PlayerInput>();
@@ -26,22 +28,33 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         HandleHPDisplay();
-        // Left mouse click
-        if (input.actions.FindAction("Attack").IsPressed())
+
+        bool isHolding = input.actions.FindAction("Attack").IsPressed();
+
+        if (isHolding)
         {
             TryHit();
+        }
+        else
+        {
+            StopLoopSound();
         }
     }
 
     void TryHit()
     {
         Item equipped = PlayerHotbarController.Instance.GetEquippedItem();
-        if (equipped == null) return;
+        if (equipped == null)
+        {
+            StopLoopSound();
+            return;
+        }
 
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, range, mask))
         {
+            // 🔧 REPAIR
             if (equipped.toolType == ToolType.Hammer)
             {
                 BuildingID building = hit.collider.GetComponentInParent<BuildingID>();
@@ -50,11 +63,17 @@ public class PlayerInteraction : MonoBehaviour
                     if (building.Health < building.MaxHealth)
                     {
                         building.Heal(equipped.repairPower * Time.deltaTime);
+                        PlayLoopSound(repairSound);
+                    }
+                    else
+                    {
+                        StopLoopSound();
                     }
                     return;
                 }
             }
 
+            // ⛏️ BREAK
             BreakableObject breakable = hit.collider.GetComponentInParent<BreakableObject>();
 
             if (breakable != null)
@@ -62,10 +81,17 @@ public class PlayerInteraction : MonoBehaviour
                 if (CanBreak(equipped.toolType, breakable.breakType))
                 {
                     breakable.TakeDamage(damage * Time.deltaTime);
+
+                    // 🔊 Use object-specific sound
+                    PlayLoopSound(breakable.breakLoopSound);
+
                     return;
                 }
             }
         }
+
+        // ❌ Nothing valid hit
+        StopLoopSound();
     }
 
     bool CanBreak(ToolType tool, BreakType target)
@@ -78,6 +104,29 @@ public class PlayerInteraction : MonoBehaviour
 
         return false;
     }
+
+    void PlayLoopSound(AudioClip clip)
+    {
+        if (loopSource == null || clip == null) return;
+
+        if (isPlayingLoop && loopSource.clip == clip) return;
+
+        loopSource.clip = clip;
+        loopSource.loop = true;
+        loopSource.Play();
+
+        isPlayingLoop = true;
+    }
+
+    void StopLoopSound()
+    {
+        if (loopSource == null) return;
+
+        loopSource.Stop();
+        loopSource.clip = null;
+        isPlayingLoop = false;
+    }
+
     private void HandleHPDisplay()
     {
         Item equipped = PlayerHotbarController.Instance.GetEquippedItem();
