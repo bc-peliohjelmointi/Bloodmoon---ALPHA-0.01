@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pistol
   pistolItem: {fileID: 11400000, guid: 1ae84a54c026c4a4e92705d2ee996e78, type: 2}
   firePoint: {fileID: 4969742581807423085}
-  fireCooldown: 0.15
+  fireCooldown: 0.3
   range: 100
   hitMask:
     serializedVersion: 2

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -19,6 +19,9 @@ public class BreakableObject : MonoBehaviour
     [Header("Break Settings")]
     public BreakType breakType = BreakType.Tree;
 
+    [Header("Audio")]
+    public AudioClip breakLoopSound; // 🔊 unique per object
+
     [Header("Drops")]
     public List<ItemDrop> lootTable;
     public GameObject worldItemPrefab;
@@ -32,7 +35,6 @@ public class BreakableObject : MonoBehaviour
 
     private void Break()
     {
-        // Loop through every item type in the loot table
         foreach (ItemDrop dropData in lootTable)
         {
             int dropCount = Random.Range(dropData.minQuantity, dropData.maxQuantity + 1);
@@ -57,7 +59,7 @@ public class BreakableObject : MonoBehaviour
     private void SpawnDrop(Item item)
     {
         Vector3 offset = Random.insideUnitSphere * dropRadius;
-        offset.y = 0.5f; // Spawn slightly above ground
+        offset.y = 0.5f;
 
         GameObject dropObj = Instantiate(
             worldItemPrefab,
@@ -65,7 +67,6 @@ public class BreakableObject : MonoBehaviour
             Quaternion.identity
         );
 
-        // Assign the specific item to the pickup script
         if (dropObj.TryGetComponent(out WorldItemPickup pickup))
         {
             pickup.item = item;
