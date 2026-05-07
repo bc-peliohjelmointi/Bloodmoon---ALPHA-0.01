@@ -34,6 +34,15 @@ public class PlayerController : IDamageable
     public int water = 100;
     public int stamina = 100;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource movementSource;
+    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip runSound;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioSource jumpSource;
+
+    private bool isPlayingMovement = false;
+
     private Animator animator;
     private Rigidbody rb;
 
@@ -177,6 +186,7 @@ public class PlayerController : IDamageable
             animator.SetBool(walkBool, isWalking);
             animator.SetBool(runBool, isRunning);
         }
+        HandleMovementAudio(isMovingInput, isRunning);
     }
 
     private void TryJump()
@@ -186,9 +196,17 @@ public class PlayerController : IDamageable
         isOnGround = false;
         rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
 
+        // 🔊 Jump sound
+        if (movementSource != null && jumpSound != null)
+        {
+            if (jumpSource != null && jumpSound != null)
+            {
+                jumpSource.PlayOneShot(jumpSound);
+            }
+        }
+
         if (animator != null)
         {
-            //animator.SetBool(groundedBool, false);
             animator.SetTrigger(jumpTrigger);
             animator.SetBool(runBool, false);
         }
@@ -260,5 +278,39 @@ public class PlayerController : IDamageable
             ConsumeFood(2);
             yield return new WaitForSeconds(20f);
         }
+    }
+    void HandleMovementAudio(bool isMoving, bool isRunning)
+    {
+        if (movementSource == null) return;
+
+        if (!isMoving)
+        {
+            StopMovementSound();
+            return;
+        }
+
+        AudioClip targetClip = isRunning ? runSound : walkSound;
+
+        if (targetClip == null) return;
+
+        // If already playing correct clip, do nothing
+        if (isPlayingMovement && movementSource.clip == targetClip)
+            return;
+
+        movementSource.clip = targetClip;
+        movementSource.loop = true;
+        movementSource.pitch = isRunning ? 1.2f : 1f;
+        movementSource.Play();
+
+        isPlayingMovement = true;
+    }
+
+    void StopMovementSound()
+    {
+        if (movementSource == null) return;
+
+        movementSource.Stop();
+        movementSource.clip = null;
+        isPlayingMovement = false;
     }
 }
