@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   sprite: {fileID: 21300000, guid: 575a1e2821f78e24bb70f3ba24d83bde, type: 3}
   itemTag: 0
-  description: Hit rock
+  description: Can be used to break rock
   foodRestore: 0
   waterRestore: 0
   equipmentPrefab: {fileID: 2446829401942333329, guid: f8834d5f45c6f6c40906a029b73145c6, type: 3}
@@ -27,3 +27,5 @@ MonoBehaviour:
   worldPrefab: {fileID: 5238444639610514483, guid: 4e2382beff31a3c49862fa0ee408fedb, type: 3}
   aimFOV: 40
   aimSpeed: 10
+  Material: {fileID: 0}
+  repairPower: 10

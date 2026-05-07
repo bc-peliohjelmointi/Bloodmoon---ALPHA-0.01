@@ -149,7 +149,7 @@ public class Inventory : MonoBehaviour
     // Returns true if item was added, false if inventory is full
     public bool SpawnInventoryItem(Item item = null)
     {
-        Item _item = item ?? PickRandomItem();
+        Item _item = item ?? PickRandomBaseMaterialItem();
 
         // Try to merge into an existing stack
         if (_item.IsStackableItem())
@@ -209,6 +209,17 @@ public class Inventory : MonoBehaviour
     private Item PickRandomItem()
     {
         int random = Random.Range(0, items.Length);
+        Debug.Log(items[random].name);
+        return items[random];
+    }
+
+    private Item PickRandomBaseMaterialItem()
+    {
+        int random = Random.Range(0, items.Length);
+        while (items[random].name != "Food" && items[random].name != "Water" && items[random].name != "Wood" && items[random].name != "Stone" && items[random].name != "String" && items[random].name != "Metal")
+        {
+            random = Random.Range(0, items.Length);
+        }
         return items[random];
     }
 

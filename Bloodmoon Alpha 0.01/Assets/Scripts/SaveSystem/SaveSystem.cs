@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.Build.Content;
 using Unity.VectorGraphics;
 using Unity.Hierarchy;
 

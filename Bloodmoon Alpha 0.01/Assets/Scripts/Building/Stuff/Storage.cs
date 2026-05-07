@@ -4,10 +4,8 @@ using System.Drawing;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Storage : MonoBehaviour
 {
