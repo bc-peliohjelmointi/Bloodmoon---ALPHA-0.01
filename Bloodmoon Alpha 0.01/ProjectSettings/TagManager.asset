@@ -16,6 +16,7 @@ TagManager:
   - Hotbar
   - PreBuild
   - Decoration
+  - Water
   layers:
   - Default
   - TransparentFX
