@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.82048
+      value: 985.2135
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000078272944
+      value: 36.402466
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.370492
+      value: 1576.8074
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalRotation.w
@@ -34,15 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -419,7 +419,8 @@ MonoBehaviour:
   effect: {fileID: 5774021493654583103, guid: 3f33605b02aed464a864d7351882fb0d, type: 3}
   deathSound: {fileID: 5660024077882072743}
   DropedItems:
-  - {fileID: 11400000, guid: 06d42345ee784db58828f483b0970379, type: 2}
+  - item: {fileID: 11400000, guid: 06d42345ee784db58828f483b0970379, type: 2}
+    number: {x: 1, y: 5}
   debug: 1
   packSenseRadius: 20
   packCohesionRadius: 8
