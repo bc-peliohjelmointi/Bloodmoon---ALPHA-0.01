@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class CollectWater : MonoBehaviour
 {
-    GameObject WaterCollectionMarker;
+    public GameObject WaterCollectionMarker;
     PlayerInput Input;
     Inventory Inv;
     Item Water;
@@ -21,7 +21,6 @@ public class CollectWater : MonoBehaviour
         }
         Inv = GetComponent<Inventory>();
         Input = GameObject.Find("Character").GetComponent<PlayerInput>();
-        WaterCollectionMarker = GameObject.Find("Water Colection marker");
     }
     void Update()
     {

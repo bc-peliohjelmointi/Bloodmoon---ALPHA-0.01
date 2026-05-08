@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -30,7 +31,7 @@ public abstract class AnimalNpc : IDamageable
     [SerializeField] protected AudioSource deathSound;
 
     [Header("On Death Drops")]
-    [SerializeField] protected List<Item> DropedItems = new List<Item>();
+    [SerializeField] protected List<Drops> DropedItems = new List<Drops>();
 
     [Header("Debug Options")]
     [SerializeField] protected bool debug = true;
@@ -116,7 +117,7 @@ public abstract class AnimalNpc : IDamageable
     {
         for (int i = 0; i < 20; i++)
         {
-            Vector3 randomPoint = origin + Random.insideUnitSphere * range;
+            Vector3 randomPoint = origin + UnityEngine.Random.insideUnitSphere * range;
             if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
                 return hit.position;
         }
@@ -205,9 +206,12 @@ public abstract class AnimalNpc : IDamageable
     {
         if (vfx != null)
         {
-            foreach (Item item in DropedItems)
+            foreach (Drops drops in DropedItems)
             {
-                DropItem(item);
+                for (int i = (int)UnityEngine.Random.Range(drops.number.x, drops.number.y); i > 0; i--)
+                {
+                    DropItem(drops.item);
+                }
             }
             vfx.Play();
             Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax + 0.5f);
@@ -227,5 +231,11 @@ public abstract class AnimalNpc : IDamageable
         {
             worlditem.GetComponentInChildren<Image>().sprite = item.sprite;
         }
+    }
+    [System.Serializable]
+    public class Drops
+    {
+        [SerializeField] public Item item;
+        [SerializeField] public Vector2 number;
     }
 }
