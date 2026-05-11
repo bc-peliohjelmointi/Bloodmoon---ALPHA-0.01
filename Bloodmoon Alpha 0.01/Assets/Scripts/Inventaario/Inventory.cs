@@ -216,7 +216,7 @@ public class Inventory : MonoBehaviour
     private Item PickRandomBaseMaterialItem()
     {
         int random = Random.Range(0, items.Length);
-        while (items[random].name != "Food" && items[random].name != "Water" && items[random].name != "Wood" && items[random].name != "Stone" && items[random].name != "String" && items[random].name != "Metal")
+        while (items[random].name != "Food" && items[random].name != "Water" && items[random].name != "Wood" && items[random].name != "Stone" && items[random].name != "String" && items[random].name != "Metal" && items[random].name != "Mechanical Parts" && items[random].name != "Electronical part")
         {
             random = Random.Range(0, items.Length);
         }
