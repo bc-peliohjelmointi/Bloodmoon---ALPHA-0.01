@@ -34,7 +34,7 @@ public class LocalNavUpdate : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(Player.transform.position.x - bounds.min.x) > worldSizeX / 1.5f || Mathf.Abs(Player.transform.position.z - bounds.min.z) > worldSizeZ / 1.5f) 
+        if (Mathf.Abs(Player.transform.position.x - bounds.center.x) > worldSizeX / 5f || Mathf.Abs(Player.transform.position.z - bounds.center.z) > worldSizeZ / 5f) 
         {
             bounds = new Bounds(new Vector3(Player.transform.position.x, worldSizeY / 2 + 1, Player.transform.position.z), new Vector3(worldSizeX, worldSizeY, worldSizeZ));
             FinalizedUpdate();
@@ -68,7 +68,7 @@ public class LocalNavUpdate : MonoBehaviour
             {
                 if (child.name != "EnemyManager")
                 {
-                    if(Mathf.Abs(child.transform.position.x - bounds.min.x) > worldSizeX || Mathf.Abs(child.transform.position.y - bounds.min.y) > worldSizeY)
+                    if(Mathf.Abs(child.transform.position.x - bounds.center.x) > worldSizeX/2 || Mathf.Abs(child.transform.position.y - bounds.center.y) > worldSizeY/2)
                     {
                         child.gameObject.SetActive(false);
                     }
@@ -117,7 +117,7 @@ public class LocalNavUpdate : MonoBehaviour
         {
             if (child.name != "EnemyManager")
             {
-                if (Mathf.Abs(child.transform.position.x - bounds.min.x) < worldSizeX || Mathf.Abs(child.transform.position.y - bounds.min.y) < worldSizeY)
+                if (Mathf.Abs(child.transform.position.x - bounds.center.x) < worldSizeX/2 && Mathf.Abs(child.transform.position.z - bounds.center.z) < worldSizeZ/2)
                 {
                     child.gameObject.SetActive(true);
                 }
