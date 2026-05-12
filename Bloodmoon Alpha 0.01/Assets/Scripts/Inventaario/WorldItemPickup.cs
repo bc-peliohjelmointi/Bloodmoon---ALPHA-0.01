@@ -11,6 +11,9 @@ public class WorldItemPickup : MonoBehaviour
     [Header("Magnet Settings")]
     [SerializeField] private float magnetRange = 2f;
     [SerializeField] private float magnetSpeed = 10f;
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pickupSound;
 
     private Collider[] colliders;
     private bool magnetActive = false;
@@ -84,6 +87,13 @@ public class WorldItemPickup : MonoBehaviour
         if (!success) return;
 
         pickedUp = true;
+
+        // 🔊 Play pickup sound in world space
+        if (pickupSound != null)
+        {
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+        }
+
         DisableObject();
         Destroy(gameObject);
     }

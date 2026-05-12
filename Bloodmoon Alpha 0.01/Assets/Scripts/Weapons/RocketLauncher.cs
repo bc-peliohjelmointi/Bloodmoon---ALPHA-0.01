@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class RocketLauncher : MonoBehaviour
@@ -11,6 +11,10 @@ public class RocketLauncher : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float shootCooldown = 1f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     private float lastShotTime = -Mathf.Infinity;
 
@@ -54,6 +58,13 @@ public class RocketLauncher : MonoBehaviour
 
     void Shoot()
     {
+        // 🔊 Play rocket launch sound
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.pitch = Random.Range(0.95f, 1.05f);
+            audioSource.PlayOneShot(shootSound);
+        }
+
         GameObject rocket = Instantiate(
             rocketItemData.projectilePrefab,
             firePoint.position,
