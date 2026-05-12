@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 413e345c8de61ab4ba7180f33d6237c2, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &3286591420545172889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +680,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &202242223559805930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,6 +2913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 036487d18ec43c34ba28e9d3d47e1a93, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &954941837153995245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,6 +2934,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &967176922629375935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,6 +3326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 1a6b8927659a74a4fae1a8664df87008, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &1319335187830436197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3340,6 +3347,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &1035718109757824197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4727,6 +4736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: f52ce5ccddb6ce244b13abad7837f383, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &3693558505928490720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4747,6 +4757,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &1361257847239814167
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,6 +5214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 8cde2d2086c963b408f161d5acc35471, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &5784377896577587354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5271,6 +5284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 8cde2d2086c963b408f161d5acc35471, type: 2}
+  craftSound: {fileID: 0}
 --- !u!114 &5009804624751008924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5291,6 +5305,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &1455107920078048072
 GameObject:
   m_ObjectHideFlags: 0
@@ -9932,6 +9948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 29ccc06d93837554d9dca3b41cbaa811, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &3537245408420382929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9952,6 +9969,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &2686371366569947952
 GameObject:
   m_ObjectHideFlags: 0
@@ -12007,6 +12026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: fe27cdb4edd38c24f9f339a99ab71083, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &4999979976378107666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12027,6 +12047,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &3264940215387881654
 GameObject:
   m_ObjectHideFlags: 0
@@ -15872,6 +15894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: ec92a0fe8c6512c4dbc8f7f397f0ed16, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &5843248560421873423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15892,6 +15915,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &4203312175210733483
 GameObject:
   m_ObjectHideFlags: 0
@@ -19916,6 +19941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 9a56f78a11b74ae46bccfd73211cf88c, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &5084689259443222681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19985,6 +20011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 9a56f78a11b74ae46bccfd73211cf88c, type: 2}
+  craftSound: {fileID: 0}
 --- !u!114 &8662030862277991796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20005,6 +20032,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &5188811256350775549
 GameObject:
   m_ObjectHideFlags: 0
@@ -24311,6 +24340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: def539d1482ef274c8116bc14a18e42e, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &4156543581712447637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24331,6 +24361,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &6417676046381413701
 GameObject:
   m_ObjectHideFlags: 0
@@ -24967,6 +24999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: c66d971a524665b49a8febbf24c567eb, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &395227424304914419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24987,6 +25020,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &6612395993412275880
 GameObject:
   m_ObjectHideFlags: 0
@@ -25773,6 +25808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 46695c74bd6cb9a468a2fa83aa750e1e, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &690059049543690753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25793,6 +25829,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &6916749682950025596
 GameObject:
   m_ObjectHideFlags: 0
@@ -28799,6 +28837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 3dc4a7a6794bf6f47ab9f982072b1983, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &5477765789890998466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28819,6 +28858,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &7721196078391269899
 GameObject:
   m_ObjectHideFlags: 0
@@ -32234,6 +32275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 7602178d31ccd814db7862bc5d6ee4a8, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &665904798825959372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32254,6 +32296,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &8372362749263711103
 GameObject:
   m_ObjectHideFlags: 0
@@ -33657,6 +33701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 490e21a6ddadc434faeb5e0df7bbbaed, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &5972746904471103907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33677,6 +33722,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &8807388334517956772
 GameObject:
   m_ObjectHideFlags: 0
@@ -33977,6 +34024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 5cce8c47204225d44925944898a50a44, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &8897672739571439516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33997,6 +34045,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &8866042248482576596
 GameObject:
   m_ObjectHideFlags: 0
@@ -34372,6 +34422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: 565e8afd536fee0459a65bde74cbcba5, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &1943616560866390857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34392,6 +34443,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &8993098756876074715
 GameObject:
   m_ObjectHideFlags: 0
@@ -34751,6 +34804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecipeButton
   recipe: {fileID: 11400000, guid: dad62498f42150249b8fcecd397fcc8a, type: 2}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!114 &2193198803340499963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34771,6 +34825,8 @@ MonoBehaviour:
   backgroundImage: {fileID: 0}
   craftableColor: {r: 1, g: 1, b: 1, a: 1}
   uncraftableColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  audioSource: {fileID: 0}
+  craftSound: {fileID: 8300000, guid: 918ed223f99554540b79acc4fbb7219f, type: 3}
 --- !u!1 &9029387065498774580
 GameObject:
   m_ObjectHideFlags: 0

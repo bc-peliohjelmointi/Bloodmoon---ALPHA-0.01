@@ -33,15 +33,12 @@ public class CraftingRecipeSlot : MonoBehaviour
 
         bool canCraft = Inventory.Singleton.CanCraft(recipe);
 
-        // Name
         if (recipeNameText != null && recipe.result != null)
             recipeNameText.text = recipe.result.name;
 
-        // Icon
         if (resultIcon != null && recipe.result != null)
             resultIcon.sprite = recipe.result.sprite;
 
-        // Ingredients list
         if (ingredientsText != null)
         {
             StringBuilder sb = new StringBuilder();
@@ -51,7 +48,6 @@ public class CraftingRecipeSlot : MonoBehaviour
             ingredientsText.text = sb.ToString().TrimEnd();
         }
 
-        // Visual feedback
         if (backgroundImage != null)
             backgroundImage.color = canCraft ? craftableColor : uncraftableColor;
 
@@ -63,6 +59,6 @@ public class CraftingRecipeSlot : MonoBehaviour
     {
         if (recipe == null) return;
         Inventory.Singleton.Craft(recipe);
-        CraftingUI.Instance?.RefreshAll(); // re-sort/filter after crafting
+        CraftingUI.Instance?.RefreshAll();
     }
 }
