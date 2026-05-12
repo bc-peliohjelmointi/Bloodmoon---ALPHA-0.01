@@ -30,7 +30,7 @@ public class BuildingPrice : MonoBehaviour
             price.Material = new List<Item>();
             foreach (Item material in items.items)
             {
-                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metal"))
                 {
                     price.Prices.Add(10);
                     price.Material.Add(material);
@@ -47,7 +47,7 @@ public class BuildingPrice : MonoBehaviour
             price.Material = new List<Item>();
             foreach (Item material in items.items)
             {
-                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metal"))
                 {
                     price.Prices.Add(5);
                     price.Material.Add(material);
@@ -64,7 +64,7 @@ public class BuildingPrice : MonoBehaviour
             price.Material = new List<Item>();
             foreach (Item material in items.items)
             {
-                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+                if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metal"))
                 {
                     price.Prices.Add(2);
                     price.Material.Add(material);
@@ -83,7 +83,7 @@ public class BuildingPrice : MonoBehaviour
         price.Material = new List<Item>();
         foreach (Item material in items.items)
         {
-            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metal"))
             {
                 price.Prices.Add(10);
                 price.Material.Add(material);
@@ -97,7 +97,7 @@ public class BuildingPrice : MonoBehaviour
         price.Material = new List<Item>();
         foreach (Item material in items.items)
         {
-            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metal"))
             {
                 price.Prices.Add(5);
                 price.Material.Add(material);
@@ -112,7 +112,7 @@ public class BuildingPrice : MonoBehaviour
         price.Material = new List<Item>();
         foreach (Item material in items.items)
         {
-            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metalli"))
+            if (material.name == "Wood" || (material.name == "Stone") || (material.name == "Metal"))
             {
                 price.Prices.Add(5);
                 price.Material.Add(material);
